@@ -1,0 +1,101 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package ServiciosPublicos{
+    class ServicioPublico{
+        tipo: MedioDeTransporte
+        linea: Linea
+    }
+    enum MedioDeTransporte{
+        SUBTERRANEO
+        FERROCARRIL
+    }
+    class Linea{
+        nombre:String
+        estacionOrigen:Estacion
+        estacionDestino:Estacion
+        estaciones:List<Estacion>
+    }
+
+    class Estacion{
+        nombre:String
+        ubicacionGeografica:String
+        servicios:List<Servicio>
+        agrupaciones:List<Agrupacion>
+        serviciosFaltantes():List<Servicio>
+    }
+    Linea --> Estacion
+    Linea --> Estacion
+    Linea -->"*" Estacion
+    ServicioPublico --> MedioDeTransporte
+    ServicioPublico --> Linea
+}
+
+
+package Servicios {
+  class RepoServicios{
+      servicios:List<Servicio>
+      serviciosQueFatan(List<Servicio>):List<Servicio>
+  }
+  class Agrupacion{
+      serviciosAgrupados:List<Servicio>
+  }
+  abstract class Servicio{
+  }
+
+  abstract class MediosDeElevacion{
+    tramoRecorrido:TramoMedioDeElevacion
+  }
+
+  enum TramoMedioDeElevacion{
+    CALLE_A_ACCESO
+    ACCESO_A_ANDEN
+  }
+
+  class Ascensor{
+  }
+
+  class EscaleraMecanica{
+  }
+
+  class Banio{
+    tipoBanio:TipoBanio
+  }
+
+  enum TipoBanio{
+    HOMBRES
+    MUJERES
+  }
+
+'Relaciones de servicios
+    RepoServicios -right-> Servicio
+    Estacion -->"*" Servicio
+    Estacion -->"*" Agrupacion
+    Agrupacion -left->"*" Servicio
+    MediosDeElevacion -up-|> Servicio
+    MediosDeElevacion -left-> TramoMedioDeElevacion
+    Ascensor -up-|> MediosDeElevacion
+    EscaleraMecanica -up-|> MediosDeElevacion
+    Banio -up-|> Servicio
+    Banio -down-> TipoBanio
+}
+
+package Comunidades{
+    class Comunidad{
+        miembros:List<Miembro>
+    }
+    class Miembro{
+        nombre:String
+        apellido:String
+        correoElectronico:String
+    }
+    Comunidad -down->"*" Miembro
+}
+
+
+
+
+
+
+
+@enduml
