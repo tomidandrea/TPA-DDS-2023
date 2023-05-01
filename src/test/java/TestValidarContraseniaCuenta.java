@@ -1,4 +1,5 @@
 import ddsGrupo1.Cuenta;
+import ddsGrupo1.Miembro;
 import ddsGrupo1.excepciones.ContraseniaComunException;
 import ddsGrupo1.excepciones.ContraseniaIncorrectaExcepcion;
 import org.junit.jupiter.api.Assertions;
@@ -25,17 +26,17 @@ public class TestValidarContraseniaCuenta {
   }
 
   private Cuenta crearCuentaConContraseniaDebil() {
-    Cuenta cuentaContraseniaDebil = new Cuenta("alejiti", "aghjd");
+    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "aghjd");
     return cuentaContraseniaDebil;
   }
 
   private Cuenta crearCuentaConContraseniaFuerte() {
-    Cuenta cuentaContraseniaFuerte = new Cuenta("francicerchia", "ChefCurry30!");
+    Cuenta cuentaContraseniaFuerte = new Miembro("","","","francicerchia", "ChefCurry30!");
     return cuentaContraseniaFuerte;
   }
 
   private Cuenta crearCuentaConContraseniaComun(){
-    Cuenta cuentaContraseniaDebil = new Cuenta("alejiti", "hola");
+    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "hola");
     return cuentaContraseniaDebil;
   }
 }
