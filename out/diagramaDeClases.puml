@@ -2,9 +2,20 @@
 'https://plantuml.com/class-diagram
 
 package ServiciosPublicos{
-    class ServicioPublico{
+    abstract class ServicioPublico{}
+
+    class Organizacion{
+        sucursales: List<Sucursal>
+    }
+
+    class Sucursal{
+        nombre: String
+    }
+
+    class ServicioTransporte{
         tipo: MedioDeTransporte
-        linea: Linea
+        lineaDeTransporteIda: Linea
+        lineaDeTransporteVuelta: Linea
     }
     enum MedioDeTransporte{
         SUBTERRANEO
@@ -15,6 +26,7 @@ package ServiciosPublicos{
         estacionOrigen:Estacion
         estacionDestino:Estacion
         estaciones:List<Estacion>
+        localizacion: Localizacion
     }
 
     class Estacion{
@@ -24,11 +36,16 @@ package ServiciosPublicos{
         agrupaciones:List<Agrupacion>
         serviciosFaltantes():List<Servicio>
     }
+
+    Organizacion -->"*" Sucursal
+    Organizacion -up-|> ServicioPublico
+    ServicioTransporte -up-|> ServicioPublico
+    ServicioTransporte --> MedioDeTransporte
+    ServicioTransporte --> Linea
+    ServicioTransporte --> Linea
     Linea --> Estacion
     Linea --> Estacion
     Linea -->"*" Estacion
-    ServicioPublico --> MedioDeTransporte
-    ServicioPublico --> Linea
 }
 
 
@@ -68,12 +85,12 @@ package Servicios {
   }
 
 'Relaciones de servicios
-    RepoServicios -right-> Servicio
+    RepoServicios -left->"*" Servicio
     Estacion -->"*" Servicio
     Estacion -->"*" Agrupacion
-    Agrupacion -left->"*" Servicio
+    Agrupacion -up->"*" Servicio
     MediosDeElevacion -up-|> Servicio
-    MediosDeElevacion -left-> TramoMedioDeElevacion
+    MediosDeElevacion --> TramoMedioDeElevacion
     Ascensor -up-|> MediosDeElevacion
     EscaleraMecanica -up-|> MediosDeElevacion
     Banio -up-|> Servicio
@@ -89,13 +106,56 @@ package Comunidades{
         apellido:String
         correoElectronico:String
     }
-    Comunidad -down->"*" Miembro
+    Comunidad -->"*" Miembro
 }
 
+class EntidadPropietaria{
+    serviciosPublicos:List<ServicioPublico>
+    responsable:Miembro
+}
 
+class OrganismoDeControl{
+    servicios:List<Servicio>
+    responsable:Miembro
+}
 
+class Interes{
+    lineas: List<Linea>
+    servicios: List<Servicio>
+}
 
+abstract class Localizacion {
+    nombre:String
+    latitud:double
+    longitud:double
+}
 
+class Municipio{
+    provincia: String
+}
 
+class Provincia{}
+
+class Departamento{
+    provincia: String
+}
+
+Miembro-up->Localizacion
+Municipio-up-|>Localizacion
+Provincia-up-|>Localizacion
+Departamento-up-|>Localizacion
+
+Linea-left->Localizacion
+
+Miembro-->Interes
+Interes-->"*"Linea
+Interes-left->"*"Servicio
+
+EntidadPropietaria-->"*"ServicioPublico
+EntidadPropietaria-down->Miembro
+OrganismoDeControl-->"*"Servicio
+OrganismoDeControl-up->Miembro
+
+Estacion ..> RepoServicios
 
 @enduml
