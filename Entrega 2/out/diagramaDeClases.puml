@@ -1,15 +1,10 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-package ServiciosPublicos{
-    abstract class ServicioPublico{}
+package Entidades{
 
     class Organizacion{
         sucursales: List<Sucursal>
-    }
-
-    class Sucursal{
-        nombre: String
     }
 
     class ServicioTransporte{
@@ -17,35 +12,41 @@ package ServiciosPublicos{
         lineaDeTransporteIda: Linea
         lineaDeTransporteVuelta: Linea
     }
+
     enum MedioDeTransporte{
         SUBTERRANEO
         FERROCARRIL
     }
+
     class Linea{
         nombre:String
         estacionOrigen:Estacion
         estacionDestino:Estacion
         estaciones:List<Estacion>
-        localizacion: Localizacion
+        localizaciones: List<Localizacion>
     }
 
-    class Estacion{
-        nombre:String
-        ubicacionGeografica:String
-        servicios:List<Servicio>
-        agrupaciones:List<Agrupacion>
-        serviciosFaltantes():List<Servicio>
-    }
+    ServicioTransporte -left-> MedioDeTransporte
+    ServicioTransporte --> Linea
+    ServicioTransporte --> Linea
+}
 
-    Organizacion -->"*" Sucursal
-    Organizacion -up-|> ServicioPublico
-    ServicioTransporte -up-|> ServicioPublico
-    ServicioTransporte --> MedioDeTransporte
-    ServicioTransporte --> Linea
-    ServicioTransporte --> Linea
-    Linea --> Estacion
-    Linea --> Estacion
-    Linea -->"*" Estacion
+package Establecimientos {
+
+  class Sucursal{
+     nombre: String
+     localizacion: Localizacion
+     servicios: List<Servicio>
+  }
+
+  class Estacion{
+     nombre:String
+     ubicacionGeografica:String
+     servicios:List<Servicio>
+     localizacion: Localizacion
+     agrupaciones:List<Agrupacion>
+     serviciosFaltantes():List<Servicio>
+  }
 }
 
 
@@ -88,7 +89,7 @@ package Servicios {
     RepoServicios -left->"*" Servicio
     Estacion -->"*" Servicio
     Estacion -->"*" Agrupacion
-    Agrupacion -up->"*" Servicio
+    Agrupacion -left->"*" Servicio
     MediosDeElevacion -up-|> Servicio
     MediosDeElevacion --> TramoMedioDeElevacion
     Ascensor -up-|> MediosDeElevacion
@@ -110,17 +111,18 @@ package Comunidades{
 }
 
 class EntidadPropietaria{
-    serviciosPublicos:List<ServicioPublico>
+    organizaciones:List<Organizacion>
+    serviciosTransporte: List<ServicioTransporte>
     responsable:Miembro
 }
 
 class OrganismoDeControl{
-    servicios:List<Servicio>
+    organizaciones:List<Organizacion>
+    serviciosTransporte: List<ServicioTransporte>
     responsable:Miembro
 }
 
 class Interes{
-    lineas: List<Linea>
     servicios: List<Servicio>
 }
 
@@ -131,31 +133,41 @@ abstract class Localizacion {
 }
 
 class Municipio{
-    provincia: String
+    provincia: Provincia
 }
 
 class Provincia{}
 
 class Departamento{
-    provincia: String
+    provincia: Provincia
 }
 
 Miembro-up->Localizacion
 Municipio-up-|>Localizacion
 Provincia-up-|>Localizacion
 Departamento-up-|>Localizacion
+Municipio-left->Provincia
+Departamento-right->Provincia
 
-Linea-left->Localizacion
+Linea-left->"*"Localizacion
+Sucursal-->Localizacion
+Sucursal-->"*"Servicio
+Estacion-->Localizacion
 
 Miembro-->Interes
-Interes-->"*"Linea
 Interes-left->"*"Servicio
 
-EntidadPropietaria-->"*"ServicioPublico
+EntidadPropietaria-->"*"Organizacion
+EntidadPropietaria-->"*"ServicioTransporte
 EntidadPropietaria-down->Miembro
-OrganismoDeControl-->"*"Servicio
+OrganismoDeControl-->"*"Organizacion
+OrganismoDeControl-->"*"ServicioTransporte
 OrganismoDeControl-up->Miembro
 
-Estacion ..> RepoServicios
+Estacion..>RepoServicios
+Organizacion -->"*" Sucursal
+Linea --> Estacion
+Linea --> Estacion
+Linea -->"*" Estacion
 
 @enduml
