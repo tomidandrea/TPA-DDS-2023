@@ -6,10 +6,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>dds-grupo1</groupId>
-  <artifactId>ejercicio</artifactId>
+  <artifactId>entrega2</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>ejercicio</name>
+  <name>entrega2</name>
   <url>https://github.com/dds-utn</url>
 
   <properties>

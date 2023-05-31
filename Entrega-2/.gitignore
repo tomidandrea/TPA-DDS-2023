@@ -23,8 +23,8 @@
 hs_err_pid*
 
 # maven build
-target/**
+../Entrega 2/target/classes
 
 # IJ files
 *.iml
-.idea/**
+../Entrega-2/.idea/**
