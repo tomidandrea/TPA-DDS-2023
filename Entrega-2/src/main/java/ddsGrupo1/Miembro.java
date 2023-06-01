@@ -2,6 +2,8 @@ package ddsGrupo1;
 
 public class Miembro extends Cuenta{
     private String nombre;
+
+    private int id;
     private String apellido;
     private String correoElectronico;
 
@@ -13,5 +15,9 @@ public class Miembro extends Cuenta{
         this.setUsuario(usuario);;
         Validador.validarContrasenia(contrasenia);
         this.setContrasenia(contrasenia);
+    }
+
+    public boolean compararId(int id){
+        return this.id == id;
     }
 }
