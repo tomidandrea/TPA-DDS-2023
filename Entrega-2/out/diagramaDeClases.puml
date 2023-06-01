@@ -4,13 +4,30 @@
 package Entidades{
 
     class Organizacion{
+        nombre:String
         sucursales: List<Sucursal>
+    }
+
+    class RepoOrganizacion{
+        instance: RepoOrganizacion
+        organizaciones: List<Organizacion>
+        getInstance(): RepoOrganizacion
+        agregar(organizacion)
+        obtenerPorNombre():Organizacion
     }
 
     class ServicioTransporte{
         tipo: MedioDeTransporte
         lineaDeTransporteIda: Linea
         lineaDeTransporteVuelta: Linea
+    }
+
+    class RepoServiciosDeTransporte{
+        instance: RepoServiciosDeTransporte
+        serviciosDeTransporte: List<ServicioTransporte>
+        getInstance(): RepoServiciosDeTransporte
+        agregar(servicioDeTransporte)
+        obtenerPorTipo():ServicioTransporte
     }
 
     enum MedioDeTransporte{
@@ -29,6 +46,8 @@ package Entidades{
     ServicioTransporte -left-> MedioDeTransporte
     ServicioTransporte --> Linea
     ServicioTransporte --> Linea
+    RepoOrganizacion -->"*" Organizacion
+    RepoServiciosDeTransporte -->"*" ServicioTransporte
 }
 
 package Establecimientos {
@@ -86,10 +105,10 @@ package Servicios {
   }
 
 'Relaciones de servicios
-    RepoServicios -left->"*" Servicio
+    RepoServicios -->"*" Servicio
     Estacion -->"*" Servicio
     Estacion -->"*" Agrupacion
-    Agrupacion -->"*" Servicio
+    Agrupacion -right->"*" Servicio
     MediosDeElevacion -up-|> Servicio
     MediosDeElevacion --> TramoMedioDeElevacion
     Ascensor -up-|> MediosDeElevacion
@@ -109,19 +128,48 @@ package Comunidades{
         interes: Interes
         localizacion: Localizacion
     }
+
+    class RepoMiembros{
+        instance: RepoMiembros
+        miembros:List<Miembro>
+        getInstance(): RepoMiembros
+        agregar(miembro)
+        getMiembro():Miembro
+    }
+
+    RepoMiembros -right->"*" Miembro
     Comunidad -left->"*" Miembro
 }
 
 class EntidadPropietaria{
+    nombre:String
     organizaciones:List<Organizacion>
     serviciosTransporte: List<ServicioTransporte>
     responsable:Miembro
 }
 
+class RepoEntidadesPropietarias{
+    instance: RepoEntidadesPropietarias
+    entidadesPropietarias:List<EntidadPropietaria>
+
+    getInstance(): RepoEntidadesPropietarias
+    agregar(entidadPropietaria)
+    getEntidadesPropietarias():List<EntidadPropietaria>
+}
+
 class OrganismoDeControl{
+    nombre:String
     organizaciones:List<Organizacion>
     serviciosTransporte: List<ServicioTransporte>
     responsable:Miembro
+}
+
+class RepoOrganismosDeControl{
+    instance: RepoOrganismosDeControl
+    organismosDeControl:List<OrganismoDeControl>
+
+    getInstance(): RepoOrganismosDeControl
+    agregar(organismoDeControl
 }
 
 class Interes{
@@ -151,20 +199,23 @@ Departamento-up-|>Localizacion
 Municipio-left->Provincia
 Departamento-right->Provincia
 
-Linea-left->"*"Localizacion
-Sucursal-->Localizacion
+Linea-right->"*"Localizacion
+Sucursal-right->Localizacion
 Sucursal-->"*"Servicio
 Estacion-->Localizacion
 
 Miembro-->Interes
-Interes-left->"*"Servicio
+Interes-up->"*"Servicio
 
-EntidadPropietaria-->"*"Organizacion
+EntidadPropietaria-up->"*"Organizacion
 EntidadPropietaria-->"*"ServicioTransporte
 EntidadPropietaria-down->Miembro
 OrganismoDeControl-->"*"Organizacion
 OrganismoDeControl-->"*"ServicioTransporte
 OrganismoDeControl-up->Miembro
+
+RepoEntidadesPropietarias-down->"*"EntidadPropietaria
+RepoOrganismosDeControl-left->"*"OrganismoDeControl
 
 Estacion..>RepoServicios
 Organizacion -->"*" Sucursal
