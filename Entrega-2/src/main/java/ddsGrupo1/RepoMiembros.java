@@ -1,5 +1,6 @@
 package ddsGrupo1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepoMiembros {
@@ -12,11 +13,15 @@ public class RepoMiembros {
         }
         return instance;
     }
-    List<Miembro> miembros;
+    List<Miembro> miembros = new ArrayList<>();
 
     //get miembro por id
 
     public Miembro getMiembro(int id){
         return miembros.stream().filter(miembro -> miembro.compararId(id)).findFirst().get();
+    }
+
+    public void agregar(Miembro miembro) {
+        miembros.add(miembro);
     }
 }

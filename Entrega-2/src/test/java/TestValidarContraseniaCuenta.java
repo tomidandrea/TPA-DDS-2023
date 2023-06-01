@@ -26,17 +26,17 @@ public class TestValidarContraseniaCuenta {
   }
 
   private Cuenta crearCuentaConContraseniaDebil() {
-    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "aghjd");
+    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "aghjd", 1);
     return cuentaContraseniaDebil;
   }
 
   private Cuenta crearCuentaConContraseniaFuerte() {
-    Cuenta cuentaContraseniaFuerte = new Miembro("","","","francicerchia", "ChefCurry30!");
+    Cuenta cuentaContraseniaFuerte = new Miembro("","","","francicerchia", "ChefCurry30!", 2);
     return cuentaContraseniaFuerte;
   }
 
   private Cuenta crearCuentaConContraseniaComun(){
-    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "hola");
+    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "hola", 3);
     return cuentaContraseniaDebil;
   }
 }

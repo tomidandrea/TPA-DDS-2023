@@ -1,10 +1,8 @@
-tipo, nombre, servicioTransporte, organizacion, id_responsable
-EntidadPropietaria,SBASE, SUBTE, , 1
-OrganismoDeControl,CNRT, SUBTE, , 3
-EntidadPropietaria,GCBA, ECOBICI, , 2
-OrganismoDeControl,TEMBICI, ECOBICI, , 4
-EntidadPropietaria,DOTA, COLECTIVO, , 5
-OrganismoDeControl,CNRT, COLECTIVO, , 3
-EntidadPropietaria,COTO, ,SUPERMECADO_COTO , 5
-OrganismoDeControl,CNRT, ,SUPERMECADO_COTO , 3
-
+EntidadPropietaria,SBASE, ServicioTransporte, SUBTE,1
+OrganismoDeControl,CNRT, ServicioTransporte, SUBTE,3
+EntidadPropietaria,GCBA, ServicioTransporte, ECOBICI,2
+OrganismoDeControl,TEMBICI, ServicioTransporte, ECOBICI,4
+EntidadPropietaria,DOTA, ServicioTransporte, COLECTIVO,5
+OrganismoDeControl,CNRT, ServicioTransporte, COLECTIVO,3
+EntidadPropietaria,COTO, Organizacion, SUPERMECADO_COTO,5
+OrganismoDeControl,CNRT, Organizacion, SUPERMECADO_COTO,3
