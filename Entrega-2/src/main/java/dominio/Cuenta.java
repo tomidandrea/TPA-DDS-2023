@@ -1,4 +1,4 @@
-package ddsGrupo1;
+package dominio;
 
 public abstract class Cuenta {
   private String usuario;

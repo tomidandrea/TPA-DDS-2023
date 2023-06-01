@@ -1,4 +1,4 @@
-package ddsGrupo1;
+package dominio;
 
 import java.util.ArrayList;
 import java.util.List;

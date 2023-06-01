@@ -1,9 +1,8 @@
-package ddsGrupo1.entidades;
+package dominio.entidades;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RepoServiciosDeTransporte {
     private static RepoServiciosDeTransporte instance = null;

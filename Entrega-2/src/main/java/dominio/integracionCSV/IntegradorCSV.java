@@ -1,14 +1,14 @@
-package ddsGrupo1.integracionCSV;
+package dominio.integracionCSV;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import ddsGrupo1.Miembro;
-import ddsGrupo1.RepoMiembros;
-import ddsGrupo1.empresasYorganismos.EntidadPropietaria;
-import ddsGrupo1.empresasYorganismos.OrganismoDeControl;
-import ddsGrupo1.empresasYorganismos.RepoEntidadesPropietarias;
-import ddsGrupo1.empresasYorganismos.RepoOrganismosDeControl;
-import ddsGrupo1.entidades.*;
+import dominio.Miembro;
+import dominio.RepoMiembros;
+import dominio.empresasYorganismos.EntidadPropietaria;
+import dominio.empresasYorganismos.OrganismoDeControl;
+import dominio.empresasYorganismos.RepoEntidadesPropietarias;
+import dominio.empresasYorganismos.RepoOrganismosDeControl;
+import dominio.entidades.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

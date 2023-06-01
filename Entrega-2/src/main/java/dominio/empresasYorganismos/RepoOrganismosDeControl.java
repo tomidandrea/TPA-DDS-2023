@@ -1,4 +1,4 @@
-package ddsGrupo1.empresasYorganismos;
+package dominio.empresasYorganismos;
 
 import java.util.ArrayList;
 import java.util.List;

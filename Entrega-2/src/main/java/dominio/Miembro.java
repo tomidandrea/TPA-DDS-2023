@@ -1,4 +1,4 @@
-package ddsGrupo1;
+package dominio;
 
 public class Miembro extends Cuenta{
     private String nombre;

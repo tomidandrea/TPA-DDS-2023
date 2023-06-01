@@ -1,7 +1,7 @@
-import ddsGrupo1.Cuenta;
-import ddsGrupo1.Miembro;
-import ddsGrupo1.excepciones.ContraseniaComunException;
-import ddsGrupo1.excepciones.ContraseniaIncorrectaExcepcion;
+import dominio.Cuenta;
+import dominio.Miembro;
+import dominio.excepciones.ContraseniaComunException;
+import dominio.excepciones.ContraseniaIncorrectaExcepcion;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

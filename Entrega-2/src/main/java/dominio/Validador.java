@@ -1,8 +1,8 @@
-package ddsGrupo1;
+package dominio;
 
-import ddsGrupo1.excepciones.ContraseniaIncorrectaExcepcion;
-import ddsGrupo1.excepciones.ContraseniaComunException;
-import ddsGrupo1.excepciones.NoPudoAbrirElArchivoExcepcion;
+import excepciones.ContraseniaIncorrectaExcepcion;
+import excepciones.ContraseniaComunException;
+import excepciones.NoPudoAbrirElArchivoExcepcion;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class Validador {
         >= minMinusc) {
       return;
     }
-    throw new ContraseniaIncorrectaExcepcion("No cumple la cantidad minima de minusculas");
+    throw new ContraseniaIncorrectaExcepcion(1);
   }
 
   static void cumpleMayusculas(String contrasenia) {
@@ -44,7 +44,7 @@ public class Validador {
         >= minMayusc) {
       return;
     }
-    throw new ContraseniaIncorrectaExcepcion("No cumple la cantidad minima de mayusculas");
+    throw new ContraseniaIncorrectaExcepcion(2);
   }
 
   static void cumpleMinDigitos(String contrasenia) {
@@ -55,7 +55,7 @@ public class Validador {
         >= minDigitos) {
       return;
     }
-    throw new ContraseniaIncorrectaExcepcion("No cumple la cantidad minima de digitos");
+    throw new ContraseniaIncorrectaExcepcion(3);
   }
 
   static void cumpleMinEspeciales(String contrasenia) {
@@ -66,7 +66,7 @@ public class Validador {
         >= minEspeciales) {
       return;
     }
-    throw new ContraseniaIncorrectaExcepcion("No cumple la cantidad minima de caracteres especiales");
+    throw new ContraseniaIncorrectaExcepcion(5);
   }
 
   static boolean esDigitoEspecial(int c) {
@@ -77,7 +77,7 @@ public class Validador {
     if (contrasenia.length() >= minCaracteres) {
       return;
     }
-    throw new ContraseniaIncorrectaExcepcion("No cumple la cantidad minima de caracteres");
+    throw new ContraseniaIncorrectaExcepcion(4);
   }
 
   static void noestaEntreLasTop10Mil(String contrasenia) {
@@ -89,7 +89,7 @@ public class Validador {
       contraseniasComunes =
           readAllLines(Paths.get(contraseniasComunesArchivo), StandardCharsets.UTF_8);
     } catch (IOException e) {
-      throw new NoPudoAbrirElArchivoExcepcion("No se pudo abrir el archivo");
+      throw new NoPudoAbrirElArchivoExcepcion();
     }
 
     if (contraseniasComunes.stream().anyMatch(contra -> contra.equals(contrasenia))) {

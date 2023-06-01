@@ -1,8 +1,8 @@
-package ddsGrupo1;
+package dominio;
 
-import ddsGrupo1.excepciones.ContraseniaIncorrectaExcepcion;
-import ddsGrupo1.excepciones.ContraseniaComunException;
-import ddsGrupo1.excepciones.NoPudoAbrirElArchivoExcepcion;
+import dominio.excepciones.ContraseniaIncorrectaExcepcion;
+import dominio.excepciones.ContraseniaComunException;
+import dominio.excepciones.NoPudoAbrirElArchivoExcepcion;
 
 import java.io.File;
 import java.io.IOException;

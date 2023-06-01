@@ -1,4 +1,4 @@
-package ddsGrupo1.excepciones;
+package dominio.excepciones;
 
 public class ContraseniaComunException extends RuntimeException {
   public ContraseniaComunException() {

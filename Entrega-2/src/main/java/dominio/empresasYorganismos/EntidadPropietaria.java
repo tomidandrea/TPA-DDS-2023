@@ -1,8 +1,8 @@
-package ddsGrupo1.empresasYorganismos;
+package dominio.empresasYorganismos;
 
-import ddsGrupo1.Miembro;
-import ddsGrupo1.entidades.Organizacion;
-import ddsGrupo1.entidades.ServicioTransporte;
+import dominio.Miembro;
+import dominio.entidades.Organizacion;
+import dominio.entidades.ServicioTransporte;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ddsGrupo1.entidades;
+package dominio.entidades;
 
 public class ServicioTransporte {
     MedioDeTransporte tipoTransporte;

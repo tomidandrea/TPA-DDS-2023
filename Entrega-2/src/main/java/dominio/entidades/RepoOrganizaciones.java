@@ -1,4 +1,4 @@
-package ddsGrupo1.entidades;
+package dominio.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
