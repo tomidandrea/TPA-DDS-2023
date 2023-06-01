@@ -89,7 +89,7 @@ package Servicios {
     RepoServicios -left->"*" Servicio
     Estacion -->"*" Servicio
     Estacion -->"*" Agrupacion
-    Agrupacion -left->"*" Servicio
+    Agrupacion -->"*" Servicio
     MediosDeElevacion -up-|> Servicio
     MediosDeElevacion --> TramoMedioDeElevacion
     Ascensor -up-|> MediosDeElevacion
@@ -106,8 +106,10 @@ package Comunidades{
         nombre:String
         apellido:String
         correoElectronico:String
+        interes: Interes
+        localizacion: Localizacion
     }
-    Comunidad -->"*" Miembro
+    Comunidad -left->"*" Miembro
 }
 
 class EntidadPropietaria{
