@@ -43,11 +43,11 @@ package Entidades{
         localizaciones: List<Localizacion>
     }
 
-    ServicioTransporte -left-> MedioDeTransporte
+    ServicioTransporte --> MedioDeTransporte
     ServicioTransporte --> Linea
     ServicioTransporte --> Linea
-    RepoOrganizacion -->"*" Organizacion
-    RepoServiciosDeTransporte -->"*" ServicioTransporte
+    RepoOrganizacion -down->"*" Organizacion
+    RepoServiciosDeTransporte -up->"*" ServicioTransporte
 }
 
 package Establecimientos {
@@ -137,11 +137,16 @@ package Comunidades{
         getMiembro():Miembro
     }
 
+    class Interes{
+    servicios: List<Servicio>
+    }
+
     RepoMiembros -right->"*" Miembro
     Comunidad -left->"*" Miembro
 }
 
-class EntidadPropietaria{
+package Empresas/Organismos{
+    class EntidadPropietaria{
     nombre:String
     organizaciones:List<Organizacion>
     serviciosTransporte: List<ServicioTransporte>
@@ -171,26 +176,25 @@ class RepoOrganismosDeControl{
     getInstance(): RepoOrganismosDeControl
     agregar(organismoDeControl
 }
-
-class Interes{
-    servicios: List<Servicio>
 }
-
-abstract class Localizacion {
+package Localizacion{
+    abstract class Localizacion {
     nombre:String
     latitud:double
     longitud:double
+    }
+
+    class Municipio{
+        provincia: Provincia
+    }
+
+    class Provincia{}
+
+    class Departamento{
+        provincia: Provincia
+    }
 }
 
-class Municipio{
-    provincia: Provincia
-}
-
-class Provincia{}
-
-class Departamento{
-    provincia: Provincia
-}
 
 Miembro-up->Localizacion
 Municipio-up-|>Localizacion
@@ -214,8 +218,8 @@ OrganismoDeControl-->"*"Organizacion
 OrganismoDeControl-->"*"ServicioTransporte
 OrganismoDeControl-up->Miembro
 
-RepoEntidadesPropietarias-down->"*"EntidadPropietaria
-RepoOrganismosDeControl-left->"*"OrganismoDeControl
+RepoEntidadesPropietarias-->"*"EntidadPropietaria
+RepoOrganismosDeControl-->"*"OrganismoDeControl
 
 Estacion..>RepoServicios
 Organizacion -->"*" Sucursal
