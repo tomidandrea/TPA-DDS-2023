@@ -80,7 +80,7 @@ public class Validador {
     throw new ContraseniaIncorrectaExcepcion(4);
   }
 
-  static void noestaEntreLasTop10Mil(String contrasenia) {
+    static void noestaEntreLasTop10Mil(String contrasenia) {
     List<String> contraseniasComunes;
 
     try {

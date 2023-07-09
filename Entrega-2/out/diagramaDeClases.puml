@@ -60,7 +60,6 @@ package Establecimientos {
 
   class Estacion{
      nombre:String
-     ubicacionGeografica:String
      servicios:List<Servicio>
      localizacion: Localizacion
      agrupaciones:List<Agrupacion>
@@ -120,6 +119,7 @@ package Servicios {
 package Comunidades{
     class Comunidad{
         miembros:List<Miembro>
+        administradores: List<Usuario>
     }
     class Miembro{
         nombre:String
@@ -140,12 +140,61 @@ package Comunidades{
     RepoMiembros -right->"*" Miembro
     Comunidad -left->"*" Miembro
 }
+package ClasesTecnicas{
+    abstract class Usuario{
+        usuario: String
+        contrasenia: String
+    }
+
+    class Validador{
+        minCaracteres: Int
+        minMayusc: Int
+        minMinusc: Int
+        minDigitos: Int
+        minEspeciales: Int
+        instance: Validador
+
+        getInstance(): Validador
+        cumpleMinusculas(contrasenia):Void
+        cumpleMayusculas(contrasenia):Void
+        cumpleMinDigitos(contrasenia):Void
+        cumpleMinEspeciales(contrasenia):void
+        esDigitoEspecial(caracter):Boolean
+        noestaEntreLasTop10Mil(contrasenia)): void
+    }
+
+      class IntegradorCSV{
+            instance: IntegradorCSV
+            getInstance(): IntegradorCSV
+            extraerDesde(file): List<String[]>
+            transformaYCarga(): void
+            convertirtransporte(medioTransporte): MedioDeTransporte
+        }
+
+      class "RepoOrganizacion" as CopiaRepoOrg{
+      }
+      class "RepoServiciosDeTransporte" as CopiaRepoTransporte{
+      }
+      class "RepoMiembros" as CopiaRepoMiembros{
+      }
+      class "RepoEntidadesPropietarias" as CopiaRepoEntidadesPropietarias{
+      }
+
+    IntegradorCSV .down.> CopiaRepoOrg
+    IntegradorCSV .down.> CopiaRepoTransporte
+    IntegradorCSV .down.> CopiaRepoMiembros
+    IntegradorCSV .down.> CopiaRepoEntidadesPropietarias
+    Miembro-down---|>Usuario
+    Miembro ....> Validador
+    Comunidad -->"*" Usuario
+}
+
 
 class EntidadPropietaria{
     nombre:String
     organizaciones:List<Organizacion>
     serviciosTransporte: List<ServicioTransporte>
-    responsable:Miembro
+    responsable:Usuario
 }
 
 class RepoEntidadesPropietarias{
@@ -161,7 +210,7 @@ class OrganismoDeControl{
     nombre:String
     organizaciones:List<Organizacion>
     serviciosTransporte: List<ServicioTransporte>
-    responsable:Miembro
+    responsable:Usuario
 }
 
 class RepoOrganismosDeControl{
@@ -202,17 +251,17 @@ Departamento-right->Provincia
 Linea-right->"*"Localizacion
 Sucursal-right->Localizacion
 Sucursal-->"*"Servicio
-Estacion-->Localizacion
+Estacion------>Localizacion
 
 Miembro-->Interes
 Interes-up->"*"Servicio
 
 EntidadPropietaria-up->"*"Organizacion
 EntidadPropietaria-->"*"ServicioTransporte
-EntidadPropietaria-down->Miembro
+EntidadPropietaria-down->Usuario
 OrganismoDeControl-->"*"Organizacion
 OrganismoDeControl-->"*"ServicioTransporte
-OrganismoDeControl-up->Miembro
+OrganismoDeControl-up---->Usuario
 
 RepoEntidadesPropietarias-down->"*"EntidadPropietaria
 RepoOrganismosDeControl-left->"*"OrganismoDeControl
