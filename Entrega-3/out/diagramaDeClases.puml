@@ -3,33 +3,34 @@
 
 package Entidades{
 
+    class RepoEntidades{
+        instance: RepoEntidades
+        serviciosDeTransporte: List<ServicioTransporte>
+        organizaciones: List<Organizacion>
+        getInstance(): RepoEntidades
+        agregar(organizacion):void
+        obtenerPorNombre():Organizacion
+        agregar(servicioDeTransporte)
+        obtenerPorTipo():ServicioTransporte
+        obtenerPorNombre(organizacion): Organizacion
+        obtenerRankingEntidadesConMayorTiempoDeCierre(): List<Entidades>
+        obtenerRankingEntidadesConMasIncidentes(): List<Entidades>
+    }
+
+    abstract class Entidad{
+        promedioCierrePorEstablecimiento(): List<Duration>
+        cantidadDeIncidentes(): Int
+    }
+
     class Organizacion{
         nombre:String
         sucursales: List<Sucursal>
-        cantidadIncidentes:Int
-    }
-
-    class RepoOrganizacion{
-        instance: RepoOrganizacion
-        organizaciones: List<Organizacion>
-        getInstance(): RepoOrganizacion
-        agregar(organizacion):void
-        obtenerPorNombre():Organizacion
     }
 
     class ServicioTransporte{
         tipo: MedioDeTransporte
         lineaDeTransporteIda: Linea
         lineaDeTransporteVuelta: Linea
-        cantidadIncidentes:Int
-    }
-
-    class RepoServiciosDeTransporte{
-        instance: RepoServiciosDeTransporte
-        serviciosDeTransporte: List<ServicioTransporte>
-        getInstance(): RepoServiciosDeTransporte
-        agregar(servicioDeTransporte)
-        obtenerPorTipo():ServicioTransporte
     }
 
     enum MedioDeTransporte{
@@ -48,25 +49,36 @@ package Entidades{
     ServicioTransporte --> MedioDeTransporte
     ServicioTransporte --> Linea
     ServicioTransporte --> Linea
-    RepoOrganizacion -->"*" Organizacion
-    RepoServiciosDeTransporte -->"*" ServicioTransporte
+    Organizacion-up-|>Entidad
+    ServicioTransporte-up-|>Entidad
+    RepoEntidades --->"*" Organizacion
+    RepoEntidades --->"*" ServicioTransporte
 }
 
 package Establecimientos {
 
+    abstract class Establecimientos{
+        nombre : String
+        localizacion: <Localizacion>
+        servicios: List<Servicio>
+        agrupaciones: List<Agrupacion>
+        promedioCierreEnServicio(): List<Duration>
+        cantidadDeIncidentes(): Int
+    }
+
   class Sucursal{
-     nombre: String
-     localizacion: Localizacion
-     servicios: List<Servicio>
   }
 
   class Estacion{
-     nombre:String
-     servicios:List<Servicio>
-     localizacion: Localizacion
-     agraciones:List<Agracion>
      serviciosFaltantes():List<Servicio>
   }
+
+  class "RepoIncidentes" as CopiaRepoIncidentes{
+      }
+
+  Sucursal-down-|>Establecimientos
+  Estacion-down-|>Establecimientos
+    Establecimientos..>CopiaRepoIncidentes
 }
 
 
@@ -75,7 +87,7 @@ package Servicios {
       servicios:List<Servicio>
       serviciosQueFatan(List<Servicio>):List<Servicio>
   }
-  class Agracion{
+  class Agrupacion{
       serviciosAgrados:List<Servicio>
   }
   abstract class Servicio{
@@ -109,8 +121,8 @@ package Servicios {
 'Relaciones de servicios
     RepoServicios -down->"*" Servicio
     Estacion -->"*" Servicio
-    Estacion -->"*" Agracion
-    Agracion -->"*" Servicio
+    Estacion -->"*" Agrupacion
+    Agrupacion -->"*" Servicio
     MediosDeElevacion -up-|> Servicio
     MediosDeElevacion --> TramoMedioDeElevacion
     Ascensor -up-|> MediosDeElevacion
@@ -124,8 +136,9 @@ package Comunidades{
         miembros:List<Miembro>
         administradores: List<Usuario>
         incidentesAbiertos:List<Incidente>
-        incidentesCerrados:List<Incidente>
-        notificarIncidentesAMiembros():void
+        notificarIncidentesAMiembros(): void
+        obtenerIncidentesAbiertosDesde(LocalTime): List<Incidente>
+        cerrarIncidente(incidente): void
     }
 
     class RepoComunidades{
@@ -141,12 +154,6 @@ package Comunidades{
         tipoMiembro:TipoMiembro
         medioPreferido:MedioDeComunicacion
         horarios: List<LocalTime>
-        'No se para que es este metodo
-        serNotificado():void
-        obtenerIncidentesReportadosDe(Comunidad): List<Incidente>
-        crearIncidente(Servicio, Agracion, String):void
-        cerrar(Incidente):void
-
     }
 
     enum TipoMiembro{
@@ -173,20 +180,37 @@ package Comunidades{
 
     class  Incidente{
         servicio : Servicio
-        agracion: Agracion
+        Agrupacion: Agrupacion
         observacion: String
         comunidades: List<Comunidad>
         horarioApertura: DateTime
         horarioCierre: DateTime
     }
-    Incidente-->Servicio
-    Incidente-->Agracion
-    Incidente---->"*"Comunidad
-    Comunidad---->"*"Incidente
 
-    RepoMiembros -up->"*" Miembro
+    class RepoIncidentes{
+        instance: RepoIncidentes
+        incidentes: List<Incidente>
+        getInstance(): RepoIncidentes
+        obtenerTiempos(): List<Duration>
+        obtenerIncidentesDe(agrupaciones, servicios):List<Incidente>
+    }
+
+    enum EstadoIncidente {
+        ABIERTO
+        CERRADO
+    }
+
+    Incidente-->Servicio
+    Incidente-->Agrupacion
+    Incidente-->"*"Comunidad
+    Incidente-->EstadoIncidente
+    Comunidad--->"*"Incidente
+    RepoIncidentes --up->"*" Incidente
+    
+
+    RepoMiembros -left->"*" Miembro
     Comunidad -left->"*" Miembro
-    RepoComunidades -->"*" Comunidad
+    RepoComunidades -up-->"*" Comunidad
     Miembro-down->TipoMiembro
     Miembro-down->MedioDeComunicacion
 }
@@ -231,14 +255,17 @@ package ClasesTecnicas{
       }
       class "RepoEntidadesPropietarias" as CopiaRepoEntidadesPropietarias{
       }
+      class "RepoOrganismosDeControl" as CopiaRepoOrganismosDeControl{
+      }
 
     IntegradorCSV ..> CopiaRepoOrg
     IntegradorCSV ..> CopiaRepoTransporte
     IntegradorCSV ..> CopiaRepoMiembros
     IntegradorCSV ..> CopiaRepoEntidadesPropietarias
-    Miembro-up--|>Usuario
-    Miembro ..right.> Validador
-    Comunidad -up->"*" Usuario
+    IntegradorCSV ..> CopiaRepoOrganismosDeControl
+    Miembro-up-|>Usuario
+    Miembro .up.> Validador
+    Comunidad --->"*" Usuario
 }
 
 
@@ -275,6 +302,7 @@ class RepoOrganismosDeControl{
     agregar(organismoDeControl
 }
 }
+
 package Localizacion{
     abstract class Localizacion {
     nombre:String
@@ -293,6 +321,24 @@ package Localizacion{
     }
 }
 
+package Notificacion{
+    class NotificadorAdapter{
+        notificarIncidentes(miembro, List<Incidente>):void
+        notificarRevision(miembro):void
+    }
+
+    class MedioWhatsapp{
+        notificar(celular):void
+    }
+
+    class MedioCorreo{
+        notificar(correo_electronico):void
+    }
+    NotificadorAdapter..up>MedioCorreo
+    NotificadorAdapter..up>MedioWhatsapp
+}
+    Comunidad..up>NotificadorAdapter
+
 
 Miembro-left->Localizacion
 Municipio-up-|>Localizacion
@@ -301,12 +347,12 @@ Departamento-up-|>Localizacion
 Municipio-right->Provincia
 Departamento-left->Provincia
 
-Linea-left-->"*"Localizacion
+Linea-down-->"*"Localizacion
 Sucursal--->Localizacion
 Sucursal-->"*"Servicio
-Estacion-right->Localizacion
+Estacion-left->Localizacion
 
-Miembro-down--->Interes
+Miembro-down-->Interes
 Interes-->"*"Servicio
 
 EntidadPropietaria-->"*"Organizacion
