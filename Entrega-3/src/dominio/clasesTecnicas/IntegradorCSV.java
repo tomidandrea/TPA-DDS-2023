@@ -2,8 +2,8 @@ package dominio.clasesTecnicas;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import dominio.Miembro;
-import dominio.RepoMiembros;
+import dominio.comunidades.Miembro;
+import dominio.comunidades.RepoMiembros;
 import dominio.empresasYorganismos.EntidadPropietaria;
 import dominio.empresasYorganismos.OrganismoDeControl;
 import dominio.empresasYorganismos.RepoEntidadesPropietarias;

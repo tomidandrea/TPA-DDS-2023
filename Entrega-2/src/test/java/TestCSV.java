@@ -2,7 +2,7 @@ import dominio.Miembro;
 import dominio.RepoMiembros;
 import dominio.empresasYorganismos.RepoEntidadesPropietarias;
 import dominio.entidades.*;
-import dominio.integracionCSV.IntegradorCSV;
+import dominio.clasesTecnicas.IntegradorCSV;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

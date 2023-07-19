@@ -1,5 +1,5 @@
-import dominio.Cuenta;
-import dominio.Miembro;
+import dominio.clasesTecnicas.Usuario;
+import dominio.comunidades.Miembro;
 import excepciones.ContraseniaComunException;
 import excepciones.ContraseniaIncorrectaExcepcion;
 import org.junit.jupiter.api.Assertions;
@@ -25,18 +25,18 @@ public class TestValidarContraseniaCuenta {
         ContraseniaComunException.class, this::crearCuentaConContraseniaComun, "Contrasenia invalida, esta entre las 10 mil mas comunes");
   }
 
-  private Cuenta crearCuentaConContraseniaDebil() {
-    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "aghjd", 1);
+  private Usuario crearCuentaConContraseniaDebil() {
+    Usuario cuentaContraseniaDebil = new Miembro("","","","alejiti", "aghjd", 1);
     return cuentaContraseniaDebil;
   }
 
-  private Cuenta crearCuentaConContraseniaFuerte() {
-    Cuenta cuentaContraseniaFuerte = new Miembro("","","","francicerchia", "ChefCurry30!", 2);
+  private Usuario crearCuentaConContraseniaFuerte() {
+    Usuario cuentaContraseniaFuerte = new Miembro("","","","francicerchia", "ChefCurry30!", 2);
     return cuentaContraseniaFuerte;
   }
 
-  private Cuenta crearCuentaConContraseniaComun(){
-    Cuenta cuentaContraseniaDebil = new Miembro("","","","alejiti", "hola", 3);
+  private Usuario crearCuentaConContraseniaComun(){
+    Usuario cuentaContraseniaDebil = new Miembro("","","","alejiti", "hola", 3);
     return cuentaContraseniaDebil;
   }
 }
