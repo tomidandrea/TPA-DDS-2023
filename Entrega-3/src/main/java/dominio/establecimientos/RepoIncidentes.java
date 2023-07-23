@@ -27,8 +27,7 @@ public class RepoIncidentes {
         return new ArrayList<>();
     }
 
-    public List<Incidente> obtenerIncedentesDe(List<Agrupacion>agrupaciones,List <Servicio> servicios){
-        return new ArrayList<>();
+    public List<Incidente> obtenerIncidentesDe(List<Agrupacion>agrupaciones,List <Servicio> servicios){
+        return (List<Incidente>) incidentes.stream().filter(incidente->agrupaciones.contains(incidente.getAgrupacion()) || servicios.contains(incidente.getServicio()));
     }
-
 }

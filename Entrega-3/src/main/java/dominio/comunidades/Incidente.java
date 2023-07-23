@@ -29,7 +29,16 @@ public class Incidente {
         return servicio;
     }
 
+    public Agrupacion getAgrupacion() {
+        return agrupacion;
+    }
+
     public String getObservacion() {
         return observacion;
     }
+
+    public int calcularDiferencia(){
+        return horarioApertura.compareTo(horarioCierre);
+    }
+
 }

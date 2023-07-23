@@ -1,7 +1,9 @@
 package dominio.entidades;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RepoEntidades {
     private static RepoEntidades instance = null;
@@ -14,6 +16,7 @@ public class RepoEntidades {
     }
     List<Organizacion> organizaciones = new ArrayList<>();
     List<ServicioTransporte> serviciosDeTransporte = new ArrayList<>();
+
 
     public void agregar(ServicioTransporte servicioTransporte) {
         serviciosDeTransporte.add(servicioTransporte);
@@ -31,7 +34,7 @@ public class RepoEntidades {
     }
     
     public List<Entidad> obtenerRankingEntidadesConMayorTiempoDeCierre(){
-        return new ArrayList<>();
+        return organizaciones.sort(Organizacion::compararPorPromedioTiempo);
     }
 
     public List<Entidad> obtenerRankingEntidadesConMasIncidentes(){
