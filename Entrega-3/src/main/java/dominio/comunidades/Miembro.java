@@ -45,4 +45,8 @@ public class Miembro extends Usuario {
         return this.id == id;
     }
 
+    public void sugerirRevision(Incidente incidente){
+        //TODO
+    }
+
 }
