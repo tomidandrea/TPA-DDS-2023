@@ -1,7 +1,7 @@
 # Diagrama de clases - Grupo 1 
 
-## Segunda Entrega:
-![](out/diagramaDeClasesV2.png)
+## Tercera Entrega:
+![](out/diagramaDeClasesV3.png)
 
 
 
