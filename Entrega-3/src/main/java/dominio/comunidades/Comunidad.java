@@ -20,8 +20,16 @@ public class Comunidad {
                 miembro.getMedioPreferido().notificarIncidentes(miembro, incidentes, this));
     }
 
-    private List<Incidente> obtenerIncidentesAbiertosDesde(LocalTime hora) {
+    public List<Incidente> obtenerIncidentesAbiertosDesde(LocalTime hora) {
         return null;
+    }
+
+    public void removerIncidente(Incidente incidente){
+        incidentesAbiertos.remove(incidente);
+    }
+
+    public void agregarIncidente(Incidente incidente){
+        incidentesAbiertos.add(incidente);
     }
 
 }
