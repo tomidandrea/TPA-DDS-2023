@@ -1,7 +1,8 @@
 package dominio.Localizacion;
 
 public abstract class Localizacion {
-    String nombre;
-    double latitud;
-    double longitud;
+    public String nombre;
+    public Integer id;
+
+    public Centroide centroide;
 }

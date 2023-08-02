@@ -57,4 +57,8 @@ public class Incidente {
     public boolean cerradoUltimaSemana(){
        return Duration.between(this.getHorarioCierre() , LocalDateTime.now()).minusDays(7).isNegative();
     }
+
+    public LocalDateTime horarioApertura() {
+        return horarioApertura;
+    }
 }

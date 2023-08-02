@@ -6,9 +6,11 @@ import dominio.Notificacion.MedioDeComunicacion;
 import dominio.clasesTecnicas.Usuario;
 import dominio.clasesTecnicas.Validador;
 
+import java.time.LocalTime;
+import java.util.List;
+
 public class Miembro extends Usuario {
     private String nombre;
-
     private int id;
     private String apellido;
     private String correoElectronico;
@@ -17,6 +19,7 @@ public class Miembro extends Usuario {
     private TipoMiembro tipoMiembro;
     private MedioDeComunicacion medioPreferido;
     private String nroDeTelefono;
+    private List<LocalTime> horariosDeNotificacion;
 
     public String getCorreo() {
         return correoElectronico;
@@ -47,6 +50,10 @@ public class Miembro extends Usuario {
 
     public void sugerirRevision(Incidente incidente){
         //TODO
+    }
+
+    public boolean estaEnHorarioDeNotificacion() {
+        return horariosDeNotificacion.stream().anyMatch(horario -> horario.getHour() == LocalTime.now().getHour());
     }
 
 }
