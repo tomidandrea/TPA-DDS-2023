@@ -1,6 +1,7 @@
 package dominio.entidades;
 import dominio.establecimientos.Establecimiento;
 import dominio.establecimientos.Sucursal;
+import lombok.Getter;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 
 
 public class Organizacion extends Entidad{
+    @Getter
     String nombre;
     List<Sucursal> sucursales;
 
@@ -18,12 +20,18 @@ public class Organizacion extends Entidad{
     public Organizacion(String nombre) {
         this.nombre = nombre;
     }
+
+    public Organizacion(String nombre, List<Sucursal> sucursales) {
+        this.nombre = nombre;
+        this.sucursales = sucursales;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     public int compararPorPromedioTiempo(Organizacion otraOrganizacion) {
-            return this.calcularPromedioTiempoCierre().compareTo( otraOrganizacion.calcularPromedioTiempoCierre());
+            return this.calcularPromedioTiempoCierre().compareTo(otraOrganizacion.calcularPromedioTiempoCierre());
     }
 
      Duration calcularPromedio(List<Duration> durations) {
@@ -44,7 +52,9 @@ public class Organizacion extends Entidad{
         Duration tiempoTotal = Duration.ZERO;
         List<Duration> tiempos = sucursales.stream().map(Establecimiento::obtenerListaTiemposCierre).
                 flatMap(List::stream).collect(Collectors.toList());
-        tiempos.forEach(t->tiempoTotal.plus(t));
+        for(Duration t: tiempos){
+            tiempoTotal = tiempoTotal.plus(t);
+        }
         return tiempoTotal.dividedBy(tiempos.size());
     }
 

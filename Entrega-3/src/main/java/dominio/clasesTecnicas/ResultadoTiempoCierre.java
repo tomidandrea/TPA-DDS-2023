@@ -1,10 +1,12 @@
 package dominio.clasesTecnicas;
 
 import dominio.entidades.Entidad;
+import lombok.Getter;
 
 import java.time.Duration;
 
 public class ResultadoTiempoCierre {
+    @Getter
     private Entidad entidad;
     private Duration tiempoDeCierre;
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class RepoIncidentes {
     static RepoIncidentes instance = new RepoIncidentes();
-    List<Incidente> incidentes;
+    List<Incidente> incidentes = new ArrayList<>();
 
     public static RepoIncidentes getInstance() {
         return instance;
@@ -20,13 +20,25 @@ public class RepoIncidentes {
         return (List<Incidente>) incidentes.stream().filter(i->i.tieneEstado(estado));
     }
 
+    public void agregar(Incidente incidente) {
+        incidentes.add(incidente);
+    }
+
     public List<Duration> obtenerTiempos(){
         return new ArrayList<>();
     }
 
     public List<Incidente> obtenerIncidentesDe(List<Agrupacion>agrupaciones, List <Servicio> servicios){
-        return (List<Incidente>) incidentes.stream()
+        return incidentes.stream()
                 .filter(i-> i.cerradoUltimaSemana())
-                .filter(incidente->agrupaciones.contains(incidente.getAgrupacion()) || servicios.contains(incidente.getServicio()));
+                .filter(incidente->(agrupaciones.contains(incidente.getAgrupacion()) || servicios.contains(incidente.getServicio()))).toList();
     }
+
+    public List<Incidente> obtenerIncidentesDe(List <Servicio> servicios){
+        return incidentes.stream()
+                .filter(i-> i.cerradoUltimaSemana())
+                .filter(incidente->servicios.contains(incidente.getServicio())).toList();
+    }
+
+
 }

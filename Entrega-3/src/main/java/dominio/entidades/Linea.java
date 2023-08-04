@@ -14,6 +14,11 @@ public class Linea {
     private List<Estacion> estaciones;
     private List<Localizacion> localizaciones;
 
+    // constructor para test rankings
+    public Linea(String nombre, List<Estacion> estaciones){
+        this.nombre = nombre;
+        this.estaciones = estaciones;
+    }
     public List<Estacion> getEstaciones() {
         return estaciones;
     }

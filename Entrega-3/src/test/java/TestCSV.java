@@ -17,19 +17,18 @@ public class TestCSV {
     ServicioTransporte colectivo = new ServicioTransporte(MedioDeTransporte.COLECTIVO);
     ServicioTransporte ecobici = new ServicioTransporte(MedioDeTransporte.ECOBICI);
 
-    RepoServiciosDeTransporte repoServiciosDeTransporte = RepoServiciosDeTransporte.getInstance();
     void inicializarServiciosDeTransporte() {
-        repoServiciosDeTransporte.agregar(subte);
-        repoServiciosDeTransporte.agregar(tren);
-        repoServiciosDeTransporte.agregar(colectivo);
-        repoServiciosDeTransporte.agregar(ecobici);
+        RepoEntidades.getInstance().agregar(subte);
+        RepoEntidades.getInstance().agregar(tren);
+        RepoEntidades.getInstance().agregar(colectivo);
+        RepoEntidades.getInstance().agregar(ecobici);
     }
 
     // Inicializo organizaciones
     Organizacion organizacion1 = new Organizacion("SUPERMECADO_COTO");
 
     void inicializarOrganizaciones() {
-        RepoOrganizaciones.getInstance().agregar(organizacion1);
+        RepoEntidades.getInstance().agregar(organizacion1);
     }
 
     // Inicializo miembros

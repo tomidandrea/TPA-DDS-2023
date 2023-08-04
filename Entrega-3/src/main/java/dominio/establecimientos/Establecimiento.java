@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Establecimiento {
-    private String nombre;
-    private Localizacion localizacion;
-    private List<Servicio> servicios;
-    private List<Agrupacion> agrupaciones;
+    public String nombre;
+    public Localizacion localizacion;
+    public List<Servicio> servicios;
+    public List<Agrupacion> agrupaciones;
 
     public List<Duration> obtenerListaTiemposCierre(){
-        return (List<Duration>) this.incidentesDelEstablecimiento().stream().map(i->i.obtenerTiempoCierre());
+        return incidentesDelEstablecimiento().stream().map(i->i.obtenerTiempoCierre()).toList();
     }
 
     public int cantidadDeIncidentes(){
@@ -23,6 +23,9 @@ public abstract class Establecimiento {
     }
 
     public List<Incidente> incidentesDelEstablecimiento() {
-        return RepoIncidentes.getInstance().obtenerIncidentesDe(agrupaciones, servicios);
+        if(agrupaciones == null){
+            return RepoIncidentes.getInstance().obtenerIncidentesDe(servicios);
+        }
+        else return RepoIncidentes.getInstance().obtenerIncidentesDe(agrupaciones, servicios);
     }
 }

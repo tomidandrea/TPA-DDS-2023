@@ -27,6 +27,12 @@ public class Incidente {
         this.estadoIncidente = estadoIncidente;
         comunidades.forEach(c->c.agregarIncidente(this));
     }
+    // Constructor para test ranking
+    public Incidente(Servicio servicio, LocalDateTime horarioApertura, LocalDateTime horarioCierre){
+        this.servicio = servicio;
+        this.horarioApertura = horarioApertura;
+        this.horarioCierre = horarioCierre;
+    }
 
     public Servicio getServicio() {
         return servicio;

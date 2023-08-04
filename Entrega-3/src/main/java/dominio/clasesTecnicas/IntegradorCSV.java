@@ -46,11 +46,11 @@ public class IntegradorCSV {
             String nombre = linea[1];
             ArrayList<ServicioTransporte> serviciosTransporte = new ArrayList<ServicioTransporte>();
             if (linea[2].equals("ServicioTransporte")) {
-                serviciosTransporte.add(RepoServiciosDeTransporte.getInstance().obtenerPorTipo(convertirTransporte(linea[2])));
+                serviciosTransporte.add(RepoEntidades.getInstance().obtenerPorTipo(convertirTransporte(linea[2])));
             }
             ArrayList<Organizacion> organizaciones = new ArrayList<Organizacion>();
             if (linea[3].equals("Organizacion")) {
-                organizaciones.add(RepoOrganizaciones.getInstance().obtenerPorNombre(linea[3]));
+                organizaciones.add(RepoEntidades.getInstance().obtenerOrgPorNombre(linea[3]));
             }
             Miembro responsable = RepoMiembros.getInstance().getMiembro(Integer.parseInt(linea[4]));
 

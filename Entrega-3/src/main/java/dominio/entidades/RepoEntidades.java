@@ -33,10 +33,10 @@ public class RepoEntidades {
         organizaciones.add(organizacion);
     }
 
-    public Organizacion obtenerPorNombre(String nombre){
+    public Organizacion obtenerOrgPorNombre(String nombre){
         return organizaciones.stream().filter(organizacion -> organizacion.nombre == nombre).findFirst().get();
     }
-    
+
     public List<ResultadoTiempoCierre> obtenerRankingEntidadesConMayorTiempoDeCierre(){
         List<Entidad> entidades = new ArrayList<>(organizaciones);
         entidades.addAll(serviciosDeTransporte);

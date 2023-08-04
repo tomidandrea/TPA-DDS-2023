@@ -14,6 +14,13 @@ public class ServicioTransporte extends Entidad{
     Linea lineaDeTransporteIda;
     Linea lineaDeTransporteVuelta;
 
+    public ServicioTransporte(MedioDeTransporte tipoTransporte, Linea lineaDeTransporteIda, Linea lineaDeTransporteVuelta) {
+        this.tipoTransporte = tipoTransporte;
+        this.lineaDeTransporteIda = lineaDeTransporteIda;
+        this.lineaDeTransporteVuelta = lineaDeTransporteVuelta;
+    }
+
+    // PAra test CSV
     public ServicioTransporte(MedioDeTransporte tipoTransporte) {
         this.tipoTransporte = tipoTransporte;
     }
@@ -41,7 +48,9 @@ public class ServicioTransporte extends Entidad{
         Duration tiempoTotal = Duration.ZERO;
         List<Duration> tiempos = estaciones.stream().map(Establecimiento::obtenerListaTiemposCierre).
                 flatMap(List::stream).collect(Collectors.toList());
-        tiempos.forEach(t->tiempoTotal.plus(t));
+        for(Duration t: tiempos){
+            tiempoTotal = tiempoTotal.plus(t);
+        }
         return tiempoTotal.dividedBy(tiempos.size());
     }
 

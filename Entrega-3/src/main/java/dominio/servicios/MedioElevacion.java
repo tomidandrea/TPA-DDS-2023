@@ -1,6 +1,6 @@
 package dominio.servicios;
 
 
-public class MedioElevacion {
+public class MedioElevacion extends Servicio{
     private TramoMedioElevacion tramoRecorrido;
 }

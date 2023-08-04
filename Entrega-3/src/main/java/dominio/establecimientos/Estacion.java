@@ -9,4 +9,8 @@ public class Estacion extends Establecimiento {
     public List<Servicio> serviciosFaltantes() {
         return new ArrayList<>();
     }
+
+    public Estacion(List<Servicio> servicios) {
+        this.servicios = servicios;
+    }
 }
