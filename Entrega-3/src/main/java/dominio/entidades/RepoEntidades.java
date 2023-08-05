@@ -4,6 +4,7 @@ import dominio.clasesTecnicas.ResultadoCantidadIncidentes;
 import dominio.clasesTecnicas.ResultadoTiempoCierre;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
@@ -43,7 +44,8 @@ public class RepoEntidades {
         List<ResultadoTiempoCierre> resultados = entidades.stream()
                 .map(e->new ResultadoTiempoCierre(e, e.calcularPromedioTiempoCierre()))
                 .collect(Collectors.toList());
-        resultados.sort((r1, r2) -> r1.compararTiempo(r2));
+        resultados.sort((r2, r1) -> r2.compararTiempo(r1));
+        Collections.reverse(resultados);
         return resultados;
     }
 

@@ -14,8 +14,9 @@ public class ServicioTransporte extends Entidad{
     Linea lineaDeTransporteIda;
     Linea lineaDeTransporteVuelta;
 
-    public ServicioTransporte(MedioDeTransporte tipoTransporte, Linea lineaDeTransporteIda, Linea lineaDeTransporteVuelta) {
+    public ServicioTransporte(MedioDeTransporte tipoTransporte, String nombre, Linea lineaDeTransporteIda, Linea lineaDeTransporteVuelta) {
         this.tipoTransporte = tipoTransporte;
+        this.nombre = nombre;
         this.lineaDeTransporteIda = lineaDeTransporteIda;
         this.lineaDeTransporteVuelta = lineaDeTransporteVuelta;
     }
@@ -50,6 +51,7 @@ public class ServicioTransporte extends Entidad{
                 flatMap(List::stream).collect(Collectors.toList());
         for(Duration t: tiempos){
             tiempoTotal = tiempoTotal.plus(t);
+            System.out.println("Sumamos el tiempo " + t.toString() + " de un servicio Transporte");
         }
         return tiempoTotal.dividedBy(tiempos.size());
     }

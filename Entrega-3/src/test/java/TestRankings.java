@@ -20,6 +20,8 @@ import java.util.List;
 
 public class TestRankings {
 
+
+
     // Creo servicios Linea A
     Baño bañoEstacionA1 = new Baño(TipoDeBaño.HOMBRES);
     EscaleraMecanica escaleraEstacionA1 = new EscaleraMecanica();
@@ -37,6 +39,22 @@ public class TestRankings {
     List<Servicio> serviciosEstacionA2 = new ArrayList<>();
     List<Servicio> serviciosEstacionB1 = new ArrayList<>();
     List<Servicio> serviciosEstacionB2 = new ArrayList<>();
+
+    // metodo para restar tiempo al actual
+
+
+    public static LocalDateTime restarDiasHorasMinutos(int dias, int horas, int minutos) {
+        // Paso 1: Obtener la fecha actual
+        LocalDateTime fechaActual = LocalDateTime.now();
+
+        // Paso 2: Restar los días, horas y minutos
+        LocalDateTime fechaResultante = fechaActual.minusDays(dias)
+                .minusHours(horas)
+                .minusMinutes(minutos);
+
+        // Paso 3: Retornar el resultado
+        return fechaResultante;
+    }
 
     //Agrego servicios a listas
     public void configuroServiciosEstaciones() {
@@ -139,8 +157,8 @@ public class TestRankings {
     // =============================================================
 
     //Creo entidades
-    ServicioTransporte subteA = new ServicioTransporte(MedioDeTransporte.SUBTE, lineaAIDa,lineaAVuelta);
-    ServicioTransporte subteB = new ServicioTransporte(MedioDeTransporte.SUBTE,lineaBIda,lineaBVuelta);
+    ServicioTransporte subteA = new ServicioTransporte(MedioDeTransporte.SUBTE, "subteA", lineaAIDa,lineaAVuelta);
+    ServicioTransporte subteB = new ServicioTransporte(MedioDeTransporte.SUBTE, "subteb", lineaBIda,lineaBVuelta);
     Organizacion coto = new Organizacion("SUPERMECADO_COTO", sucursalesCoto);
     Organizacion dia = new Organizacion("SUPERMERCADO_DIA", sucursalesDia);
 
@@ -162,68 +180,69 @@ public class TestRankings {
 
     // Incidentes del coto (mayor tiempo promedio)
 
+
     Incidente incidente1 = new Incidente(
             bañoCoto1H,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(6), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(1), 16, 30));
+            restarDiasHorasMinutos(6, 16, 0),
+            restarDiasHorasMinutos(1, 16, 30));
 
     Incidente incidente2 = new Incidente(bañoCoto1M,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(6), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(2), 16, 30));
+            restarDiasHorasMinutos(6, 16, 0),
+            restarDiasHorasMinutos(2, 8, 30));
 
     Incidente incidente3 = new Incidente(bañoCoto2H,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(6), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(3), 16, 30));
+            restarDiasHorasMinutos(6, 8, 0),
+            restarDiasHorasMinutos(3, 8, 30));
     Incidente incidente4 = new Incidente(bañoCoto2M,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(6), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(1), 16, 30));
+            restarDiasHorasMinutos(6, 16, 0),
+            restarDiasHorasMinutos(1, 8, 30));
 
 
     // Incidentes del Dia (menor tiempo promedio)
     Incidente incidente5 = new Incidente(bañoDia1H,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(1), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 16, 30));
+            restarDiasHorasMinutos(1, 8, 0),
+            restarDiasHorasMinutos(0, 0, 0));
     Incidente incidente6 = new Incidente(bañoDia1M,
-            LocalDateTime.of(añoActual, mesActual, diaActual, 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 16, 30));
+            restarDiasHorasMinutos(0, 8, 0),
+            restarDiasHorasMinutos( 0, 0, 0));
     Incidente incidente7 = new Incidente(bañoDia2H,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(1), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 13, 30));
+            restarDiasHorasMinutos(1, 8, 0),
+            restarDiasHorasMinutos(0, 1, 30));
     Incidente incidente8 = new Incidente(bañoDia2M,
-            LocalDateTime.of(añoActual, mesActual, diaActual, 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 12, 30));
+            restarDiasHorasMinutos(0, 12, 30),
+            restarDiasHorasMinutos(0, 8, 0));
 
     //==== servicios transporte
 
     // Incidentes del subte A - ida y vuelta (tiempo promedio intermedio)
 
     Incidente incidente9 = new Incidente(bañoEstacionA1,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(3), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 16, 30));
+            restarDiasHorasMinutos(3, 8, 0),
+            restarDiasHorasMinutos(0, 0, 0));
     Incidente incidente10 = new Incidente(escaleraEstacionA1,
-            LocalDateTime.of(añoActual, mesActual, diaActual, 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 16, 30));
+            restarDiasHorasMinutos(0, 6, 0),
+            restarDiasHorasMinutos(0, 0, 0));
     Incidente incidente11 = new Incidente(bañoEstacionA2,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(1), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 13, 30));
+            restarDiasHorasMinutos(1, 16, 0),
+            restarDiasHorasMinutos(0, 0, 30));
     Incidente incidente12 = new Incidente(escaleraEstacionA2,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(2), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 12, 30));
+            restarDiasHorasMinutos(1, 16, 0),
+            restarDiasHorasMinutos(1, 0, 30));
 
     // Incidentes del subte B - ida y vuelta (tiempo promedio intermedio)
 
     Incidente incidente13 = new Incidente(bañoEstacionB1,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(3), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 16, 30));
+            restarDiasHorasMinutos(3, 16, 0),
+            restarDiasHorasMinutos(0, 16, 30));
     Incidente incidente14 = new Incidente(escaleraEstacionB1,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(4), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 16, 30));
+            restarDiasHorasMinutos(4, 8, 0),
+            restarDiasHorasMinutos(0, 16, 30));
     Incidente incidente15 = new Incidente(bañoEstacionB2,
-            LocalDateTime.of(añoActual, mesActual, diaActualMenos(1), 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 13, 30));
+            restarDiasHorasMinutos(1, 8, 0),
+            restarDiasHorasMinutos(0, 0, 0));
     Incidente incidente16 = new Incidente(escaleraEstacionB2,
-            LocalDateTime.of(añoActual, mesActual, diaActual, 8, 0),
-            LocalDateTime.of(añoActual, mesActual, diaActual, 12, 30));
+            restarDiasHorasMinutos(0, 8, 0),
+            restarDiasHorasMinutos(0, 0, 30));
 
     // Agrego incidentes a repo
 
@@ -270,11 +289,12 @@ public class TestRankings {
 
     @Test
     public void mayorTiempoPromedioDeCierreEsCoto(){
+
         Assertions.assertEquals(coto, repoEntidades.obtenerRankingEntidadesConMayorTiempoDeCierre().get(0).getEntidad());
     }
 
     @Test
     public void menorTiempoPromedioDeCierreEsDia(){
-        Assertions.assertEquals(4, repoEntidades.obtenerRankingEntidadesConMayorTiempoDeCierre().get(0).getTiempoDeCierre().toHours());
+        Assertions.assertEquals(dia, repoEntidades.obtenerRankingEntidadesConMayorTiempoDeCierre().get(3).getEntidad());
     }
 }

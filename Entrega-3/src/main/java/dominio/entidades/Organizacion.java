@@ -54,6 +54,7 @@ public class Organizacion extends Entidad{
                 flatMap(List::stream).collect(Collectors.toList());
         for(Duration t: tiempos){
             tiempoTotal = tiempoTotal.plus(t);
+            System.out.println("Sumamos el tiempo " + t.toString() + " de una organizacion");
         }
         return tiempoTotal.dividedBy(tiempos.size());
     }
