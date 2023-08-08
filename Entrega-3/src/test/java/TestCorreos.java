@@ -46,10 +46,10 @@ public class TestCorreos {
             restarDiasHorasMinutos(5, 8, 0),
             "El baño está sucio");
 
-    Incidente incidente4 = new Incidente(baño4,
+    /*Incidente incidente4 = new Incidente(baño4,
             restarDiasHorasMinutos(0, 8, 0),
             restarDiasHorasMinutos(0, 9, 0));
-
+*/
 
 
     CorreoAPI correoAPI = new CorreoAPI("agustinmsanjuan@gmail.com", ""); // borrar

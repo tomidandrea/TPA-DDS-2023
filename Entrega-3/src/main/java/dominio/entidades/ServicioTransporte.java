@@ -51,7 +51,7 @@ public class ServicioTransporte extends Entidad{
                 flatMap(List::stream).collect(Collectors.toList());
         for(Duration t: tiempos){
             tiempoTotal = tiempoTotal.plus(t);
-            System.out.println("Sumamos el tiempo " + t.toString() + " de un servicio Transporte");
+            //System.out.println("Sumamos el tiempo " + t.toString() + " de un servicio Transporte");
         }
         return tiempoTotal.dividedBy(tiempos.size());
     }

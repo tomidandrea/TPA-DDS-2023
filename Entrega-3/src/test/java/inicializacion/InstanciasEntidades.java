@@ -15,7 +15,7 @@ public class InstanciasEntidades {
   private Organizacion dia;
 
   public InstanciasEntidades(InstanciasEstablecimientos establecimientos){
-    Linea lineaAIDa = lineaAIda(establecimientos);
+    Linea lineaAIda = lineaAIda(establecimientos);
     Linea lineaAVuelta = lineaAVuelta(establecimientos);
     Linea lineaBIda = lineaBIda(establecimientos);
     Linea lineaBVuelta = lineaBVuelta(establecimientos);
@@ -23,7 +23,7 @@ public class InstanciasEntidades {
     List<Sucursal> sucursalesCoto = sucursalesCoto(establecimientos);
     List<Sucursal> sucursalesDia = sucursalesDia(establecimientos);
 
-    this.subteA = new ServicioTransporte(MedioDeTransporte.SUBTE, "subteA", lineaAIDa,lineaAVuelta);
+    this.subteA = new ServicioTransporte(MedioDeTransporte.SUBTE, "subteA", lineaAIda,lineaAVuelta);
     this.subteB = new ServicioTransporte(MedioDeTransporte.SUBTE, "subteb", lineaBIda,lineaBVuelta);
     this.coto = new Organizacion("SUPERMECADO_COTO", sucursalesCoto);
     this.dia = new Organizacion("SUPERMERCADO_DIA", sucursalesDia);

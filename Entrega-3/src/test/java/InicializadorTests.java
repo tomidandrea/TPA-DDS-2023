@@ -3,7 +3,9 @@ import inicializacion.InstanciasEntidades;
 import inicializacion.InstanciasEstablecimientos;
 import inicializacion.InstanciasIncidentes;
 import inicializacion.InstanciasServicios;
+import lombok.Getter;
 
+@Getter
 public class InicializadorTests {
   private static InicializadorTests instance = null;
   private InstanciasServicios servicios;

@@ -39,12 +39,12 @@ public class InstanciasIncidentes {
 
   private void incidentesSucursalCoto1(List<Servicio> servicios){
     Incidente incidente1 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(6, 16, 0),
         restarDiasHorasMinutos(1, 16, 30));
 
     Incidente incidente2 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(6, 16, 0),
         restarDiasHorasMinutos(2, 8, 30));
 
@@ -54,11 +54,11 @@ public class InstanciasIncidentes {
 
   private void incidentesSucursalCoto2(List<Servicio> servicios){
     Incidente incidente3 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(6, 8, 0),
         restarDiasHorasMinutos(3, 8, 30));
     Incidente incidente4 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(6, 16, 0),
         restarDiasHorasMinutos(1, 8, 30));
     repoIncidentes.agregar(incidente3);
@@ -67,11 +67,11 @@ public class InstanciasIncidentes {
 
   private void incidentesSucursalDia1(List<Servicio> servicios){
     Incidente incidente5 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(1, 8, 0),
         restarDiasHorasMinutos(0, 0, 0));
     Incidente incidente6 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(0, 8, 0),
         restarDiasHorasMinutos( 0, 0, 0));
     repoIncidentes.agregar(incidente5);
@@ -80,11 +80,11 @@ public class InstanciasIncidentes {
 
   private void incidentesSucursalDia2(List<Servicio> servicios){
     Incidente incidente7 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(1, 8, 0),
         restarDiasHorasMinutos(0, 1, 30));
     Incidente incidente8 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(0, 12, 30),
         restarDiasHorasMinutos(0, 8, 0));
     repoIncidentes.agregar(incidente7);
@@ -92,11 +92,11 @@ public class InstanciasIncidentes {
   }
   private void incidentesEstacionA1(List<Servicio> servicios){
     Incidente incidente9 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(3, 8, 0),
         restarDiasHorasMinutos(0, 0, 0));
     Incidente incidente10 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(0, 6, 0),
         restarDiasHorasMinutos(0, 0, 0));
     repoIncidentes.agregar(incidente9);
@@ -104,11 +104,11 @@ public class InstanciasIncidentes {
   }
   private void incidentesEstacionA2(List<Servicio> servicios){
     Incidente incidente11 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(1, 16, 0),
         restarDiasHorasMinutos(0, 0, 30));
     Incidente incidente12 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(1, 16, 0),
         restarDiasHorasMinutos(1, 0, 30));
     repoIncidentes.agregar(incidente11);
@@ -116,11 +116,11 @@ public class InstanciasIncidentes {
   }
   private void incidentesEstacionB1(List<Servicio> servicios){
     Incidente incidente13 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(3, 16, 0),
         restarDiasHorasMinutos(0, 16, 30));
     Incidente incidente14 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(4, 8, 0),
         restarDiasHorasMinutos(0, 16, 30));
     repoIncidentes.agregar(incidente13);
@@ -128,11 +128,11 @@ public class InstanciasIncidentes {
   }
   private void incidentesEstacionB2(List<Servicio> servicios){
     Incidente incidente15 = new Incidente(
-        servicios.get(1),
+        servicios.get(0),
         restarDiasHorasMinutos(1, 8, 0),
         restarDiasHorasMinutos(0, 0, 0));
     Incidente incidente16 = new Incidente(
-        servicios.get(2),
+        servicios.get(1),
         restarDiasHorasMinutos(0, 8, 0),
         restarDiasHorasMinutos(0, 0, 30));
     repoIncidentes.agregar(incidente15);
