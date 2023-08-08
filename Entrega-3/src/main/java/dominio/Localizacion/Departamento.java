@@ -1,5 +1,5 @@
 package dominio.Localizacion;
 
-public class Departamento {
+public class Departamento extends Localizacion {
     private Provincia provincia;
 }

@@ -16,6 +16,12 @@ public class Comunidad {
         return nombre;
     }
 
+    public Comunidad(List<Miembro> miembros, List<Incidente> incidentesAbiertos, String nombre) {
+        this.miembros = miembros;
+        this.incidentesAbiertos = incidentesAbiertos;
+        this.nombre = nombre;
+    }
+
     public void notificarIncidentes() {
         List<Miembro> miembrosANotificar = filtrarMiembrosEnHorario();
         List<Incidente> incidentes = ultimosIncidentesAbiertos();

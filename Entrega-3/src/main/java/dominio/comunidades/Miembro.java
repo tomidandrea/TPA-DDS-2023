@@ -44,6 +44,13 @@ public class Miembro extends Usuario {
         this.id = id;
     }
 
+    public Miembro(String nombre, String correo, MedioDeComunicacion medio, List<LocalTime> horariosDeNotificacion) {
+        this.nombre = nombre;
+        this.correoElectronico = correo;
+        this.medioPreferido = medio;
+        this.horariosDeNotificacion = horariosDeNotificacion;
+    }
+
     public boolean compararId(int id){
         return this.id == id;
     }

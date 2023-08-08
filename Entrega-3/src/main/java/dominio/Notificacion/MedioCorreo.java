@@ -6,7 +6,16 @@ import dominio.comunidades.Miembro;
 import java.util.List;
 
 public class MedioCorreo extends MedioDeComunicacion {
-    CorreoAPI correoAPI;
+    private static MedioCorreo instance = null;
+    CorreoAPI correoAPI = null;
+
+    public static MedioCorreo getInstance(CorreoAPI correoAPI) {
+        if (instance == null) {
+            instance = new MedioCorreo();
+            instance.correoAPI = correoAPI;
+        }
+        return instance;
+    }
 
     @Override
     public void notificarIncidentes(Miembro miembro, List<Incidente> incidentes, Comunidad comunidad) {

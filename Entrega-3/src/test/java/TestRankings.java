@@ -23,15 +23,15 @@ public class TestRankings {
 
 
     // Creo servicios Linea A
-    Baño bañoEstacionA1 = new Baño(TipoDeBaño.HOMBRES);
+    Baño bañoEstacionA1 = new Baño("bañoEstacionA1", TipoDeBaño.HOMBRES);
     EscaleraMecanica escaleraEstacionA1 = new EscaleraMecanica();
-    Baño bañoEstacionA2 = new Baño(TipoDeBaño.MUJERES);
+    Baño bañoEstacionA2 = new Baño("bañoEstacionA2",TipoDeBaño.MUJERES);
     EscaleraMecanica escaleraEstacionA2 = new EscaleraMecanica();
 
     // Creo servicios Linea B
-    Baño bañoEstacionB1 = new Baño(TipoDeBaño.HOMBRES);
+    Baño bañoEstacionB1 = new Baño("bañoEstacionB1",TipoDeBaño.HOMBRES);
     EscaleraMecanica escaleraEstacionB1 = new EscaleraMecanica();
-    Baño bañoEstacionB2 = new Baño(TipoDeBaño.MUJERES);
+    Baño bañoEstacionB2 = new Baño("bañoEstacionB2",TipoDeBaño.MUJERES);
     EscaleraMecanica escaleraEstacionB2 = new EscaleraMecanica();
 
     //Listas de servicios

@@ -33,6 +33,12 @@ public class Incidente {
         this.horarioApertura = horarioApertura;
         this.horarioCierre = horarioCierre;
     }
+    public Incidente(Servicio servicio, LocalDateTime horarioApertura, String obs){
+        this.servicio = servicio;
+        this.horarioApertura = horarioApertura;
+        this.observacion = obs;
+    }
+
 
     public Servicio getServicio() {
         return servicio;
