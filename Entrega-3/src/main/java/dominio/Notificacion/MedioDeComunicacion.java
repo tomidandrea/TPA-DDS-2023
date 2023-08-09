@@ -19,6 +19,7 @@ public abstract class MedioDeComunicacion {
                String nombreComunidad = comunidad.getNombre();
                mensajes = "Se ha reportado un incidente en la comunidad " + nombreComunidad + ".\n" + "Servicio: " + servicio + "\n" + observacion;
                mensajes += "\n";
+               System.out.println(mensajes);
           });
      }
 

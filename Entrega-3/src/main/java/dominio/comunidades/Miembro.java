@@ -5,13 +5,16 @@ import dominio.Notificacion.MedioCorreo;
 import dominio.Notificacion.MedioDeComunicacion;
 import dominio.clasesTecnicas.Usuario;
 import dominio.clasesTecnicas.Validador;
+import lombok.Getter;
 
 import java.time.LocalTime;
 import java.util.List;
 
 public class Miembro extends Usuario {
+    @Getter
     private String nombre;
     private int id;
+    @Getter
     private String apellido;
     private String correoElectronico;
     private Interes interes;

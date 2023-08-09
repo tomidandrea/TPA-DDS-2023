@@ -1,8 +1,5 @@
 import dominio.entidades.RepoEntidades;
-import inicializacion.InstanciasEntidades;
-import inicializacion.InstanciasEstablecimientos;
-import inicializacion.InstanciasIncidentes;
-import inicializacion.InstanciasServicios;
+import inicializacion.*;
 import lombok.Getter;
 
 @Getter
@@ -12,6 +9,8 @@ public class InicializadorTests {
   private InstanciasEstablecimientos establecimientos;
   private InstanciasEntidades entidades;
   private InstanciasIncidentes incidentes;
+  private InstanciasComunidades comunidades;
+  private InstanciasMiembros miembros;
 
   public static InicializadorTests getInstance(){
     if(instance == null){
@@ -24,5 +23,7 @@ public class InicializadorTests {
     this.incidentes = new InstanciasIncidentes(servicios);
     this.establecimientos = new InstanciasEstablecimientos(servicios);
     this.entidades = new InstanciasEntidades(establecimientos);
+    this.miembros = new InstanciasMiembros();
+    this.comunidades = new InstanciasComunidades(incidentes, miembros);
   }
 }

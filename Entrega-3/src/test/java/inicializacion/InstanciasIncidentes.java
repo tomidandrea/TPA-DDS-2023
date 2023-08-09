@@ -10,6 +10,9 @@ import java.util.List;
 @Getter
 public class InstanciasIncidentes {
   public RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+  private Incidente incidenteAbierto1;
+  private Incidente incidenteAbierto2;
+  private Incidente incidenteCerrado1;
   public static LocalDateTime restarDiasHorasMinutos(int dias, int horas, int minutos) {
     // Paso 1: Obtener la fecha actual
     LocalDateTime fechaActual = LocalDateTime.now();
@@ -35,6 +38,19 @@ public class InstanciasIncidentes {
     // Incidentes del subte B - ida y vuelta (tiempo promedio intermedio)
     incidentesEstacionB1(servicios.getServiciosEstacionB1());
     incidentesEstacionB2(servicios.getServiciosEstacionB2());
+
+    incidenteAbierto1 = new Incidente(
+        servicios.getServiciosEstacionA1().get(0),
+        restarDiasHorasMinutos(0, 16, 0),
+        "El baño está sucio");
+    incidenteAbierto2 = new Incidente(
+        servicios.getServiciosEstacionA2().get(0),
+        restarDiasHorasMinutos(0, 2, 0),
+        "Se rompió el inodoro");
+    incidenteCerrado1 = new Incidente(
+        servicios.getServiciosCoto1().get(0),
+        restarDiasHorasMinutos(5, 8, 0),
+        "El baño está sucio");
   }
 
   private void incidentesSucursalCoto1(List<Servicio> servicios){

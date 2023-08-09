@@ -25,8 +25,10 @@ public class Comunidad {
     public void notificarIncidentes() {
         List<Miembro> miembrosANotificar = filtrarMiembrosEnHorario();
         List<Incidente> incidentes = ultimosIncidentesAbiertos();
-        miembrosANotificar.forEach(miembro ->
-                miembro.getMedioPreferido().notificarIncidentes(miembro, incidentes, this));
+        miembrosANotificar.forEach(miembro -> {
+            System.out.println("Miembro a notificar: " + miembro.getNombre());
+            miembro.getMedioPreferido().notificarIncidentes(miembro, incidentes, this);
+        });
     }
 
     // filtramos incidentes abiertos de las ultimas 24 horas
