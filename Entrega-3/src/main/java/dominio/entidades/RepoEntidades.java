@@ -19,15 +19,15 @@ public class RepoEntidades {
         }
         return instance;
     }
-    List<Organizacion> organizaciones = new ArrayList<>();
-    List<ServicioTransporte> serviciosDeTransporte = new ArrayList<>();
+    private List<Organizacion> organizaciones = new ArrayList<>();
+    private List<ServicioTransporte> serviciosDeTransporte = new ArrayList<>();
 
 
     public void agregar(ServicioTransporte servicioTransporte) {
         serviciosDeTransporte.add(servicioTransporte);
     }
     public ServicioTransporte obtenerPorTipo(MedioDeTransporte tipo){
-        return serviciosDeTransporte.stream().filter(servicio -> servicio.tipoTransporte == tipo).findFirst().get();
+        return serviciosDeTransporte.stream().filter(servicio -> servicio.getTipoTransporte() == tipo).findFirst().get();
     }
 
     public void agregar(Organizacion organizacion) {

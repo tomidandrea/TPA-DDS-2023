@@ -7,10 +7,10 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class Comunidad {
-    List<Miembro> miembros;
-    List<Usuario> administradores;
-    List<Incidente> incidentesAbiertos;
-    String nombre;
+    private List<Miembro> miembros;
+    private List<Usuario> administradores;
+    private List<Incidente> incidentesAbiertos;
+    private String nombre;
 
     public String getNombre() {
         return nombre;
@@ -31,7 +31,7 @@ public class Comunidad {
         });
     }
 
-    // filtramos incidentes abiertos de las ultimas 24 horas
+    //TODO filtramos incidentes abiertos de las ultimas 24 horas, hay que hacerlo segun los horarios del miembro
     public List<Incidente> ultimosIncidentesAbiertos() {
         return incidentesAbiertos.stream().
                 filter(

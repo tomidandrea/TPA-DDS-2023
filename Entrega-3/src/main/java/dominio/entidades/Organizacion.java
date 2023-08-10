@@ -10,11 +10,9 @@ import java.util.stream.Collectors;
 
 
 public class Organizacion extends Entidad{
-    @Getter
-    String nombre;
-    List<Sucursal> sucursales;
+    private List<Sucursal> sucursales;
 
-    public List<Sucursal> sucursales() {
+    public List<Sucursal> getSucursales() {
         return sucursales;
     }
     public Organizacion(String nombre) {

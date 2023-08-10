@@ -5,5 +5,9 @@ import dominio.servicios.Servicio;
 import java.util.List;
 
 public class Interes {
-    List<Servicio> servicios;
+    private List<Servicio> servicios;
+
+    public Interes(List<Servicio> servicios) {
+        this.servicios = servicios;
+    }
 }

@@ -17,7 +17,9 @@ public class Incidente {
     LocalDateTime horarioCierre;
     EstadoIncidente estadoIncidente;
 
-    public Incidente(Servicio servicio, Agrupacion agrupacion, String observacion, List<Comunidad> comunidades, LocalDateTime horarioApertura, LocalDateTime horarioCierre, EstadoIncidente estadoIncidente) {
+    public Incidente(Servicio servicio, Agrupacion agrupacion, String observacion,
+                     List<Comunidad> comunidades, LocalDateTime horarioApertura,
+                     LocalDateTime horarioCierre, EstadoIncidente estadoIncidente) {
         this.servicio = servicio;
         this.agrupacion = agrupacion;
         this.observacion = observacion;

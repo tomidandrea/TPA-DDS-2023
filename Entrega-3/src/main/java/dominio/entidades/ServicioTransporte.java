@@ -3,16 +3,18 @@ package dominio.entidades;
 import dominio.comunidades.EstadoIncidente;
 import dominio.establecimientos.Establecimiento;
 import dominio.establecimientos.Estacion;
+import lombok.Getter;
 import org.apache.commons.collections.ListUtils;
 
 import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Getter
 public class ServicioTransporte extends Entidad{
-    MedioDeTransporte tipoTransporte;
-    Linea lineaDeTransporteIda;
-    Linea lineaDeTransporteVuelta;
+    private MedioDeTransporte tipoTransporte;
+    private Linea lineaDeTransporteIda;
+    private  Linea lineaDeTransporteVuelta;
 
     public ServicioTransporte(MedioDeTransporte tipoTransporte, String nombre, Linea lineaDeTransporteIda, Linea lineaDeTransporteVuelta) {
         this.tipoTransporte = tipoTransporte;

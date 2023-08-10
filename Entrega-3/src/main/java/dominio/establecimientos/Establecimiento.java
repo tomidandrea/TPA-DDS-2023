@@ -4,10 +4,13 @@ import dominio.servicios.Servicio;
 import dominio.servicios.Agrupacion;
 import dominio.comunidades.Incidente;
 import dominio.comunidades.RepoIncidentes;
+import lombok.Getter;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public abstract class Establecimiento {
     public String nombre;
     public Localizacion localizacion;
@@ -23,6 +26,7 @@ public abstract class Establecimiento {
     }
 
     public List<Incidente> incidentesDelEstablecimiento() {
+        //TODO hacer que sume los incidentes de servicios simples y de agrupaciones
         if(agrupaciones == null){
             return RepoIncidentes.getInstance().obtenerIncidentesDe(servicios);
         }
