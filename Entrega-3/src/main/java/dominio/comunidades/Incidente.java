@@ -2,12 +2,15 @@ package dominio.comunidades;
 
 import dominio.servicios.Agrupacion;
 import dominio.servicios.Servicio;
+import lombok.Getter;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Getter
 public class Incidente {
     Servicio servicio;
     Agrupacion agrupacion;
@@ -40,8 +43,6 @@ public class Incidente {
         this.horarioApertura = horarioApertura;
         this.observacion = obs;
     }
-
-
     public Servicio getServicio() {
         return servicio;
     }
@@ -74,5 +75,11 @@ public class Incidente {
 
     public LocalDateTime horarioApertura() {
         return horarioApertura;
+    }
+
+    @Override
+    public String toString() {
+        return "Incidente en el servicio: "+servicio.nombre+ ", abierto:"+
+            DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm:ss").format(horarioApertura);
     }
 }

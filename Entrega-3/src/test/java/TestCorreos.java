@@ -22,6 +22,7 @@ public class TestCorreos {
   }
     @Test
     public void testNotificarIncidentes() {
+      comunidad1.getIncidentesAbiertos().forEach(incidente -> System.out.println(incidente.toString()));
       comunidad1.notificarIncidentes();
     }
 }

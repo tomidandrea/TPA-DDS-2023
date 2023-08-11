@@ -3,7 +3,9 @@ package dominio.Localizacion;
 
 public class Provincia extends Localizacion {
 
-
+  public Provincia(String nombre, Integer id, Centroide centroide) {
+    super(nombre, id, centroide);
+  }
 }
 
 /*

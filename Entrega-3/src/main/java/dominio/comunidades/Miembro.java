@@ -23,7 +23,9 @@ public class Miembro extends Usuario {
     private TipoMiembro tipoMiembro;
     private MedioDeComunicacion medioPreferido;
     private String nroDeTelefono;
-    private List<LocalTime> horariosDeNotificacion;
+    //private List<LocalTime> horariosDeNotificacion;
+    @Getter
+    private Horario horariosDeNotificacion;
 
     public String getCorreo() {
         return correoElectronico;
@@ -49,7 +51,8 @@ public class Miembro extends Usuario {
     }
     public Miembro(String nombre, String apellido, String correoElectronico, //TODO: Localizacion localizacion,
                    TipoMiembro tipoMiembro, MedioDeComunicacion medioPreferido, String nroDeTelefono,
-                   List<LocalTime> horariosDeNotificacion, String usuario, String contrasenia) {
+                   //List<LocalTime> horariosDeNotificacion,
+                   Horario horariosDeNotificacion, String usuario, String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
@@ -57,6 +60,7 @@ public class Miembro extends Usuario {
         this.tipoMiembro = tipoMiembro;
         this.medioPreferido = medioPreferido;
         this.nroDeTelefono = nroDeTelefono;
+        //this.horariosDeNotificacion = horariosDeNotificacion;
         this.horariosDeNotificacion = horariosDeNotificacion;
         this.id = ++cantidadMiembros;
         this.setUsuario(usuario);
@@ -73,7 +77,7 @@ public class Miembro extends Usuario {
     }
 
     public boolean estaEnHorarioDeNotificacion() {
-        return horariosDeNotificacion.stream().anyMatch(horario -> horario.getHour() == LocalTime.now().getHour());
+        return horariosDeNotificacion.compararHorarioActual();
     }
 
 }
