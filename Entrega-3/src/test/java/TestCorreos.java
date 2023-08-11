@@ -38,7 +38,7 @@ public class TestCorreos {
   public void testRangoHorario() {
     List<Incidente> incidentes = comunidad1.getIncidentesAbiertos().stream()
         .filter(incidente -> incidente.horarioApertura().isAfter(LocalDateTime.now().minusHours(24))).toList();
-    
+
     int cantidadIncidentesJuan = juan.getHorariosDeNotificacion().incidenteDentroDeRangoHorario(incidentes, LocalTime.now()).size();
     int cantidadIncidentesPedro = pedro.getHorariosDeNotificacion().incidenteDentroDeRangoHorario(incidentes, LocalTime.now()).size();
     int cantidadIncidentesManu = manu.getHorariosDeNotificacion().incidenteDentroDeRangoHorario(incidentes, LocalTime.now()).size();

@@ -56,6 +56,7 @@ public class RepoEntidades {
                 .map(e->new ResultadoCantidadIncidentes(e, e.cantidadIncidentes()))
                 .collect(Collectors.toList());
         resultados.sort((r1, r2) -> r1.compararTiempo(r2));
+        Collections.reverse(resultados);
         return resultados;
     }
 }

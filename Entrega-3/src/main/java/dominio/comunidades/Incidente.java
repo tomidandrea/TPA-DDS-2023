@@ -37,11 +37,15 @@ public class Incidente {
         this.servicio = servicio;
         this.horarioApertura = horarioApertura;
         this.horarioCierre = horarioCierre;
+        RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+        repoIncidentes.agregar(this);
     }
     public Incidente(Servicio servicio, LocalDateTime horarioApertura, String obs){
         this.servicio = servicio;
         this.horarioApertura = horarioApertura;
         this.observacion = obs;
+        RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+        repoIncidentes.agregar(this);
     }
     public Servicio getServicio() {
         return servicio;

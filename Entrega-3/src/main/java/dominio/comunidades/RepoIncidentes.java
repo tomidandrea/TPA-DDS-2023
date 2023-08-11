@@ -30,13 +30,13 @@ public class RepoIncidentes {
 
     public List<Incidente> obtenerIncidentesDe(List<Agrupacion>agrupaciones, List <Servicio> servicios){
         return incidentes.stream()
-                .filter(i-> i.cerradoUltimaSemana())
+                .filter(i-> i.getHorarioCierre()!=null && i.cerradoUltimaSemana())
                 .filter(incidente->(agrupaciones.contains(incidente.getAgrupacion()) || servicios.contains(incidente.getServicio()))).toList();
     }
 
     public List<Incidente> obtenerIncidentesDe(List <Servicio> servicios){
         return incidentes.stream()
-                .filter(i-> i.cerradoUltimaSemana())
+                .filter(i-> i.getHorarioCierre()!=null && i.cerradoUltimaSemana())
                 .filter(incidente->servicios.contains(incidente.getServicio())).toList();
     }
 
