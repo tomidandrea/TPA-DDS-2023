@@ -12,7 +12,8 @@ public class InstanciasIncidentes {
   public RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
   private Incidente incidenteAbierto1;
   private Incidente incidenteAbierto2;
-  private Incidente incidenteCerrado1;
+  private Incidente incidenteAbierto3;
+  private Incidente incidenteHace5Dias;
   public static LocalDateTime restarDiasHorasMinutos(int dias, int horas, int minutos) {
     // Paso 1: Obtener la fecha actual
     LocalDateTime fechaActual = LocalDateTime.now();
@@ -47,7 +48,12 @@ public class InstanciasIncidentes {
         servicios.getServiciosEstacionA2().get(0),
         restarDiasHorasMinutos(0, 2, 0),
         "Se rompió el inodoro");
-    incidenteCerrado1 = new Incidente(
+    incidenteAbierto3 = new Incidente(
+        servicios.getServiciosEstacionA1().get(1),
+        restarDiasHorasMinutos(0, 23, 0),
+        "Se rompió escalera mecánica");
+
+    incidenteHace5Dias = new Incidente(
         servicios.getServiciosCoto1().get(0),
         restarDiasHorasMinutos(5, 8, 0),
         "El baño está sucio");

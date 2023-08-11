@@ -10,6 +10,7 @@ public class EscaleraMecanica extends MedioElevacion {
     this.setLocalizacion(localizacion);
   }
 
-  public EscaleraMecanica() {
+  public EscaleraMecanica(String nombre) {
+    this.nombre = nombre;
   }
 }

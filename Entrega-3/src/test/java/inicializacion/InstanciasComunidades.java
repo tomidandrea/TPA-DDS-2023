@@ -12,8 +12,9 @@ public class InstanciasComunidades {
 
   public InstanciasComunidades(InstanciasIncidentes incidentes, InstanciasMiembros miembros){
     List<Incidente> incidentesAbiertos = List.of(incidentes.getIncidenteAbierto1(),
-        incidentes.getIncidenteAbierto2(), incidentes.getIncidenteCerrado1());
-    List<Miembro> miembros1 = List.of(miembros.getJuan(), miembros.getPedro());
+        incidentes.getIncidenteAbierto2(), incidentes.getIncidenteHace5Dias(),
+        incidentes.getIncidenteAbierto3());
+    List<Miembro> miembros1 = List.of(miembros.getJuan(), miembros.getPedro(), miembros.getManu());
     this.comunidad1 = new Comunidad(miembros1, incidentesAbiertos, "Blue Label");
   }
 }

@@ -44,7 +44,7 @@ public class InstanciasServicios {
      servicios.add(banio);
    }
    private void escaleraMecanica(List<Servicio> servicios){
-     EscaleraMecanica escaleraMecanica = new EscaleraMecanica();
+     EscaleraMecanica escaleraMecanica = new EscaleraMecanica("Escalera entrada");
      servicios.add(escaleraMecanica);
   }
 
