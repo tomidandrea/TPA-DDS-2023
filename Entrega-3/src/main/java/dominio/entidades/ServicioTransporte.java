@@ -51,6 +51,7 @@ public class ServicioTransporte extends Entidad{
         Duration tiempoTotal = Duration.ZERO;
         List<Duration> tiempos = estaciones.stream().map(Establecimiento::obtenerListaTiemposCierre).
                 flatMap(List::stream).collect(Collectors.toList());
+        //TODO: revisar si se puede cambiar el for
         for(Duration t: tiempos){
             tiempoTotal = tiempoTotal.plus(t);
             //System.out.println("Sumamos el tiempo " + t.toString() + " de un servicio Transporte");

@@ -6,11 +6,11 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
-public class Horario {
+public class Notificador {
   @Getter
   private List<LocalTime> horarios;
 
-  public Horario(List<LocalTime> horariosDeNotificacion) {
+  public Notificador(List<LocalTime> horariosDeNotificacion) {
     this.horarios = horariosDeNotificacion;
   }
 

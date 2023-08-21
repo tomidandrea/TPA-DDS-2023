@@ -1,14 +1,10 @@
 package dominio.comunidades;
 
 import dominio.Localizacion.Localizacion;
-import dominio.Notificacion.MedioCorreo;
 import dominio.Notificacion.MedioDeComunicacion;
 import dominio.clasesTecnicas.Usuario;
 import dominio.clasesTecnicas.Validador;
 import lombok.Getter;
-
-import java.time.LocalTime;
-import java.util.List;
 
 public class Miembro extends Usuario {
     private static int cantidadMiembros;
@@ -20,12 +16,12 @@ public class Miembro extends Usuario {
     private String correoElectronico;
     private Interes interes;
     private Localizacion localizacion;
-    private TipoMiembro tipoMiembro;
+    private TipoMiembro tipoMiembro; //TODO consultar si puede ser afectado en algunas y observador en otras
     private MedioDeComunicacion medioPreferido;
     private String nroDeTelefono;
     //private List<LocalTime> horariosDeNotificacion;
     @Getter
-    private Horario horariosDeNotificacion;
+    private Notificador notificador;
 
     public String getCorreo() {
         return correoElectronico;
@@ -52,7 +48,7 @@ public class Miembro extends Usuario {
     public Miembro(String nombre, String apellido, String correoElectronico, //TODO: Localizacion localizacion,
                    TipoMiembro tipoMiembro, MedioDeComunicacion medioPreferido, String nroDeTelefono,
                    //List<LocalTime> horariosDeNotificacion,
-                   Horario horariosDeNotificacion, String usuario, String contrasenia) {
+                   Notificador notificador, String usuario, String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
@@ -61,7 +57,7 @@ public class Miembro extends Usuario {
         this.medioPreferido = medioPreferido;
         this.nroDeTelefono = nroDeTelefono;
         //this.horariosDeNotificacion = horariosDeNotificacion;
-        this.horariosDeNotificacion = horariosDeNotificacion;
+        this.notificador = notificador;
         this.id = ++cantidadMiembros;
         this.setUsuario(usuario);
         Validador.validarContrasenia(contrasenia);
@@ -77,7 +73,7 @@ public class Miembro extends Usuario {
     }
 
     public boolean estaEnHorarioDeNotificacion() {
-        return horariosDeNotificacion.compararHorarioActual();
+        return notificador.compararHorarioActual();
     }
 
 }

@@ -12,13 +12,13 @@ import java.util.List;
 
 @Getter
 public class Incidente {
-    Servicio servicio;
-    Agrupacion agrupacion;
-    String observacion;
-    List<Comunidad> comunidades;
-    LocalDateTime horarioApertura;
-    LocalDateTime horarioCierre;
-    EstadoIncidente estadoIncidente;
+    private Servicio servicio;
+    private Agrupacion agrupacion;
+    private String observacion;
+    private List<Comunidad> comunidades;
+    private LocalDateTime horarioApertura;
+    private LocalDateTime horarioCierre;
+    private EstadoIncidente estadoIncidente;
 
     public Incidente(Servicio servicio, Agrupacion agrupacion, String observacion,
                      List<Comunidad> comunidades, LocalDateTime horarioApertura,

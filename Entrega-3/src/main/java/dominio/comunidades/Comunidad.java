@@ -29,7 +29,7 @@ public class Comunidad {
         List<Incidente> incidentes = ultimosIncidentesAbiertos();
         miembrosANotificar.forEach(miembro -> {
             System.out.println("Miembro a notificar: " + miembro.getNombre());
-            List<Incidente> incidentesDentroRangoHorario = miembro.getHorariosDeNotificacion()
+            List<Incidente> incidentesDentroRangoHorario = miembro.getNotificador()
                 .incidenteDentroDeRangoHorario(incidentes, LocalTime.now());
             miembro.getMedioPreferido().notificarIncidentes(miembro, incidentesDentroRangoHorario, this);
         });

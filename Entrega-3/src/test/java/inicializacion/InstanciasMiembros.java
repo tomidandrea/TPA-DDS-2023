@@ -2,7 +2,7 @@ package inicializacion;
 
 import dominio.Notificacion.CorreoAPI;
 import dominio.Notificacion.MedioCorreo;
-import dominio.comunidades.Horario;
+import dominio.comunidades.Notificador;
 import dominio.comunidades.Miembro;
 import dominio.comunidades.TipoMiembro;
 import lombok.Getter;
@@ -23,19 +23,19 @@ public class InstanciasMiembros {
     LocalTime horario3 = LocalTime.of(LocalTime.now().plusHours(2).getHour(), 0);
 
     List<LocalTime> horariosJuan = List.of(horario2, horario1);
-    Horario horarioJuan = new Horario(horariosJuan);
+    Notificador notificadorJuan = new Notificador(horariosJuan);
     List<LocalTime> horariosPedro = List.of(horario1);
-    Horario horarioPedro = new Horario(horariosPedro);
+    Notificador notificadorPedro = new Notificador(horariosPedro);
     List<LocalTime> horariosManu = List.of(horario1, horario3);
-    Horario horarioManu = new Horario(horariosManu);
+    Notificador notificadorManu = new Notificador(horariosManu);
     this.juan = new Miembro("Juan", "Label", "prueba@gmail.com",
-        TipoMiembro.AFECTADO, medioCorreo, "12345678", horarioJuan,
+        TipoMiembro.AFECTADO, medioCorreo, "12345678", notificadorJuan,
         "juancito123", "blueLabel#23");
     this.pedro = new Miembro("Pedro", "Pascal", "prueba@gmail.com",
-        TipoMiembro.AFECTADO, medioCorreo, "12345687", horarioPedro,
+        TipoMiembro.AFECTADO, medioCorreo, "12345687", notificadorPedro,
         "ppascal321", "groguloveR$41");
     this.manu = new Miembro("Manu", "Ginobili", "prueba@gmail.com",
-        TipoMiembro.AFECTADO, medioCorreo, "12345677", horarioManu,
+        TipoMiembro.AFECTADO, medioCorreo, "12345677", notificadorManu,
         "manu.gino", "spursPlayer20!");
   }
 }
