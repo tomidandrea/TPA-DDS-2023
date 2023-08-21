@@ -1,358 +1,56 @@
-@startuml
+@startuml MainDiagram
+
+!include clasesTecnicas.puml
+!include comunidades.puml
+!include empresasYorganismos.puml
+!include entidades.puml
+!include establecimientos.puml
+!include localizacion.puml
+!include notificacion.puml
+!include servicios.puml
 'https://plantuml.com/class-diagram
 
-package Entidades{
-
-    class RepoEntidades{
-        instance: RepoEntidades
-        serviciosDeTransporte: List<ServicioTransporte>
-        organizaciones: List<Organizacion>
-        getInstance(): RepoEntidades
-        agregar(organizacion):void
-        obtenerPorNombre():Organizacion
-        agregar(servicioDeTransporte)
-        obtenerPorTipo():ServicioTransporte
-        obtenerPorNombre(organizacion): Organizacion
-        obtenerRankingEntidadesConMayorTiempoDeCierre(): List<Entidades>
-        obtenerRankingEntidadesConMasIncidentes(): List<Entidades>
-    }
-
-    abstract class Entidad{
-        promedioCierrePorEstablecimiento(): List<Duration>
-        cantidadDeIncidentes(): Int
-    }
-
-    class Organizacion{
-        nombre:String
-        sucursales: List<Sucursal>
-    }
-
-    class ServicioTransporte{
-        tipo: MedioDeTransporte
-        lineaDeTransporteIda: Linea
-        lineaDeTransporteVuelta: Linea
-    }
-
-    enum MedioDeTransporte{
-        SUBTERRANEO
-        FERROCARRIL
-    }
-
-    class Linea{
-        nombre:String
-        estacionOrigen:Estacion
-        estacionDestino:Estacion
-        estaciones:List<Estacion>
-        localizaciones: List<Localizacion>
-    }
-
-    ServicioTransporte --> MedioDeTransporte
-    ServicioTransporte --> Linea
-    ServicioTransporte --> Linea
-    Organizacion-up-|>Entidad
-    ServicioTransporte-up-|>Entidad
-    RepoEntidades --->"*" Organizacion
-    RepoEntidades --->"*" ServicioTransporte
-}
-
-package Establecimientos {
-
-    abstract class Establecimientos{
-        nombre : String
-        localizacion: <Localizacion>
-        servicios: List<Servicio>
-        agrupaciones: List<Agrupacion>
-        promedioCierreEnServicio(): List<Duration>
-        cantidadDeIncidentes(): Int
-    }
-
-  class Sucursal{
-  }
-
-  class Estacion{
-     serviciosFaltantes():List<Servicio>
-  }
-
-  class "RepoIncidentes" as CopiaRepoIncidentes{
-      }
-
-  Sucursal-down-|>Establecimientos
-  Estacion-down-|>Establecimientos
-    Establecimientos..>CopiaRepoIncidentes
-}
 
 
-package Servicios {
-  class RepoServicios{
-      servicios:List<Servicio>
-      serviciosQueFatan(List<Servicio>):List<Servicio>
-  }
-  class Agrupacion{
-      serviciosAgrados:List<Servicio>
-  }
-  abstract class Servicio{
-    localizacion: Localizacion
-  }
+'De clases tecnicas
+Miembro-up-|>Usuario
+Miembro .up.> Validador
+Comunidad --->"*" Usuario
 
-  abstract class MediosDeElevacion{
-    tramoRecorrido:TramoMedioDeElevacion
-  }
-
-  enum TramoMedioDeElevacion{
-    CALLE_A_ACCESO
-    ACCESO_A_ANDEN
-  }
-
-  class Ascensor{
-  }
-
-  class EscaleraMecanica{
-  }
-
-  class Banio{
-    tipoBanio:TipoBanio
-  }
-
-  enum TipoBanio{
-    HOMBRES
-    MUJERES
-  }
-
-'Relaciones de servicios
-    RepoServicios -down->"*" Servicio
-    Estacion -->"*" Servicio
-    Estacion -->"*" Agrupacion
-    Agrupacion -->"*" Servicio
-    MediosDeElevacion -up-|> Servicio
-    MediosDeElevacion --> TramoMedioDeElevacion
-    Ascensor -up-|> MediosDeElevacion
-    EscaleraMecanica -up-|> MediosDeElevacion
-    Banio -up-|> Servicio
-    Banio --> TipoBanio
-}
-
-package Comunidades{
-    class Comunidad{
-        miembros:List<Miembro>
-        administradores: List<Usuario>
-        incidentesAbiertos:List<Incidente>
-        notificarIncidentesAMiembros(): void
-        obtenerIncidentesAbiertosDesde(LocalTime): List<Incidente>
-        cerrarIncidente(incidente): void
-    }
-
-    class RepoComunidades{
-        comunidades:List<Comunidad>
-    }
-
-    class Miembro{
-        nombre:String
-        apellido:String
-        correoElectronico:String
-        interes: Interes
-        localizacion: Localizacion
-        tipoMiembro:TipoMiembro
-        medioPreferido:MedioDeComunicacion
-        horarios: List<LocalTime>
-    }
-
-    enum TipoMiembro{
-        AFECTADO
-        OBSERVADOR
-    }
-
-    enum MedioDeComunicacion{
-        CORREO_ELECTRONICO
-        WHATSAPP
-    }
-
-    class RepoMiembros{
-        instance: RepoMiembros
-        miembros:List<Miembro>
-        getInstance(): RepoMiembros
-        agregar(miembro)
-        getMiembro():Miembro
-    }
-
-    class Interes{
-        servicios: List<Servicio>
-    }
-
-    class  Incidente{
-        servicio : Servicio
-        Agrupacion: Agrupacion
-        observacion: String
-        comunidades: List<Comunidad>
-        horarioApertura: DateTime
-        horarioCierre: DateTime
-    }
-
-    class RepoIncidentes{
-        instance: RepoIncidentes
-        incidentes: List<Incidente>
-        getInstance(): RepoIncidentes
-        obtenerTiempos(): List<Duration>
-        obtenerIncidentesDe(agrupaciones, servicios):List<Incidente>
-    }
-
-    enum EstadoIncidente {
-        ABIERTO
-        CERRADO
-    }
-
-    Incidente-->Servicio
-    Incidente-->Agrupacion
-    Incidente-->"*"Comunidad
-    Incidente-->EstadoIncidente
-    Comunidad--->"*"Incidente
-    RepoIncidentes --up->"*" Incidente
-    
-
-    RepoMiembros -left->"*" Miembro
-    Comunidad -left->"*" Miembro
-    RepoComunidades -up-->"*" Comunidad
-    Miembro-down->TipoMiembro
-    Miembro-down->MedioDeComunicacion
-}
-package ClasesTecnicas{
-    abstract class Usuario{
-        usuario: String
-        contrasenia: String
-    }
-
-    class Validador{
-        minCaracteres: Int
-        minMayusc: Int
-        minMinusc: Int
-        minDigitos: Int
-        minEspeciales: Int
-        instance: Validador
-
-        getInstance(): Validador
-        cumpleMinusculas(String): void
-        cumpleMayusculas(String): void
-        cumpleMinDigitos(String): void
-        cumpleMinEspeciales(String): void
-        esDigitoEspecial(Int): boolean
-        cumpleMinimoCaracteres(String): void
-        noestaEntreLasTop10Mil(String): void
-        validarContrasenia(String): void
-    }
-
-      class IntegradorCSV{
-            instance: IntegradorCSV
-            getInstance(): IntegradorCSV
-            extraerDesde(file): List<String[]>
-            transformaYCarga(): void
-            convertirtransporte(medioTransporte): MedioDeTransporte
-        }
-
-      class "RepoOrganizacion" as CopiaRepoOrg{
-      }
-      class "RepoServiciosDeTransporte" as CopiaRepoTransporte{
-      }
-      class "RepoMiembros" as CopiaRepoMiembros{
-      }
-      class "RepoEntidadesPropietarias" as CopiaRepoEntidadesPropietarias{
-      }
-      class "RepoOrganismosDeControl" as CopiaRepoOrganismosDeControl{
-      }
-
-    IntegradorCSV ..> CopiaRepoOrg
-    IntegradorCSV ..> CopiaRepoTransporte
-    IntegradorCSV ..> CopiaRepoMiembros
-    IntegradorCSV ..> CopiaRepoEntidadesPropietarias
-    IntegradorCSV ..> CopiaRepoOrganismosDeControl
-    Miembro-up-|>Usuario
-    Miembro .up.> Validador
-    Comunidad --->"*" Usuario
-}
+'De comunidades
+Incidente-->Servicio
+Incidente-->Agrupacion
+Miembro-down->MedioDeComunicacion
 
 
-package Empresas/Organismos{
-    class EntidadPropietaria{
-    nombre:String
-    organizaciones:List<Organizacion>
-    serviciosTransporte: List<ServicioTransporte>
-    responsable:Usuario
-    suscriptores: List<Miembro>
-}
+'De empresasYorganismos
+EntidadPropietaria--->"*"Organizacion
+EntidadPropietaria--->"*"ServicioTransporte
+EntidadPropietaria-->Usuario
+EntidadPropietaria--->"*"Miembro
+RepoEntidadesPropietarias--->"*"EntidadPropietaria
 
-class RepoEntidadesPropietarias{
-    instance: RepoEntidadesPropietarias
-    entidadesPropietarias:List<EntidadPropietaria>
+'De entidades
 
-    getInstance(): RepoEntidadesPropietarias
-    agregar(entidadPropietaria)
-    getEntidadesPropietarias():List<EntidadPropietaria>
-}
+'De establecimientos
 
-class OrganismoDeControl{
-    nombre:String
-    organizaciones:List<Organizacion>
-    serviciosTransporte: List<ServicioTransporte>
-    responsable:Usuario
-}
+'De localizacion
 
-class RepoOrganismosDeControl{
-    instance: RepoOrganismosDeControl
-    organismosDeControl:List<OrganismoDeControl>
+'De notificacion
 
-    getInstance(): RepoOrganismosDeControl
-    agregar(organismoDeControl
-}
-}
+'De servicios
+Estacion -->"*" Servicio
+Estacion -->"*" Agrupacion
 
-package Localizacion{
-    abstract class Localizacion {
-    nombre:String
-    latitud:double
-    longitud:double
-    }
-
-    class Municipio{
-        provincia: Provincia
-    }
-
-    class Provincia{}
-
-    class Departamento{
-        provincia: Provincia
-    }
-}
-
-package Notificacion{
-    class NotificadorAdapter{
-        notificarIncidentes(miembro, List<Incidente>):void
-        notificarRevision(miembro):void
-    }
-
-    class MedioWhatsapp{
-        notificar(celular):void
-    }
-
-    class MedioCorreo{
-        notificar(correo_electronico):void
-    }
-    NotificadorAdapter..up>MedioCorreo
-    NotificadorAdapter..up>MedioWhatsapp
-}
-    Comunidad..up>NotificadorAdapter
-
-
+'esto ya estaba en general
 Miembro-left->Localizacion
-Municipio-up-|>Localizacion
-Provincia-up-|>Localizacion
-Departamento-up-|>Localizacion
-Municipio-right->Provincia
-Departamento-left->Provincia
 
 Linea-down-->"*"Localizacion
 Sucursal--->Localizacion
 Sucursal-->"*"Servicio
 Estacion-left->Localizacion
 
-Miembro-down-->Interes
+
 Interes-->"*"Servicio
 
 EntidadPropietaria-->"*"Organizacion
@@ -362,8 +60,7 @@ OrganismoDeControl-->"*"Organizacion
 OrganismoDeControl-->"*"ServicioTransporte
 OrganismoDeControl-left->Usuario
 
-RepoEntidadesPropietarias-->"*"EntidadPropietaria
-RepoOrganismosDeControl-->"*"OrganismoDeControl
+
 
 Estacion..>RepoServicios
 Organizacion --->"*" Sucursal

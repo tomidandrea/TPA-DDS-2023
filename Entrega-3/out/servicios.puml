@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package Servicios {
+  class RepoServicios{
+      servicios:List<Servicio>
+      serviciosQueFatan(List<Servicio>):List<Servicio>
+  }
+  class Agrupacion{
+      serviciosAgrados:List<Servicio>
+  }
+  abstract class Servicio{
+    localizacion: Localizacion
+    nombre: String
+  }
+
+  abstract class MediosDeElevacion{
+    tramoRecorrido:TramoMedioDeElevacion
+  }
+
+  enum TramoMedioDeElevacion{
+    CALLE_A_ACCESO
+    ACCESO_A_ANDEN
+  }
+
+  class Ascensor{
+  }
+
+  class EscaleraMecanica{
+  }
+
+  class Banio{
+    tipoBanio:TipoBanio
+  }
+
+  enum TipoBanio{
+    HOMBRES
+    MUJERES
+  }
+
+'Relaciones de servicios
+    RepoServicios -down->"*" Servicio
+    Agrupacion -->"*" Servicio
+    MediosDeElevacion -up-|> Servicio
+    MediosDeElevacion --> TramoMedioDeElevacion
+    Ascensor -up-|> MediosDeElevacion
+    EscaleraMecanica -up-|> MediosDeElevacion
+    Banio -up-|> Servicio
+    Banio --> TipoBanio
+}
+
+@enduml

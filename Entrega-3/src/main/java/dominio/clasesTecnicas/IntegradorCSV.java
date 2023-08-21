@@ -82,10 +82,6 @@ public class IntegradorCSV {
                 return MedioDeTransporte.SUBTE;
             case "TREN":
                 return MedioDeTransporte.TREN;
-            case "COLECTIVO":
-                return MedioDeTransporte.COLECTIVO;
-            case "ECOBICI":
-                return MedioDeTransporte.ECOBICI;
             default:
                 throw new RuntimeException("Transporte no valido");
         }

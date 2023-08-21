@@ -1,5 +1,6 @@
 package dominio.empresasYorganismos;
 
+import dominio.clasesTecnicas.Usuario;
 import dominio.comunidades.Miembro;
 import dominio.entidades.Organizacion;
 import dominio.entidades.ServicioTransporte;
@@ -10,7 +11,7 @@ public class EntidadPropietaria {
     private String nombre;
     private List<Organizacion> organizaciones;
     private List<ServicioTransporte> serviciosTransporte;
-    private Miembro responsable;
+    private Usuario responsable;
     private List<Miembro> suscriptores;
 
     public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, Miembro responsable) {

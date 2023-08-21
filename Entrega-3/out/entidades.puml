@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package Entidades{
+
+    class RepoEntidades{
+        instance: RepoEntidades
+        serviciosDeTransporte: List<ServicioTransporte>
+        organizaciones: List<Organizacion>
+
+        getInstance(): RepoEntidades
+        agregar(Organizacion):void
+        obtenerOrgPorNombre(String):Organizacion
+        agregar(ServicioDeTransporte):void
+        obtenerPorTipo(MedioDeTransporte):ServicioTransporte
+        obtenerRankingEntidadesConMayorTiempoDeCierre(): List<ResultadoTiempoCierre>
+        obtenerRankingEntidadesConMasIncidentes(): List<ResultadoCantidadIncidentes>
+    }
+
+    abstract class Entidad{
+        nombre:String
+
+        calcularPromedioTiempoCierre(): List<Duration>
+        cantidadIncidentes(): Integer
+    }
+
+    class Organizacion{
+        sucursales: List<Sucursal>
+
+        getSucursales():List<Sucursal>
+        setNombre(String):void
+        compararPorPromedioTiempo(Organizacion):int
+        calcularPromedio(List<Duration>):Duration
+        calcularPromedioTiempoCierre():Duration
+        cantidadIncidentes():Integer
+    }
+
+    class ServicioTransporte{
+        tipoTransporte: MedioDeTransporte
+        lineaDeTransporteIda: Linea
+        lineaDeTransporteVuelta: Linea
+
+        calcularPromedioTiempoCierre():Duration
+        cantidadIncidentes():Integer
+    }
+
+    enum MedioDeTransporte{
+        SUBTE,
+        TREN
+    }
+
+    class Linea{
+        nombre:String
+        estacionOrigen:Estacion
+        estacionDestino:Estacion
+        estaciones:List<Estacion>
+        localizacionesDeEstacion: List<Localizacion>
+
+        getEstaciones():List<Estacion>
+    }
+
+    ServicioTransporte --> MedioDeTransporte
+    ServicioTransporte --> Linea
+    ServicioTransporte --> Linea
+    Organizacion-up-|>Entidad
+    ServicioTransporte-up-|>Entidad
+    RepoEntidades --->"*" Organizacion
+    RepoEntidades --->"*" ServicioTransporte
+}
+
+@enduml

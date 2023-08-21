@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package Empresas/Organismos{
+    class EntidadPropietaria{
+        nombre:String
+        organizaciones:List<Organizacion>
+        serviciosTransporte: List<ServicioTransporte>
+        responsable:Usuario
+        suscriptores: List<Miembro>
+
+        notificarSuscriptores(): void
+    }
+
+    class RepoEntidadesPropietarias{
+        instance: RepoEntidadesPropietarias
+        entidadesPropietarias:List<EntidadPropietaria>
+
+        getInstance(): RepoEntidadesPropietarias
+        agregar(entidadPropietaria)
+        getEntidadesPropietarias():List<EntidadPropietaria>
+    }
+
+    class OrganismoDeControl{
+        nombre:String
+        organizaciones:List<Organizacion>
+        serviciosTransporte: List<ServicioTransporte>
+        responsable:Usuario
+    }
+
+    class RepoOrganismosDeControl{
+        instance: RepoOrganismosDeControl
+        organismosDeControl:List<OrganismoDeControl>
+
+        getInstance(): RepoOrganismosDeControl
+        agregar(organismoDeControl): void
+    }
+
+    RepoEntidadesPropietarias-->"*"EntidadPropietaria
+    RepoOrganismosDeControl-->"*"OrganismoDeControl
+}
+
+@enduml

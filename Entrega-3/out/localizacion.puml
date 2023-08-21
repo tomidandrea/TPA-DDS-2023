@@ -1,0 +1,77 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package Localizacion{
+
+    abstract class Localizacion {
+        nombre:String
+        id:Integer
+        centroide:Centroide
+    }
+
+    class Municipio{
+        provincia: Provincia
+    }
+
+    class Provincia{}
+
+    class Departamento{
+        provincia: Provincia
+    }
+
+    class Centroide{
+        lat:Double
+        lon:Double
+    }
+
+    class ListadoDeDepartamentos {
+        departamentos:List<Departamento>
+    }
+
+    class ListadoDeMunicipios {
+        cantidad:Integer
+        inicio:Integer
+        total:Integer
+        parametros:Parametro
+        municipios:List<Municipio>
+    }
+
+    class ListadoDeMunicipios {
+        cantidad:Integer
+        total:Integer
+        inicio:Integer
+        parametros:Parametro
+        provincias:List<Provincia>
+    }
+
+    interface GeoRefService {
+
+        getProvincias():Call<ListadoDeProvincias>
+        getMunicipios():Call<ListadoDeMunicipios>
+        getDepartamentos():Call<ListadoDeDepartamentos>
+    }
+
+    class ServicioGeoRef {
+        instance:ServicioGeoRef
+        retrofit:Retrofit
+
+        getInstance():void
+        listadoDeProvincias():ListadoDeProvincias
+        listadoDeMunicipios():ListadoDeMunicipios
+    }
+
+    Municipio-up-|>Localizacion
+    Provincia-up-|>Localizacion
+    Departamento-up-|>Localizacion
+    Municipio-right->Provincia
+    Departamento-left->Provincia
+    Localizacion-->Centroide
+
+    ListadoDeMunicipios-->"*"Municipio
+    ListadoDeProvincias-->"*"Provincia
+    ListadoDeDepartamentos-->"*"Departamento
+
+    ServicioGeoRef..>GeoRefService
+}
+
+@enduml

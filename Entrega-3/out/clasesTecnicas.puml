@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package ClasesTecnicas{
+    abstract class Usuario{
+        usuario: String
+        contrasenia: String
+    }
+
+    class ResultadoCantidadIncidentes{
+        entidad: Entidad
+        cantidadDeIncidentes: Integer
+
+        compararTiempo(ResultadoCantidadIncidentes otroResultado): Int
+    }
+
+    class ResultadoTiempoCierre{
+        entidad: Entidad
+        tiempoDeCierre: Duration
+
+        compararTiempo(ResultadoTiempoCierre otroResultado): Int
+    }
+
+    class Validador{
+        minCaracteres: Int
+        minMayusc: Int
+        minMinusc: Int
+        minDigitos: Int
+        minEspeciales: Int
+        instance: Validador
+
+        getInstance(): Validador
+        cumpleMinusculas(String contrasenia): void
+        cumpleMayusculas(String contrasenia): void
+        cumpleMinDigitos(String contrasenia): void
+        cumpleMinEspeciales(String contrasenia): void
+        esDigitoEspecial(Int c): boolean
+        cumpleMinimoCaracteres(String contrasenia): void
+        noestaEntreLasTop10Mil(String contrasenia): void
+        validarContrasenia(String contrasenia): void
+    }
+
+      class IntegradorCSV{
+            instance: IntegradorCSV
+            getInstance(): IntegradorCSV
+            extraerDesde(String file): List<String[]>
+            transformaYCarga(List<String[]> datos): void
+            convertirtransporte(String transporte): MedioDeTransporte
+        }
+
+      class "RepoOrganizacion" as CopiaRepoOrg{
+      }
+      class "RepoServiciosDeTransporte" as CopiaRepoTransporte{
+      }
+      class "RepoMiembros" as CopiaRepoMiembros{
+      }
+      class "RepoEntidadesPropietarias" as CopiaRepoEntidadesPropietarias{
+      }
+      class "RepoOrganismosDeControl" as CopiaRepoOrganismosDeControl{
+      }
+
+    IntegradorCSV ..> CopiaRepoOrg
+    IntegradorCSV ..> CopiaRepoTransporte
+    IntegradorCSV ..> CopiaRepoMiembros
+    IntegradorCSV ..> CopiaRepoEntidadesPropietarias
+    IntegradorCSV ..> CopiaRepoOrganismosDeControl
+
+}
+
+@enduml
