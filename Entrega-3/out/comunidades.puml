@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/class-diagram
-package Comunidades{
+package Comunidades #back:honeydew;line:Green;line.bold{
     class Comunidad{
         miembros:List<Miembro>
         administradores: List<Usuario>
@@ -92,16 +92,16 @@ package Comunidades{
         CERRADO
     }
 
-    Incidente-->"*"Comunidad
+    Incidente-up-->"*"Comunidad
     Incidente-->EstadoIncidente
-    Comunidad--->"*"Incidente
-    RepoIncidentes --up->"*" Incidente
-    RepoMiembros -left->"*" Miembro
-    Comunidad -left->"*" Miembro
-    RepoComunidades -up-->"*" Comunidad
-    Miembro-down->TipoMiembro
-    Miembro-down-->Interes
-    Miembro-->Notificador
+    Comunidad--down-->"*"Incidente
+    RepoIncidentes--->"*" Incidente
+    RepoMiembros -->"*" Miembro
+    Comunidad -down-->"*" Miembro
+    RepoComunidades -right->"*" Comunidad
+    Miembro-->TipoMiembro
+    Miembro--down->Interes
+    Miembro--down-->Notificador
 }
 
 

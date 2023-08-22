@@ -1,8 +1,9 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-package Establecimientos {
-    abstract class Establecimiento{
+package Establecimientos #back:lavender;line:Blue;line.bold{
+
+    abstract class Establecimiento {
         nombre : String
         localizacion: <Localizacion>
         servicios: List<Servicio>

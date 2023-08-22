@@ -1,8 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-package Localizacion{
-
+package Localizaciones #back:mistyrose;line:Red;line.bold{
     abstract class Localizacion {
         nombre:String
         id:Integer
@@ -65,11 +64,11 @@ package Localizacion{
     Departamento-up-|>Localizacion
     Municipio-right->Provincia
     Departamento-left->Provincia
-    Localizacion-->Centroide
+    Localizacion-right->Centroide
 
-    ListadoDeMunicipios-->"*"Municipio
-    ListadoDeProvincias-->"*"Provincia
-    ListadoDeDepartamentos-->"*"Departamento
+    ListadoDeMunicipios-up->"*"Municipio
+    ListadoDeProvincias-up->"*"Provincia
+    ListadoDeDepartamentos-up->"*"Departamento
 
     ServicioGeoRef..>GeoRefService
 }

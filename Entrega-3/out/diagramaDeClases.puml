@@ -11,64 +11,45 @@
 'https://plantuml.com/class-diagram
 
 
-
 'De clases tecnicas
-Miembro-up-|>Usuario
-Miembro .up.> Validador
-Comunidad --->"*" Usuario
 
 'De comunidades
 Incidente-->Servicio
 Incidente-->Agrupacion
-Miembro-down->MedioDeComunicacion
-
+Miembro--->MedioDeComunicacion
+Miembro-->Localizacion
+Comunidad --->"*" Usuario
+Interes-up->"*"Servicio
 
 'De empresasYorganismos
 EntidadPropietaria--->"*"Organizacion
 EntidadPropietaria--->"*"ServicioTransporte
-EntidadPropietaria-->Usuario
+EntidadPropietaria--down-->Usuario
 EntidadPropietaria--->"*"Miembro
-RepoEntidadesPropietarias--->"*"EntidadPropietaria
+
+OrganismoDeControl-->"*"Organizacion
+OrganismoDeControl-->"*"ServicioTransporte
+OrganismoDeControl--down-->Usuario
 
 'De entidades
+Organizacion --->"*" Sucursal
+Linea-down->"*"Localizacion
+Linea ---> Estacion
+Linea ---> Estacion
+Linea --->"*" Estacion
 
 'De establecimientos
-
+Estacion -->"*" Servicio
+Estacion -->"*" Agrupacion
+Sucursal-up-->Localizacion
+Sucursal-->"*"Servicio
+Estacion-up-->Localizacion
+Estacion..>RepoServicios
 'De localizacion
 
 'De notificacion
 
 'De servicios
-Estacion -->"*" Servicio
-Estacion -->"*" Agrupacion
-
-'esto ya estaba en general
-Miembro-left->Localizacion
-
-Linea-down-->"*"Localizacion
-Sucursal--->Localizacion
-Sucursal-->"*"Servicio
-Estacion-left->Localizacion
-
-
-Interes-->"*"Servicio
-
-EntidadPropietaria-->"*"Organizacion
-EntidadPropietaria-->"*"ServicioTransporte
-EntidadPropietaria--->Usuario
-OrganismoDeControl-->"*"Organizacion
-OrganismoDeControl-->"*"ServicioTransporte
-OrganismoDeControl-left->Usuario
-
-
-
-Estacion..>RepoServicios
-Organizacion --->"*" Sucursal
-Linea ---> Estacion
-Linea ---> Estacion
-Linea --->"*" Estacion
-
-
 
 
 @enduml

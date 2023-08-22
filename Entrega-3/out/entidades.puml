@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-package Entidades{
+package Entidades #back:lightyellow;line:gold;line.bold{
 
     class RepoEntidades{
         instance: RepoEntidades

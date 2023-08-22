@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-package Servicios {
+package Servicios #back:bisque;line:darkorange;line.bold {
   class RepoServicios{
       servicios:List<Servicio>
       serviciosQueFatan(List<Servicio>):List<Servicio>
