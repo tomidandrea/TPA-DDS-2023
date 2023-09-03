@@ -1,0 +1,55 @@
+@startuml MainDiagram
+
+!include clasesTecnicas.puml
+!include comunidades.puml
+!include empresasYorganismos.puml
+!include entidades.puml
+!include establecimientos.puml
+!include localizacion.puml
+!include notificacion.puml
+!include servicios.puml
+'https://plantuml.com/class-diagram
+
+
+'De clases tecnicas
+
+'De comunidades
+Incidente-->Servicio
+Incidente-->Agrupacion
+Miembro--->MedioDeComunicacion
+Miembro-->Localizacion
+Comunidad --->"*" Usuario
+Interes-up->"*"Servicio
+
+'De empresasYorganismos
+EntidadPropietaria--->"*"Organizacion
+EntidadPropietaria--->"*"ServicioTransporte
+EntidadPropietaria--down-->Usuario
+EntidadPropietaria--->"*"Miembro
+
+OrganismoDeControl-->"*"Organizacion
+OrganismoDeControl-->"*"ServicioTransporte
+OrganismoDeControl--down-->Usuario
+
+'De entidades
+Organizacion --->"*" Sucursal
+Linea-down->"*"Localizacion
+Linea ---> Estacion
+Linea ---> Estacion
+Linea --->"*" Estacion
+
+'De establecimientos
+Estacion -->"*" Servicio
+Estacion -->"*" Agrupacion
+Sucursal-up-->Localizacion
+Sucursal-->"*"Servicio
+Estacion-up-->Localizacion
+Estacion..>RepoServicios
+'De localizacion
+
+'De notificacion
+
+'De servicios
+
+
+@enduml
