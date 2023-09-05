@@ -11,7 +11,7 @@ public class Interes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "interes_id")
     private int id;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Servicio> servicios;
 
     public Interes(){}

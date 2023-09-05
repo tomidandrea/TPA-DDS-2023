@@ -2,13 +2,18 @@ package dominio.comunidades;
 
 import lombok.Getter;
 
+import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
+@Embeddable
 public class Notificador {
   @Getter
+  @ElementCollection
+  @CollectionTable(name="horarios_notificacion", joinColumns=@JoinColumn(name="miembro_id"))
   private List<LocalTime> horarios;
+  public Notificador(){}
 
   public Notificador(List<LocalTime> horariosDeNotificacion) {
     this.horarios = horariosDeNotificacion;

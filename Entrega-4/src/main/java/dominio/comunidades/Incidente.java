@@ -19,10 +19,12 @@ public class Incidente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id")
     private Servicio servicio;
 
     @ManyToOne
+    @JoinColumn(name = "agrupacion_id", referencedColumnName = "id")
     private Agrupacion agrupacion;
     private String observacion;
 

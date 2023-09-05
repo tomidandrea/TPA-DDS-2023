@@ -3,6 +3,8 @@ package dominio.Notificacion;
 import dominio.comunidades.Comunidad;
 import dominio.comunidades.Incidente;
 import dominio.comunidades.Miembro;
+
+import javax.persistence.Converter;
 import java.util.List;
 
 public class MedioCorreo extends MedioDeComunicacion {
@@ -21,5 +23,10 @@ public class MedioCorreo extends MedioDeComunicacion {
     public void notificarIncidentes(Miembro miembro, List<Incidente> incidentes, Comunidad comunidad) {
         adaptarMensaje(incidentes, comunidad);
         //correoAPI.enviarCorreo(miembro.getCorreo(), mensajes); TODO:descomentar para enviar mail
+    }
+
+    @Override
+    public String toString() {
+        return "MedioCorreo";
     }
 }

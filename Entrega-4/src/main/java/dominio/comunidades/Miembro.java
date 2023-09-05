@@ -1,5 +1,6 @@
 package dominio.comunidades;
 
+import converters.MedioComunicacionString;
 import dominio.Localizacion.Localizacion;
 import dominio.Notificacion.MedioDeComunicacion;
 import dominio.clasesTecnicas.Usuario;
@@ -12,29 +13,31 @@ import javax.persistence.*;
 @Entity
 public class Miembro extends Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "miembro_id")
     private int id;
 
+    @Transient
     private static int cantidadMiembros;
     private String nombre;
     private String apellido;
     private String correoElectronico;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Interes interes;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "localizacion_id")
     private Localizacion localizacion;
 
     @Enumerated(EnumType.STRING)
     private TipoMiembro tipoMiembro; //TODO consultar si puede ser afectado en algunas y observador en otras
-    @Transient //TODO: revisar como persistir
+    @Convert(converter = MedioComunicacionString.class)
     private MedioDeComunicacion medioPreferido;
     private String nroDeTelefono;
     //private List<LocalTime> horariosDeNotificacion;
     @Getter
-    @Transient //TODO: revisar como persistir
+    @Embedded
     private Notificador notificador;
 
     public String getCorreo() {
@@ -64,6 +67,24 @@ public class Miembro extends Usuario {
         this.id = id;
     }
     public Miembro(String nombre, String apellido, String correoElectronico, //TODO: Localizacion localizacion,
+                   TipoMiembro tipoMiembro, MedioDeComunicacion medioPreferido, String nroDeTelefono,
+                   //List<LocalTime> horariosDeNotificacion,
+                   Notificador notificador, String usuario, String contrasenia) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correoElectronico = correoElectronico;
+        this.localizacion = localizacion;
+        this.tipoMiembro = tipoMiembro;
+        this.medioPreferido = medioPreferido;
+        this.nroDeTelefono = nroDeTelefono;
+        //this.horariosDeNotificacion = horariosDeNotificacion;
+        this.notificador = notificador;
+        this.id = ++cantidadMiembros;
+        this.setUsuario(usuario);
+        Validador.validarContrasenia(contrasenia);
+        this.setContrasenia(contrasenia);
+    }
+    public Miembro(String nombre, String apellido, String correoElectronico, Localizacion localizacion,
                    TipoMiembro tipoMiembro, MedioDeComunicacion medioPreferido, String nroDeTelefono,
                    //List<LocalTime> horariosDeNotificacion,
                    Notificador notificador, String usuario, String contrasenia) {

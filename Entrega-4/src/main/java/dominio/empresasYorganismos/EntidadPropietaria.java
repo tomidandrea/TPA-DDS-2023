@@ -19,9 +19,10 @@ public class EntidadPropietaria {
     private List<Organizacion> organizaciones;
     @OneToMany
     private List<ServicioTransporte> serviciosTransporte;
-    @OneToOne
+    //@OneToOne
+    @Transient
     private Usuario responsable;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> suscriptores;
 
     public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, Miembro responsable) {

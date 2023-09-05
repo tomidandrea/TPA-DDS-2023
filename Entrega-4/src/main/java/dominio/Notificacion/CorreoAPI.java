@@ -4,8 +4,9 @@ import javax.mail.internet.*;
 import java.util.Properties;
 
 public class CorreoAPI {
-    private final String username;
-    private final String password;
+    private  String username;
+    private  String password;
+    public CorreoAPI(){}
 
     public CorreoAPI(String username, String password) {
         this.username = username;

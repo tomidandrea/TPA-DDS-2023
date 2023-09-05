@@ -1,13 +1,11 @@
 package dominio.Localizacion;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Municipio extends Localizacion {
   @ManyToOne(cascade = CascadeType.REMOVE)
+  @JoinColumn(name = "provincia_id", referencedColumnName = "localizacion_id")
   private Provincia provincia;
 
   public Municipio(){}

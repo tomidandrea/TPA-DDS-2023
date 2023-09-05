@@ -19,7 +19,8 @@ public class OrganismoDeControl {
     private List<ServicioTransporte> serviciosTransporte;
     @OneToMany
     private List<Organizacion> organizaciones;
-    @OneToOne
+    //@OneToOne
+    @Transient
     private Usuario responsable;
 
     public OrganismoDeControl(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, Miembro responsable) {

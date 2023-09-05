@@ -20,11 +20,12 @@ public abstract class Establecimiento {
     private int id;
 
     public String nombre;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "localizacion_id", referencedColumnName = "localizacion_id")
     public Localizacion localizacion;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     public List<Servicio> servicios;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     public List<Agrupacion> agrupaciones;
 
     public List<Duration> obtenerListaTiemposCierre(){

@@ -16,13 +16,18 @@ public class Comunidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> miembros;
 
-    @OneToMany
+    //@OneToMany
+    @Transient
     private List<Usuario> administradores;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "comunidades_incidentes",
+        joinColumns = @JoinColumn(name = "comunidad_id"),
+        inverseJoinColumns = @JoinColumn(name = "incidente_id")
+    )
     private List<Incidente> incidentesAbiertos;
 
     private String nombre;
