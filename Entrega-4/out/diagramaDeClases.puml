@@ -8,6 +8,7 @@
 !include localizacion.puml
 !include notificacion.puml
 !include servicios.puml
+!include ranking.puml
 'https://plantuml.com/class-diagram
 
 
@@ -50,6 +51,10 @@ Estacion..>RepoServicios
 'De notificacion
 
 'De servicios
+
+'De rankings
+RankingCantidadIncidentes-up->"*"ResultadoCantidadIncidentes
+RankingTiempoCierre-->"*"ResultadoTiempoCierre
 
 
 @enduml
