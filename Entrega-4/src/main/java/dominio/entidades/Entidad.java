@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public abstract class Entidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "entidad_id")
     private int id;
 
     public abstract Duration calcularPromedioTiempoCierre();
