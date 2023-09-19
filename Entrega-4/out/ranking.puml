@@ -1,12 +1,13 @@
 @startuml
 'https://plantuml.com/class-diagram
 package Rankings #back:bisque;line:darkorange;line.bold {
-    class RankingCantidadIncidentes{
+    abstract class Ranking{
         fecha:LocalDate
+    }
+    class RankingCantidadIncidentes extends Ranking{
         resultados:List<ResultadoCantidadIncidentes>
     }
-    class RankingTiempoCierre{
-        fecha:LocalDate
+    class RankingTiempoCierre  extends Ranking{
         resultados:List<ResultadoTiempoCierre>
     }
 }

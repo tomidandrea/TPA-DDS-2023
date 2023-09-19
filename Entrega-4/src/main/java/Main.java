@@ -59,14 +59,16 @@ public class Main {
     repoEntidades.agregar(subteA);
     repoEntidades.agregar(coto);
 
-    List<ResultadoCantidadIncidentes> resultadoCantidadIncidentes = repoEntidades.obtenerRankingEntidadesConMasIncidentes();
-    RankingCantidadIncidentes rankingCantidadIncidentes = new RankingCantidadIncidentes(LocalDate.now(), resultadoCantidadIncidentes);
-    RankingCantidadIncidentes rankingCantidadIncidentes2 = new RankingCantidadIncidentes(LocalDate.now(), resultadoCantidadIncidentes);
+    RankingCantidadIncidentes rankingCantidadIncidentes = new RankingCantidadIncidentes(LocalDate.now());
+    RankingCantidadIncidentes rankingCantidadIncidentes2 = new RankingCantidadIncidentes(LocalDate.now());
+    rankingCantidadIncidentes.obtenerRankingEntidadesConMasIncidentes();
+    rankingCantidadIncidentes2.obtenerRankingEntidadesConMasIncidentes();
     em.persist(rankingCantidadIncidentes);
     em.persist(rankingCantidadIncidentes2);
 
-    List<ResultadoTiempoCierre> resultadoTiempoCierres = repoEntidades.obtenerRankingEntidadesConMayorTiempoDeCierre();
-    RankingTiempoCierre rankingTiempoCierre = new RankingTiempoCierre(LocalDate.now(), resultadoTiempoCierres);
+
+    RankingTiempoCierre rankingTiempoCierre = new RankingTiempoCierre(LocalDate.now());
+    rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
     em.persist(rankingTiempoCierre);
 
     BDUtils.commit(em);
@@ -85,8 +87,8 @@ public class Main {
     em.persist(incidente1);
     Incidente incidente2 = new Incidente(
         banio2,
-        restarDiasHorasMinutos(7, 16, 0),
-        restarDiasHorasMinutos(7, 8, 30));
+        restarDiasHorasMinutos(6, 16, 0),
+        restarDiasHorasMinutos(6, 8, 30));
     em.persist(incidente2);
     List<Servicio> servicios1 = new ArrayList<>();
     servicios1.add(banio1);

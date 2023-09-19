@@ -38,25 +38,11 @@ public class RepoEntidades {
         return organizaciones.stream().filter(organizacion -> organizacion.nombre == nombre).findFirst().get();
     }
 
-    public List<ResultadoTiempoCierre> obtenerRankingEntidadesConMayorTiempoDeCierre(){
+    public List<Entidad> obtenerEntidades(){
         List<Entidad> entidades = new ArrayList<>(organizaciones);
         entidades.addAll(serviciosDeTransporte);
-        List<ResultadoTiempoCierre> resultados = entidades.stream()
-                .map(e->new ResultadoTiempoCierre(e, e.calcularPromedioTiempoCierre()))
-                .collect(Collectors.toList());
-        resultados.sort((r2, r1) -> r2.compararTiempo(r1));
-        Collections.reverse(resultados);
-        return resultados;
+        return entidades;
     }
 
-    public List<ResultadoCantidadIncidentes> obtenerRankingEntidadesConMasIncidentes(){
-        List<Entidad> entidades = new ArrayList<>(organizaciones);
-        entidades.addAll(serviciosDeTransporte);
-        List<ResultadoCantidadIncidentes> resultados = entidades.stream()
-                .map(e->new ResultadoCantidadIncidentes(e, e.cantidadIncidentes()))
-                .collect(Collectors.toList());
-        resultados.sort((r1, r2) -> r1.compararTiempo(r2));
-        Collections.reverse(resultados);
-        return resultados;
-    }
+
 }
