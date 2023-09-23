@@ -14,6 +14,7 @@ public class Comunidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comunidad_id")
     private int id;
 
     @ManyToMany(cascade = CascadeType.ALL)
