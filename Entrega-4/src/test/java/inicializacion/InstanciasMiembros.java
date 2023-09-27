@@ -6,9 +6,9 @@ import dominio.comunidades.Notificador;
 import dominio.comunidades.Miembro;
 import dominio.comunidades.TipoMiembro;
 import lombok.Getter;
-
 import java.time.LocalTime;
 import java.util.List;
+
 @Getter
 public class InstanciasMiembros {
   private Miembro juan;
@@ -28,14 +28,15 @@ public class InstanciasMiembros {
     Notificador notificadorPedro = new Notificador(horariosPedro);
     List<LocalTime> horariosManu = List.of(horario1, horario3);
     Notificador notificadorManu = new Notificador(horariosManu);
+
     this.juan = new Miembro("Juan", "Label", "prueba@gmail.com",
-        TipoMiembro.AFECTADO, medioCorreo, "12345678", notificadorJuan,
+        medioCorreo, "12345678", notificadorJuan,
         "juancito123", "blueLabel#23");
     this.pedro = new Miembro("Pedro", "Pascal", "prueba@gmail.com",
-        TipoMiembro.AFECTADO, medioCorreo, "12345687", notificadorPedro,
+        medioCorreo, "12345687", notificadorPedro,
         "ppascal321", "groguloveR$41");
     this.manu = new Miembro("Manu", "Ginobili", "prueba@gmail.com",
-        TipoMiembro.AFECTADO, medioCorreo, "12345677", notificadorManu,
+        medioCorreo, "12345677", notificadorManu,
         "manu.gino", "spursPlayer20!");
   }
 }

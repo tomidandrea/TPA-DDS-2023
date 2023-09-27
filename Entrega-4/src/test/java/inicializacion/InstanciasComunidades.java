@@ -1,10 +1,11 @@
 package inicializacion;
 
-import dominio.comunidades.Comunidad;
-import dominio.comunidades.Incidente;
-import dominio.comunidades.Miembro;
+import dominio.comunidades.*;
+import dominio.establecimientos.Establecimiento;
+import dominio.servicios.Servicio;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 @Getter
 public class InstanciasComunidades {
@@ -15,6 +16,11 @@ public class InstanciasComunidades {
         incidentes.getIncidenteAbierto2(), incidentes.getIncidenteHace5Dias(),
         incidentes.getIncidenteAbierto3());
     List<Miembro> miembros1 = List.of(miembros.getJuan(), miembros.getPedro(), miembros.getManu());
-    this.comunidad1 = new Comunidad(miembros1, incidentesAbiertos, "Blue Label");
+    List<Miembro> observadores1 = new ArrayList<>();
+    List<Administrador> administradores1 = new ArrayList<>();
+    List<Establecimiento> establecimientosObservados = new ArrayList<>();
+    List<Servicio> serviciosObservados = new ArrayList<>();
+    this.comunidad1 = new Comunidad("Blue Label", miembros1, observadores1, administradores1,
+            establecimientosObservados, serviciosObservados, GradoDeConfianza.CONFIABLE_NIVEL_1, incidentesAbiertos);
   }
 }

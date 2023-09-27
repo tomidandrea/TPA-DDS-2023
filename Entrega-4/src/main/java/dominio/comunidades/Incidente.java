@@ -14,21 +14,21 @@ import java.util.List;
 @Getter
 @Entity
 public class Incidente {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "incidente_id")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id")
     private Servicio servicio;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "agrupacion_id", referencedColumnName = "id")
     private Agrupacion agrupacion;
     private String observacion;
 
-    @ManyToMany(mappedBy = "incidentesAbiertos")
+    @ManyToMany(mappedBy = "incidentesAbiertos", cascade = CascadeType.ALL)
     private List<Comunidad> comunidades;
 
     private LocalDateTime horarioApertura;
@@ -67,20 +67,6 @@ public class Incidente {
 
     }
 
-    public Servicio getServicio() {
-        return servicio;
-    }
-
-    public Agrupacion getAgrupacion() {
-        return agrupacion;
-    }
-
-    public String getObservacion() {
-        return observacion;
-    }
-
-    public LocalDateTime getHorarioCierre() { return horarioCierre; }
-
     public Duration obtenerTiempoCierre(){
         return Duration.between(horarioApertura, horarioCierre);
     }
@@ -95,10 +81,6 @@ public class Incidente {
 
     public boolean cerradoUltimaSemana(){
        return Duration.between(this.getHorarioCierre() , LocalDateTime.now()).minusDays(7).isNegative();
-    }
-
-    public LocalDateTime horarioApertura() {
-        return horarioApertura;
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class Main {
+public class MainTrucho {
     public static void main(String[] args) throws IOException {
         ServicioGeoRef servicioGeoRef = ServicioGeoRef.getInstance();
 
@@ -34,7 +34,7 @@ public class Main {
         @Override
         public void run() {
             System.out.println("Enviando notificaciones...");
-            RepoComunidades.getInstance().comunidades.forEach(comunidad -> comunidad.notificarIncidentes());
+            RepoComunidades.getInstance().getComunidades().forEach(comunidad -> comunidad.notificarIncidentes());
         }
     }
 }

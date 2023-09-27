@@ -1,5 +1,7 @@
 import dominio.comunidades.RepoIncidentes;
 import dominio.entidades.*;
+import dominio.rankings.RankingCantidadIncidentes;
+import dominio.rankings.RankingTiempoCierre;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,8 @@ public class TestRankings {
 
     private RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
     private RepoEntidades repoEntidades = RepoEntidades.getInstance();
+    RankingTiempoCierre rankingTiempoCierre;
+    RankingCantidadIncidentes rankingCantidadIncidentes;
     @BeforeEach
     public void init(){
         InicializadorTests inicializador = InicializadorTests.getInstance();
@@ -19,16 +23,20 @@ public class TestRankings {
         this.dia = inicializador.getEntidades().getDia();
         this.subteA = inicializador.getEntidades().getSubteA();
         this.subteB = inicializador.getEntidades().getSubteB();
+        this.rankingTiempoCierre = new RankingTiempoCierre();
+        this.rankingCantidadIncidentes = new RankingCantidadIncidentes();
     }
 
     @Test
     public void mayorTiempoPromedioDeCierreEsCoto(){
-        Assertions.assertEquals(coto, repoEntidades.obtenerRankingEntidadesConMayorTiempoDeCierre().get(0).getEntidad());
+        rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
+        Assertions.assertEquals(coto, rankingTiempoCierre.getResultados().get(0).getEntidad());
     }
 
     @Test
     public void menorTiempoPromedioDeCierreEsDia(){
-        Assertions.assertEquals(dia, repoEntidades.obtenerRankingEntidadesConMayorTiempoDeCierre().get(3).getEntidad());
+        rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
+        Assertions.assertEquals(dia, rankingTiempoCierre.getResultados().get(3).getEntidad());
     }
 
     @Test
@@ -41,12 +49,14 @@ public class TestRankings {
 
     @Test
     public void mayorCantidadIncidentesEsSubteA(){
-        Assertions.assertEquals(subteA, repoEntidades.obtenerRankingEntidadesConMasIncidentes().get(0).getEntidad());
+        rankingCantidadIncidentes.obtenerRankingEntidadesConMasIncidentes();
+        Assertions.assertEquals(subteA, rankingCantidadIncidentes.getResultados().get(0).getEntidad());
     }
 
     @Test
     public void segundoMayorCantidadIncidentesEsCoto(){
-        Assertions.assertEquals(coto, repoEntidades.obtenerRankingEntidadesConMasIncidentes().get(1).getEntidad());
+        rankingCantidadIncidentes.obtenerRankingEntidadesConMasIncidentes();
+        Assertions.assertEquals(coto, rankingCantidadIncidentes.getResultados().get(1).getEntidad());
     }
 
 }

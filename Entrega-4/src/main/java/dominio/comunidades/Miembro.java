@@ -8,12 +8,15 @@ import dominio.clasesTecnicas.Validador;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Entity
+@Table(name = "miembro")
 public class Miembro extends Usuario {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "miembro_id")
     private int id;
 
@@ -30,12 +33,12 @@ public class Miembro extends Usuario {
     @JoinColumn(name = "localizacion_id")
     private Localizacion localizacion;
 
-    @Enumerated(EnumType.STRING)
+    /*@Enumerated(EnumType.STRING)
     private TipoMiembro tipoMiembro; //TODO consultar si puede ser afectado en algunas y observador en otras
+    */
     @Convert(converter = MedioComunicacionString.class)
     private MedioDeComunicacion medioPreferido;
     private String nroDeTelefono;
-    //private List<LocalTime> horariosDeNotificacion;
     @Getter
     @Embedded
     private Notificador notificador;
@@ -66,38 +69,35 @@ public class Miembro extends Usuario {
         this.setContrasenia(contrasenia);
         this.id = id;
     }
-    public Miembro(String nombre, String apellido, String correoElectronico, //TODO: Localizacion localizacion,
-                   TipoMiembro tipoMiembro, MedioDeComunicacion medioPreferido, String nroDeTelefono,
-                   //List<LocalTime> horariosDeNotificacion,
+    public Miembro(String nombre, String apellido, String correoElectronico, Localizacion localizacion,
+                   MedioDeComunicacion medioPreferido, String nroDeTelefono,
                    Notificador notificador, String usuario, String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
+        this.interes = new Interes();
         this.localizacion = localizacion;
-        this.tipoMiembro = tipoMiembro;
         this.medioPreferido = medioPreferido;
         this.nroDeTelefono = nroDeTelefono;
-        //this.horariosDeNotificacion = horariosDeNotificacion;
         this.notificador = notificador;
-        this.id = ++cantidadMiembros;
+        //this.id = ++cantidadMiembros;
         this.setUsuario(usuario);
         Validador.validarContrasenia(contrasenia);
         this.setContrasenia(contrasenia);
     }
-    public Miembro(String nombre, String apellido, String correoElectronico, Localizacion localizacion,
-                   TipoMiembro tipoMiembro, MedioDeComunicacion medioPreferido, String nroDeTelefono,
-                   //List<LocalTime> horariosDeNotificacion,
+
+    //Para los tests
+    public Miembro(String nombre, String apellido, String correoElectronico, //Localizacion localizacion,
+                   MedioDeComunicacion medioPreferido, String nroDeTelefono,
                    Notificador notificador, String usuario, String contrasenia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
-        this.localizacion = localizacion;
-        this.tipoMiembro = tipoMiembro;
+        //this.localizacion = localizacion;
         this.medioPreferido = medioPreferido;
         this.nroDeTelefono = nroDeTelefono;
-        //this.horariosDeNotificacion = horariosDeNotificacion;
         this.notificador = notificador;
-        this.id = ++cantidadMiembros;
+        //this.id = ++cantidadMiembros;
         this.setUsuario(usuario);
         Validador.validarContrasenia(contrasenia);
         this.setContrasenia(contrasenia);
