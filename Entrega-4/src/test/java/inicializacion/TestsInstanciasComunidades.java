@@ -8,10 +8,10 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
-public class InstanciasComunidades {
+public class TestsInstanciasComunidades {
   private Comunidad comunidad1;
 
-  public InstanciasComunidades(InstanciasIncidentes incidentes, InstanciasMiembros miembros){
+  public TestsInstanciasComunidades(TestsInstanciasIncidentes incidentes, TestsInstanciasMiembros miembros){
     List<Incidente> incidentesAbiertos = List.of(incidentes.getIncidenteAbierto1(),
         incidentes.getIncidenteAbierto2(), incidentes.getIncidenteHace5Dias(),
         incidentes.getIncidenteAbierto3());

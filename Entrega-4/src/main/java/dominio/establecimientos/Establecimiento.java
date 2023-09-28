@@ -5,6 +5,7 @@ import dominio.servicios.Agrupacion;
 import dominio.comunidades.Incidente;
 import dominio.comunidades.RepoIncidentes;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -26,6 +27,7 @@ public abstract class Establecimiento {
     public Localizacion localizacion;
     @OneToMany(cascade = CascadeType.ALL)
     public List<Servicio> servicios;
+    @Setter
     @OneToMany(cascade = CascadeType.ALL)
     public List<Agrupacion> agrupaciones;
 

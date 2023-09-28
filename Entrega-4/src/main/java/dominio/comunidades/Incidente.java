@@ -24,7 +24,7 @@ public class Incidente {
     private Servicio servicio;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "agrupacion_id", referencedColumnName = "id")
+    @JoinColumn(name = "agrupacion_id")
     private Agrupacion agrupacion;
     private String observacion;
 
@@ -55,6 +55,14 @@ public class Incidente {
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
     }
+    public Incidente(Agrupacion agrupacion, LocalDateTime horarioApertura, LocalDateTime horarioCierre){
+        this.agrupacion = agrupacion;
+        this.horarioApertura = horarioApertura;
+        this.horarioCierre = horarioCierre;
+        RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+        repoIncidentes.agregar(this);
+    }
+
     public Incidente(Servicio servicio, LocalDateTime horarioApertura, String obs){
         this.servicio = servicio;
         this.horarioApertura = horarioApertura;

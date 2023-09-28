@@ -28,6 +28,7 @@ public class InstanciasEstablecimientos {
     this.estacionB1 = estacion(servicios.getServiciosEstacionB1());
     this.estacionB2 = estacion(servicios.getServiciosEstacionB2());
     this.sucursalCoto1 = sucursal(servicios.getServiciosCoto1());
+    this.sucursalCoto1.setAgrupaciones(servicios.getAgrupacionesCoto1());
     this.sucursalCoto2 = sucursal(servicios.getServiciosCoto2());
     this.sucursalDia1 = sucursal(servicios.getServiciosDia1());
     this.sucursalDia2 = sucursal(servicios.getServiciosDia2());

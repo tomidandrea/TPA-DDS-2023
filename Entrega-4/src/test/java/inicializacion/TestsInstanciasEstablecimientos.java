@@ -5,11 +5,10 @@ import dominio.establecimientos.Sucursal;
 import dominio.servicios.Servicio;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class InstanciasEstablecimientos {
+public class TestsInstanciasEstablecimientos {
   private Estacion estacionA1;
   private Estacion estacionA2;
   private Estacion estacionB1;
@@ -20,12 +19,13 @@ public class InstanciasEstablecimientos {
   private Sucursal sucursalDia1;
   private Sucursal sucursalDia2;
 
-  public InstanciasEstablecimientos(InstanciasServicios servicios) {
+  public TestsInstanciasEstablecimientos(TestsInstanciasServicios servicios) {
     this.estacionA1 = estacion(servicios.getServiciosEstacionA1());
     this.estacionA2 = estacion(servicios.getServiciosEstacionA2());
     this.estacionB1 = estacion(servicios.getServiciosEstacionB1());
     this.estacionB2 = estacion(servicios.getServiciosEstacionB2());
     this.sucursalCoto1 = sucursal(servicios.getServiciosCoto1());
+    this.sucursalCoto1.setAgrupaciones(servicios.getAgrupacionesCoto1());
     this.sucursalCoto2 = sucursal(servicios.getServiciosCoto2());
     this.sucursalDia1 = sucursal(servicios.getServiciosDia1());
     this.sucursalDia2 = sucursal(servicios.getServiciosDia2());

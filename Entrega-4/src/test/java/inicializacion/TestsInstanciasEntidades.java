@@ -8,13 +8,13 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
-public class InstanciasEntidades {
+public class TestsInstanciasEntidades {
   private ServicioTransporte subteA;
   private ServicioTransporte subteB;
   private Organizacion coto;
   private Organizacion dia;
 
-  public InstanciasEntidades(InstanciasEstablecimientos establecimientos){
+  public TestsInstanciasEntidades(TestsInstanciasEstablecimientos establecimientos){
     Linea lineaAIda = lineaAIda(establecimientos);
     Linea lineaAVuelta = lineaAVuelta(establecimientos);
     Linea lineaBIda = lineaBIda(establecimientos);
@@ -35,42 +35,42 @@ public class InstanciasEntidades {
     repoEntidades.agregar(subteB);
   }
 
-  private Linea lineaAIda(InstanciasEstablecimientos establecimientos){
+  private Linea lineaAIda(TestsInstanciasEstablecimientos establecimientos){
     List<Estacion> estaciones = new ArrayList<>();
     estaciones.add(establecimientos.getEstacionA1());
     estaciones.add(establecimientos.getEstacionA2());
     return new Linea("A - Ida", estaciones);
   }
 
-  private Linea lineaAVuelta(InstanciasEstablecimientos establecimientos){
+  private Linea lineaAVuelta(TestsInstanciasEstablecimientos establecimientos){
     List<Estacion> estaciones = new ArrayList<>();
     estaciones.add(establecimientos.getEstacionA2());
     estaciones.add(establecimientos.getEstacionA1());
     return new Linea("A - Vuelta", estaciones);
   }
 
-  private Linea lineaBIda(InstanciasEstablecimientos establecimientos){
+  private Linea lineaBIda(TestsInstanciasEstablecimientos establecimientos){
     List<Estacion> estaciones = new ArrayList<>();
     estaciones.add(establecimientos.getEstacionB1());
     estaciones.add(establecimientos.getEstacionB2());
     return new Linea("B - Ida", estaciones);
   }
 
-  private Linea lineaBVuelta(InstanciasEstablecimientos establecimientos){
+  private Linea lineaBVuelta(TestsInstanciasEstablecimientos establecimientos){
     List<Estacion> estaciones = new ArrayList<>();
     estaciones.add(establecimientos.getEstacionB2());
     estaciones.add(establecimientos.getEstacionB1());
     return new Linea("B - Vuelta", estaciones);
   }
 
-  private List<Sucursal> sucursalesCoto(InstanciasEstablecimientos establecimientos){
+  private List<Sucursal> sucursalesCoto(TestsInstanciasEstablecimientos establecimientos){
     List<Sucursal> sucursalesCoto = new ArrayList<>();
     sucursalesCoto.add(establecimientos.getSucursalCoto1());
     sucursalesCoto.add(establecimientos.getSucursalCoto2());
     return sucursalesCoto;
   }
 
-  private List<Sucursal> sucursalesDia(InstanciasEstablecimientos establecimientos){
+  private List<Sucursal> sucursalesDia(TestsInstanciasEstablecimientos establecimientos){
     List<Sucursal> sucursalesDia = new ArrayList<>();
     sucursalesDia.add(establecimientos.getSucursalDia1());
     sucursalesDia.add(establecimientos.getSucursalDia2());

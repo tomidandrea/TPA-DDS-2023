@@ -4,18 +4,17 @@ import dominio.Notificacion.CorreoAPI;
 import dominio.Notificacion.MedioCorreo;
 import dominio.comunidades.Notificador;
 import dominio.comunidades.Miembro;
-import dominio.comunidades.TipoMiembro;
 import lombok.Getter;
 import java.time.LocalTime;
 import java.util.List;
 
 @Getter
-public class InstanciasMiembros {
+public class TestsInstanciasMiembros {
   private Miembro juan;
   private Miembro pedro;
   private Miembro manu;
 
-  public InstanciasMiembros(){
+  public TestsInstanciasMiembros(){
     CorreoAPI correoAPI = new CorreoAPI("agustinmsanjuan@gmail.com", ""); //TODO borrar
     MedioCorreo medioCorreo = MedioCorreo.getInstance(correoAPI);
     LocalTime horario1 = LocalTime.of(LocalTime.now().getHour(), 0);

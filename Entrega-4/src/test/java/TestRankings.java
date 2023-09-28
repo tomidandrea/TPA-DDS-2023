@@ -58,7 +58,7 @@ public class TestRankings {
         Assertions.assertEquals(4, subteA.cantidadIncidentes());
         Assertions.assertEquals(0, subteB.cantidadIncidentes());
         Assertions.assertEquals(1, dia.cantidadIncidentes());
-        Assertions.assertEquals(2, coto.cantidadIncidentes());
+        Assertions.assertEquals(3, coto.cantidadIncidentes());
     }
 
     @Test

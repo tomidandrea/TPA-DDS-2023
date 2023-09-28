@@ -3,6 +3,7 @@ package Persistencia;
 import Utils.BDUtils;
 import dominio.comunidades.Incidente;
 import dominio.comunidades.RepoIncidentes;
+import dominio.servicios.Agrupacion;
 import dominio.servicios.Servicio;
 import lombok.Getter;
 
@@ -33,7 +34,7 @@ public class InstanciasIncidentes {
 
   public InstanciasIncidentes(EntityManager em, InstanciasServicios servicios){
     this.em = em;
-    incidentesSucursalCoto1(servicios.getServiciosCoto1());
+    incidentesSucursalCoto1(servicios.getServiciosCoto1(), servicios.getAgrupacionesCoto1());
     incidentesSucursalCoto2(servicios.getServiciosCoto2());
     // Incidentes del Dia (menor tiempo promedio)
     incidentesSucursalDia1(servicios.getServiciosDia1());
@@ -67,7 +68,7 @@ public class InstanciasIncidentes {
     em.persist(incidenteHace5Dias);
   }
 
-  private void incidentesSucursalCoto1(List<Servicio> servicios){
+  private void incidentesSucursalCoto1(List<Servicio> servicios, List<Agrupacion> agrupaciones){
     Incidente incidente1 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(6, 16, 0),
@@ -77,8 +78,15 @@ public class InstanciasIncidentes {
     Incidente incidente2 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(7, 16, 0),
-        restarDiasHorasMinutos(7, 8, 30));
+        restarDiasHorasMinutos(1, 8, 30));
     em.persist(incidente2);
+
+    //Incidente de agrupacion
+    Incidente incidente3 = new Incidente(
+        agrupaciones.get(0),
+        restarDiasHorasMinutos(6, 16, 0),
+        restarDiasHorasMinutos(1, 8, 30));
+    em.persist(incidente3);
   }
 
   private void incidentesSucursalCoto2(List<Servicio> servicios){

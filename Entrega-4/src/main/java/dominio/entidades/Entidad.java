@@ -24,16 +24,4 @@ public abstract class Entidad {
     @Getter
     public String nombre;
 
-    public Duration getTiemposCierre(List<Establecimiento> establecimientos) {
-        List<Duration> tiempos = establecimientos.stream()
-            .map(Establecimiento::obtenerListaTiemposCierre)
-            .flatMap(List::stream)
-            .collect(Collectors.toList());
-
-        Optional<Duration> tiempoTotalOptional = tiempos.stream()
-            .reduce(Duration::plus);
-
-        return tiempoTotalOptional.orElse(Duration.ZERO)
-            .dividedBy(tiempos.size() == 0 ? 1 : tiempos.size());
-    }
 }

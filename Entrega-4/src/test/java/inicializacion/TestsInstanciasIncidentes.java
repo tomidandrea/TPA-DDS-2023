@@ -2,13 +2,14 @@ package inicializacion;
 
 import dominio.comunidades.Incidente;
 import dominio.comunidades.RepoIncidentes;
+import dominio.servicios.Agrupacion;
 import dominio.servicios.Servicio;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 @Getter
-public class InstanciasIncidentes {
+public class TestsInstanciasIncidentes {
   public RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
   private Incidente incidenteAbierto1;
   private Incidente incidenteAbierto2;
@@ -27,8 +28,8 @@ public class InstanciasIncidentes {
     return fechaResultante;
   }
 
-  public InstanciasIncidentes(InstanciasServicios servicios){
-    incidentesSucursalCoto1(servicios.getServiciosCoto1());
+  public TestsInstanciasIncidentes(TestsInstanciasServicios servicios){
+    incidentesSucursalCoto1(servicios.getServiciosCoto1(), servicios.getAgrupacionesCoto1());
     incidentesSucursalCoto2(servicios.getServiciosCoto2());
     // Incidentes del Dia (menor tiempo promedio)
     incidentesSucursalDia1(servicios.getServiciosDia1());
@@ -59,7 +60,7 @@ public class InstanciasIncidentes {
         "El baño está sucio");
   }
 
-  private void incidentesSucursalCoto1(List<Servicio> servicios){
+  private void incidentesSucursalCoto1(List<Servicio> servicios, List<Agrupacion> agrupaciones){
     Incidente incidente1 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(6, 16, 0),
@@ -69,6 +70,12 @@ public class InstanciasIncidentes {
         servicios.get(1),
         restarDiasHorasMinutos(7, 16, 0),
         restarDiasHorasMinutos(7, 8, 30));
+
+    //Incidente de agrupacion
+    Incidente incidente3 = new Incidente(
+            agrupaciones.get(0),
+            restarDiasHorasMinutos(6, 16, 0),
+            restarDiasHorasMinutos(1, 8, 30));
 
   }
 

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RepoIncidentes {
     static RepoIncidentes instance = new RepoIncidentes();
@@ -46,7 +47,8 @@ public class RepoIncidentes {
         }
         return incidentes.stream()
                 .filter(i-> i.getHorarioCierre()!=null && i.cerradoUltimaSemana())
-                .filter(incidente->servicios.contains(incidente.getServicio())).toList();
+                .filter(incidente->incidente.getServicio() != null && servicios.contains(incidente.getServicio()))
+                .collect(Collectors.toList());
     }
 
 
