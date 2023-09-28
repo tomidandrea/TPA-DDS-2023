@@ -35,5 +35,6 @@ public class RankingTiempoCierre extends Ranking{
             .collect(Collectors.toList());
     resultados.sort((r2, r1) -> r2.compararTiempo(r1));
     Collections.reverse(resultados);
+    resultados.forEach(r-> System.out.println(r.getEntidad().getNombre() + " "+r.getTiempoDeCierre()));
   }
 }

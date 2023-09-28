@@ -6,6 +6,7 @@ import dominio.servicios.Servicio;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RepoIncidentes {
@@ -29,12 +30,20 @@ public class RepoIncidentes {
     }
 
     public List<Incidente> obtenerIncidentesDe(List<Agrupacion>agrupaciones, List <Servicio> servicios){
+        if (agrupaciones.isEmpty() && servicios.isEmpty()) {
+            return Collections.emptyList(); // Devuelve una lista vacía si ambas listas están vacías.
+        }
         return incidentes.stream()
-                .filter(i-> i.getHorarioCierre()!=null && i.cerradoUltimaSemana())
-                .filter(incidente->(agrupaciones.contains(incidente.getAgrupacion()) || servicios.contains(incidente.getServicio()))).toList();
+            .filter(i -> i.getHorarioCierre() != null && i.cerradoUltimaSemana())
+            .filter(incidente -> (agrupaciones.isEmpty() || agrupaciones.contains(incidente.getAgrupacion()))
+                || (servicios.isEmpty() || servicios.contains(incidente.getServicio())))
+            .toList();
     }
 
     public List<Incidente> obtenerIncidentesDe(List <Servicio> servicios){
+        if (servicios == null || servicios.isEmpty()) {
+            return Collections.emptyList(); // Devuelve una lista vacía si servicios está vacía.
+        }
         return incidentes.stream()
                 .filter(i-> i.getHorarioCierre()!=null && i.cerradoUltimaSemana())
                 .filter(incidente->servicios.contains(incidente.getServicio())).toList();

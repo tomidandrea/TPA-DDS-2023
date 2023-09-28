@@ -9,6 +9,7 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -29,7 +30,13 @@ public abstract class Establecimiento {
     public List<Agrupacion> agrupaciones;
 
     public List<Duration> obtenerListaTiemposCierre(){
-        return incidentesDelEstablecimiento().stream().map(i->i.obtenerTiempoCierre()).toList();
+        List<Incidente> incidentes = incidentesDelEstablecimiento();
+        if (incidentes.isEmpty()) {
+            return Collections.emptyList(); // Devuelve una lista vacía si no hay incidentes.
+        }
+        return incidentes.stream()
+            .map(Incidente::obtenerTiempoCierre)
+            .toList();
     }
 
     public int cantidadDeIncidentes(){

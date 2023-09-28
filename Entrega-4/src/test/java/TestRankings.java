@@ -1,10 +1,16 @@
 import dominio.comunidades.RepoIncidentes;
 import dominio.entidades.*;
+import dominio.establecimientos.Sucursal;
 import dominio.rankings.RankingCantidadIncidentes;
 import dominio.rankings.RankingTiempoCierre;
+import dominio.servicios.Banio;
+import dominio.servicios.TipoDeBanio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
+import java.util.List;
 
 public class TestRankings {
     private ServicioTransporte subteA;
@@ -28,15 +34,23 @@ public class TestRankings {
     }
 
     @Test
+    public void tiempoPromedioCierreSinIncidentes(){
+        Sucursal sucursal1 = new Sucursal();
+        Banio banio = new Banio("Baño nuevo", TipoDeBanio.HOMBRES);
+        Sucursal sucursal2 = new Sucursal(List.of(banio));
+        Organizacion carrefour = new Organizacion("Carrefour", List.of(sucursal1, sucursal2));
+        Assertions.assertEquals(Duration.ZERO, carrefour.calcularPromedioTiempoCierre());
+    }
+    @Test
     public void mayorTiempoPromedioDeCierreEsCoto(){
         rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
         Assertions.assertEquals(coto, rankingTiempoCierre.getResultados().get(0).getEntidad());
     }
 
     @Test
-    public void menorTiempoPromedioDeCierreEsDia(){
+    public void menorTiempoPromedioDeCierreEsSubteB(){
         rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
-        Assertions.assertEquals(dia, rankingTiempoCierre.getResultados().get(3).getEntidad());
+        Assertions.assertEquals(subteB, rankingTiempoCierre.getResultados().get(3).getEntidad());
     }
 
     @Test

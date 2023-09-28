@@ -57,15 +57,16 @@ public class ServicioTransporte extends Entidad{
     public Duration calcularPromedioTiempoCierre(){
         Set<Estacion> estaciones = new HashSet<>(lineaDeTransporteIda.getEstaciones());
         estaciones.addAll(lineaDeTransporteVuelta.getEstaciones());
-        Duration tiempoTotal = Duration.ZERO;
-        List<Duration> tiempos = estaciones.stream().map(Establecimiento::obtenerListaTiemposCierre).
-                flatMap(List::stream).collect(Collectors.toList());
-        //TODO: revisar si se puede cambiar el for
-        for(Duration t: tiempos){
-            tiempoTotal = tiempoTotal.plus(t);
-            //System.out.println("Sumamos el tiempo " + t.toString() + " de un servicio Transporte");
-        }
-        return tiempoTotal.dividedBy(tiempos.size());
+        List<Duration> tiempos = estaciones.stream()
+            .map(Establecimiento::obtenerListaTiemposCierre)
+            .flatMap(List::stream)
+            .collect(Collectors.toList());
+
+        Optional<Duration> tiempoTotalOptional = tiempos.stream()
+            .reduce(Duration::plus);
+
+        return tiempoTotalOptional.orElse(Duration.ZERO)
+            .dividedBy(tiempos.size()==0?1:tiempos.size());
     }
 
     public Integer cantidadIncidentes(){
