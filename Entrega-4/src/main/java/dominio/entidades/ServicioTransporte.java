@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 public class ServicioTransporte extends Entidad{
     @Enumerated(EnumType.STRING)
     private MedioDeTransporte tipoTransporte;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Linea lineaDeTransporteIda;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private  Linea lineaDeTransporteVuelta;
 
     public ServicioTransporte(MedioDeTransporte tipoTransporte, String nombre, Linea lineaDeTransporteIda, Linea lineaDeTransporteVuelta) {

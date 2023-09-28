@@ -41,10 +41,10 @@ public class InstanciasEntidades {
     repoEntidades.agregar(subteA);
     repoEntidades.agregar(subteB);
 
-    em.merge(coto);
-    em.merge(dia);
-    em.merge(subteA);
-    em.merge(subteB);
+    em.persist(coto);
+    em.persist(dia);
+    em.persist(subteA);
+    em.persist(subteB);
   }
 
   private Linea lineaAIda(InstanciasEstablecimientos establecimientos){

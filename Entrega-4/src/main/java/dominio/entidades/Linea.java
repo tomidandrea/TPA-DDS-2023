@@ -15,13 +15,13 @@ public class Linea {
     private int id;
 
     private String nombre;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Estacion estacionOrigen;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Estacion estacionDestino;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Estacion> estaciones;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Localizacion> localizacionesDeEstacion; //Para consultar mas rapido las localizaciones
 
     // constructor para test rankings

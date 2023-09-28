@@ -45,19 +45,31 @@ public class InstanciasComunidades {
     List<Administrador> administradores3 = List.of(admin1);
     List<Administrador> administradores4 = List.of(admin2);
 
-    List<Establecimiento> establecimientosObservados1 = List.of(establecimientos.getEstacionA1(),establecimientos.getSucursalDia2(),establecimientos.getSucursalCoto1());
-    List<Establecimiento> establecimientosObservados2 = List.of(establecimientos.getEstacionA2(),establecimientos.getEstacionA1());
+    List<Establecimiento> establecimientosObservados1 = List.of(establecimientos.getEstacionA1(),establecimientos.getSucursalDia2(),
+        establecimientos.getSucursalCoto1(), establecimientos.getEstacionA2(), establecimientos.getSucursalCoto2());
+    List<Establecimiento> establecimientosObservados2 = List.of(establecimientos.getEstacionA1(),establecimientos.getSucursalDia2(),
+        establecimientos.getSucursalCoto1(), establecimientos.getEstacionA2());
     List<Establecimiento> establecimientosObservados3 = List.of(establecimientos.getSucursalCoto2(),establecimientos.getEstacionB2());
-    List<Establecimiento> establecimientosObservados4 = List.of(establecimientos.getEstacionB1(),establecimientos.getSucursalDia1());
+    List<Establecimiento> establecimientosObservados4 = List.of(establecimientos.getSucursalCoto2(),establecimientos.getEstacionB2());
 
-    List<Servicio> serviciosEstandar1 = servicios.getServiciosEstacionA1();
-    List<Servicio> serviciosEstandar2 = servicios.getServiciosEstacionA2();
-    List<Servicio> serviciosEstandar3 = servicios.getServiciosCoto2();
-    List<Servicio> serviciosEstandar4 = servicios.getServiciosEstacionB1();
+    List<Servicio> serviciosEstandar1 = new ArrayList<>();
+    serviciosEstandar1.addAll(servicios.getServiciosEstacionA1());
+    serviciosEstandar1.addAll(servicios.getServiciosDia1());
+    serviciosEstandar1.addAll(servicios.getServiciosDia2());
+    List<Servicio> serviciosEstandar2 = new ArrayList<>();
+    serviciosEstandar2.addAll(servicios.getServiciosEstacionA1());
+    serviciosEstandar2.addAll(servicios.getServiciosDia1());
+    serviciosEstandar2.addAll(servicios.getServiciosDia2());
+    serviciosEstandar2.remove(0);
+    List<Servicio> serviciosEstandar3 =  new ArrayList<>();
+    serviciosEstandar3.addAll(servicios.getServiciosCoto2());
+    List<Servicio> serviciosEstandar4 = new ArrayList<>();
+    serviciosEstandar4.addAll(servicios.getServiciosCoto2());
 
     this.comunidad1 = new Comunidad("com1", afectados1, observadores1, administradores1,
             establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, incidentesAbiertos1);
     em.persist(this.comunidad1);
+
 
     this.comunidad2 = new Comunidad("com2", afectados2, observadores2, administradores2,
             establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, incidentesAbiertos2);

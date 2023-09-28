@@ -15,9 +15,9 @@ public class OrganismoDeControl {
     private int id;
 
     String nombre;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ServicioTransporte> serviciosTransporte;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Organizacion> organizaciones;
     //@OneToOne
     @Transient

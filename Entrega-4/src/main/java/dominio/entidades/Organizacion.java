@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 public class Organizacion extends Entidad{
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Sucursal> sucursales;
 
     public Organizacion() {

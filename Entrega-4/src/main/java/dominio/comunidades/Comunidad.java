@@ -24,13 +24,13 @@ public class Comunidad {
     private String nombre;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "comunidades_incidentes",
+    @JoinTable(name = "comunidades_afectados",
             joinColumns = @JoinColumn(name = "comunidad_id"),
             inverseJoinColumns = @JoinColumn(name = "miembro_id")
     )
     private List<Miembro> afectados;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "comunidades_incidentes",
+    @JoinTable(name = "comunidades_observadores",
             joinColumns = @JoinColumn(name = "comunidad_id"),
             inverseJoinColumns = @JoinColumn(name = "miembro_id")
     )

@@ -8,7 +8,7 @@ import java.time.Duration;
 @Embeddable
 @Getter
 public class ResultadoTiempoCierre {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entidad_id")
     private Entidad entidad;
     private Duration tiempoDeCierre;

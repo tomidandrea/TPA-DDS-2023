@@ -9,7 +9,7 @@ public class Agrupacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Servicio> servicios;
 
     public Agrupacion(List<Servicio> servicios) {

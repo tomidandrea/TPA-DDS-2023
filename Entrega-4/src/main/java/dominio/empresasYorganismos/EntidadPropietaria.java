@@ -15,9 +15,9 @@ public class EntidadPropietaria {
     private int id;
 
     private String nombre;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Organizacion> organizaciones;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ServicioTransporte> serviciosTransporte;
     //@OneToOne
     @Transient

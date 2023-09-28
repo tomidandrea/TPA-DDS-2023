@@ -31,7 +31,7 @@ public class InstanciasEstablecimientos {
     this.sucursalCoto2 = sucursal(servicios.getServiciosCoto2());
     this.sucursalDia1 = sucursal(servicios.getServiciosDia1());
     this.sucursalDia2 = sucursal(servicios.getServiciosDia2());
-    em.merge(estacionA1);
+    em.persist(estacionA1);
     em.persist(estacionA2);
     em.persist(estacionB1);
     em.persist(estacionB2);

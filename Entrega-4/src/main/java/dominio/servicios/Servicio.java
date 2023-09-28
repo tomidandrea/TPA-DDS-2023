@@ -14,7 +14,8 @@ public abstract class Servicio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "servicio_id")
     private int id;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "localizacion_id", referencedColumnName = "localizacion_id")
     private Localizacion localizacion;
     public String nombre;
 
