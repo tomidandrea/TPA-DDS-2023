@@ -2,10 +2,16 @@
 'https://plantuml.com/class-diagram
 package Comunidades #back:honeydew;line:Green;line.bold{
     class Comunidad{
-        miembros:List<Miembro>
-        administradores: List<Usuario>
+        nombre:String
+        afectados:List<Miembro>
+        observadores:List<Miembro>
+        administradores: List<Administrador>
         incidentesAbiertos:List<Incidente>
-        notificarIncidentesAMiembros(): void
+        establecimientosObservados:List<Establecimiento>
+        serviciosEstandar:List<Servicio>
+        gradoDeConfianza:GradoDeConfianza
+
+        notificarIncidentes(): void
         obtenerIncidentesAbiertosDesde(LocalTime): List<Incidente>
         cerrarIncidente(incidente): void
         ultimosIncidentesAbiertos(): List<Incidente>
@@ -18,14 +24,20 @@ package Comunidades #back:honeydew;line:Green;line.bold{
 
     class RepoComunidades{
         comunidades:List<Comunidad>
+
+        getComunidades(): List<Comunidad>
     }
 
     class Notificador {
          horarios:List<LocalTime>
+
          compararHorarioActual(): boolean
          incidenteDentroDeRangoHorario(List<Incidente> incidentes, LocalTime horarioNotificacion): List<Incidente>
          obtenerHorarioAnterior(LocalTime horarioNotificacion): LocalTime
          obtenerListaSegunRango(List<Incidente> incidentes, LocalTime horarioAnterior, LocalTime horarioNotificacion): List<Incidente>
+    }
+
+    class Administrador{
     }
 
     class Miembro{
@@ -35,10 +47,10 @@ package Comunidades #back:honeydew;line:Green;line.bold{
         correoElectronico:String
         interes: Interes
         localizacion: Localizacion
-        tipoMiembro:TipoMiembro
         medioPreferido:MedioDeComunicacion
         nroDeTelefono: String
         notificador: Notificador
+
         compararId(int id): boolean
         sugerirRevision(Incidente incidente): void
         estaEnHorarioDeNotificacion(): boolean
@@ -52,6 +64,7 @@ package Comunidades #back:honeydew;line:Green;line.bold{
     class RepoMiembros{
         instance: RepoMiembros
         miembros:List<Miembro>
+
         getInstance(): RepoMiembros
         agregar(miembro)
         getMiembro():Miembro
@@ -69,6 +82,7 @@ package Comunidades #back:honeydew;line:Green;line.bold{
         horarioApertura: LocalDateTime
         horarioCierre: LocalDateTime
         estadoIncidente: EstadoIncidente
+
         obtenerTiempoCierre(): Duration
         cerrar(): void
         tieneEstado(EstadoIncidente estado): boolean
@@ -79,6 +93,7 @@ package Comunidades #back:honeydew;line:Green;line.bold{
     class RepoIncidentes{
         instance: RepoIncidentes
         incidentes: List<Incidente>
+
         getInstance(): RepoIncidentes
         obtenerIncidentesPorEstado(EstadoIncidente estado):  List<Incidente>
         agregar(Incidente incidente): void
@@ -92,16 +107,26 @@ package Comunidades #back:honeydew;line:Green;line.bold{
         CERRADO
     }
 
+    enum GradoDeConfianza {
+        NO_CONFIABLE
+        CON_RESERVAS
+        CONFIABLE_NIVEL_1
+        CONFIABLE_NIVEL_2
+    }
+
     Incidente-up-->"*"Comunidad
     Incidente-->EstadoIncidente
     Comunidad--down-->"*"Incidente
-    RepoIncidentes--->"*" Incidente
+    RepoIncidentes--left->"*" Incidente
     RepoMiembros -->"*" Miembro
+    Comunidad -down-->"*" Miembro
     Comunidad -down-->"*" Miembro
     RepoComunidades -right->"*" Comunidad
     Miembro-->TipoMiembro
     Miembro--down->Interes
     Miembro--down-->Notificador
+    Comunidad-->GradoDeConfianza
+    Comunidad --right->"*" Administrador
 }
 
 

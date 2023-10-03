@@ -9,6 +9,7 @@
 !include notificacion.puml
 !include servicios.puml
 !include ranking.puml
+!include sugerenciasFusion.puml
 'https://plantuml.com/class-diagram
 
 
@@ -19,8 +20,9 @@ Incidente-->Servicio
 Incidente-->Agrupacion
 Miembro--->MedioDeComunicacion
 Miembro-->Localizacion
-Comunidad --->"*" Usuario
 Interes-up->"*"Servicio
+Comunidad-->"*"Establecimiento
+Comunidad-->"*"Servicio
 
 'De empresasYorganismos
 EntidadPropietaria--->"*"Organizacion
@@ -41,11 +43,11 @@ Linea --->"*" Estacion
 
 'De establecimientos
 Estacion -->"*" Servicio
-Estacion -->"*" Agrupacion
+Estacion --right>"*" Agrupacion
 Sucursal-up-->Localizacion
 Sucursal-->"*"Servicio
 Estacion-up-->Localizacion
-Estacion..>RepoServicios
+Estacion..down>RepoServicios
 'De localizacion
 
 'De notificacion

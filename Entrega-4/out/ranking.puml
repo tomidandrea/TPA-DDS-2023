@@ -6,9 +6,13 @@ package Rankings #back:bisque;line:darkorange;line.bold {
     }
     class RankingCantidadIncidentes extends Ranking{
         resultados:List<ResultadoCantidadIncidentes>
+
+        obtenerRankingEntidadesConMasIncidentes(): void
     }
-    class RankingTiempoCierre  extends Ranking{
+    class RankingTiempoCierre extends Ranking{
         resultados:List<ResultadoTiempoCierre>
+
+        obtenerRankingEntidadesConMayorTiempoDeCierre(): void
     }
 }
 @enduml

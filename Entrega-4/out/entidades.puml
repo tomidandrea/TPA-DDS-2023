@@ -12,9 +12,7 @@ package Entidades #back:lightyellow;line:gold;line.bold{
         agregar(Organizacion):void
         obtenerOrgPorNombre(String):Organizacion
         agregar(ServicioDeTransporte):void
-        obtenerPorTipo(MedioDeTransporte):ServicioTransporte
-        obtenerRankingEntidadesConMayorTiempoDeCierre(): List<ResultadoTiempoCierre>
-        obtenerRankingEntidadesConMasIncidentes(): List<ResultadoCantidadIncidentes>
+        obtenerEntidades():List<Entidad>
     }
 
     abstract class Entidad{
@@ -30,7 +28,6 @@ package Entidades #back:lightyellow;line:gold;line.bold{
         getSucursales():List<Sucursal>
         setNombre(String):void
         compararPorPromedioTiempo(Organizacion):int
-        calcularPromedio(List<Duration>):Duration
         calcularPromedioTiempoCierre():Duration
         cantidadIncidentes():Integer
     }
@@ -62,7 +59,7 @@ package Entidades #back:lightyellow;line:gold;line.bold{
     ServicioTransporte --> MedioDeTransporte
     ServicioTransporte --> Linea
     ServicioTransporte --> Linea
-    Organizacion-up-|>Entidad
+    Organizacion-right-|>Entidad
     ServicioTransporte-up-|>Entidad
     RepoEntidades --->"*" Organizacion
     RepoEntidades --->"*" ServicioTransporte
