@@ -4,8 +4,4 @@
 ### Diagrama de clases
 ![](out/diagramaDeClasesV4.png)
 ### DER
-![](out/der-tpa.png)
-
-
-
-
+![](out/DER-tpa2023-entrega4.svg)
