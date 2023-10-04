@@ -1,6 +1,7 @@
 package dominio.empresasYorganismos;
 
 import dominio.clasesTecnicas.Usuario;
+import dominio.comunidades.Incidente;
 import dominio.comunidades.Miembro;
 import dominio.entidades.Organizacion;
 import dominio.entidades.ServicioTransporte;
@@ -36,7 +37,7 @@ public class EntidadPropietaria {
 
     }
 
-    public void notificarSuscriptores(){
-        //TODO para cada supcriptor notificar nuevo incidente
+    public void notificarSuscriptores(List<Incidente> incidentes){
+        suscriptores.forEach(suscriptor -> suscriptor.getMedioPreferido().notificarIncidentes(suscriptor, incidentes, this.nombre));
     }
 }

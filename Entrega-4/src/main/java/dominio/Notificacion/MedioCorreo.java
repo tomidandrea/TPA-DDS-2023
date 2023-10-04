@@ -20,8 +20,8 @@ public class MedioCorreo extends MedioDeComunicacion {
     }
 
     @Override
-    public void notificarIncidentes(Miembro miembro, List<Incidente> incidentes, Comunidad comunidad) {
-        adaptarMensaje(incidentes, comunidad);
+    public void notificarIncidentes(Miembro miembro, List<Incidente> incidentes, String origen) {
+        adaptarMensaje(incidentes, origen);
         //correoAPI.enviarCorreo(miembro.getCorreo(), mensajes); TODO:descomentar para enviar mail
     }
 

@@ -18,8 +18,8 @@ public class MedioWhatsapp extends MedioDeComunicacion{
         }
         return instance;
     }
-    public void notificarIncidentes(Miembro miembro, List<Incidente> incidentes, Comunidad comunidad) {
-        adaptarMensaje(incidentes, comunidad);
+    public void notificarIncidentes(Miembro miembro, List<Incidente> incidentes, String origen) {
+        adaptarMensaje(incidentes, origen);
         whatsappAPI.enviarMensaje(miembro.getNroDeTelefono(), mensajes);
     }
 
