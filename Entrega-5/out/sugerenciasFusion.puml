@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+package Sugerencias {
+
+    class RepoSugerencias{
+    sugerencias: List<Sugerencia>
+
+    existeSugerencia(Comunidad comunidad1 , Comunidad comunidad2, LocalDate fechaActual): boolean
+    }
+
+    class Sugerencia{
+    comunidad1: Comunidad
+    comunidad2: Comunidad
+    fecha: LocalDate
+    }
+
+    RepoSugerencias-->"*"Sugerencia
+}
+@enduml
