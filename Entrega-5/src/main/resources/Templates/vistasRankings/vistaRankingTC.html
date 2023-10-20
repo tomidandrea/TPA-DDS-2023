@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Rankings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="appVue">
+
+    <h3>Ranking de Promedio de Tiempos de Cierre de incidentes</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Entidad</th>
+            <th>Tiempo de Cierre de Incidentes</th>
+        </tr>
+        </thead>
+
+        <tr v-for="resultadoRanking in resultadosRanking">
+            <td>{{resultadoRanking.entidad.nombre}} </td>
+            <td>{{resultadoRanking.tiempoCierre}} </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<script>
+
+    var app = new Vue({
+        el: "#appVue",
+        data: {
+            resultadosRanking: []
+        },
+        created () {
+
+            fetch('http://localhost:4567/api/rankingTC')
+                .then(response => response.json())
+                .then(data => {
+                    this.resultadosRanking = data
+                    //console.log((this.resultadosRanking));
+                })
+
+        }
+    })
+</script>
+</body>
+</html>

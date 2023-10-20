@@ -1,5 +1,6 @@
 import Persistencia.*;
 import Presentacion.GetRankingCIHandler;
+import Presentacion.GetRankingTCHandler;
 import Utils.BDUtils;
 import dominio.rankings.RankingCantidadIncidentes;
 import dominio.rankings.RankingTiempoCierre;
@@ -23,6 +24,7 @@ public class Main {
             .start(4567);
 
     app.get("/api/rankingCI", new GetRankingCIHandler());
+    app.get("/api/rankingTC", new GetRankingTCHandler());
 
     /*EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
