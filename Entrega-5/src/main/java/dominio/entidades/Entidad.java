@@ -24,4 +24,7 @@ public abstract class Entidad {
     @Getter
     public String nombre;
 
+    public int getId() {
+        return id;
+    }
 }
