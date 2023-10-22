@@ -1,0 +1,35 @@
+:root {
+    --midnight-green: #093a3eff;
+    --pine-green: #05716aff;
+    --persian-green: #00a896ff;
+    --mint: #78ceaaff;
+    --cream: #f0f3bdff;
+
+    
+}
+
+.bg-principal{
+    background-color: var(--midnight-green);
+}
+
+.bg-secundario{
+    background-color: var(--pine-green);
+}
+
+.btn-principal{
+    background-color: var(--midnight-green);
+}
+.btn-principal:hover{
+    background-color: var(--persian-green);
+    border-color: var(--pine-green);
+}
+
+.img-cover{
+    object-fit: cover;
+    height: 75%;
+    
+}
+
+body{
+    background-color: var(--midnight-green);
+}
