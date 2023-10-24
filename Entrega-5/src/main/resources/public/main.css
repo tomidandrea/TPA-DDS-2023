@@ -33,3 +33,17 @@
 body{
     background-color: var(--midnight-green);
 }
+
+.chosen-container .chosen-results li {
+    font-size: 16px; /* Establece el tamaño de la fuente dentro del control de selección */
+}
+  
+.chosen-container{
+    font-size: 16px;
+    width: 100% !important;
+}
+
+/* Estilo para los elementos seleccionados */
+.chosen-container-multi .chosen-choices li.search-choice {
+    font-size: 16px; /* Tamaño de la fuente para los elementos seleccionados */
+}
