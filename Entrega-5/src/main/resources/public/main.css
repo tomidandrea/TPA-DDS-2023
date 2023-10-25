@@ -21,7 +21,7 @@
 }
 .btn-principal:hover{
     background-color: var(--persian-green);
-    border-color: var(--pine-green);
+    border-color:transparent;
 }
 
 .img-cover{

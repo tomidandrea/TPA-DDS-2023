@@ -1,0 +1,54 @@
+/* FILEPATH: /C:/Users/agustin/Documents/UTN/Nivel_3/DDS - Straccia/tpa-grupo1-dds-2023/Entrega-5/src/main/resources/Templates/login.css */
+
+/* Google Login Button */
+
+.google-login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    border-color: #00a896ff;
+    box-shadow: 0 1px 2px #093a3e;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #757575;
+    text-align: center;
+    cursor: pointer;
+}
+
+.google-login:hover {
+    background-color: #eeeeee;
+}
+
+.google-login img {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    object-fit: contain;
+}
+
+.other-login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    border-color: #00a896ff;
+    box-shadow: 0 1px 2px #093a3e;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #757575;
+    text-align: center;
+    cursor: pointer;
+}
+
+.other-login:hover {
+    background-color: #eeeeee;
+}
+
+
