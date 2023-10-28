@@ -47,3 +47,11 @@ body{
 .chosen-container-multi .chosen-choices li.search-choice {
     font-size: 16px; /* Tamaño de la fuente para los elementos seleccionados */
 }
+
+.border-r-1{
+    border-radius: 1rem
+}
+
+.card-shadow{
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
