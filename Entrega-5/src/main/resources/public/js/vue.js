@@ -9,6 +9,9 @@ Vue.component('navbar', {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="./menuDeInicio.html">Inicio</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="./cargaCSV.html">Carga entidades</a>
             </li>
             <li class="nav-item">
@@ -40,9 +43,22 @@ Vue.component('navbar', {
                 <li><a class="dropdown-item" href="./consultaRankings.html">Consulta rankings</a></li>
                 </ul>
             </li>
+             <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Comunidades
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#">Crear Comunidad</a></li>
+                <li><a class="dropdown-item" href="#">Unirse a Comunidad</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Mis Comunidades</a></li>
+                </ul>
+            </li>
             </ul>
             <div class="ms-auto">
-            <button type="button" class="btn btn-principal text-white">Iniciar/Cerrar Sesión </button>
+            <button type="button" class="btn btn-dark text-white">Cerrar Sesión </button>
             </div>
         </div>
         </div>

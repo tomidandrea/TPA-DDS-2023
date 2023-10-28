@@ -16,7 +16,8 @@ signInForm.addEventListener("submit", async (e) => {
         // reset the form
         //signInForm.reset();
 
-        // show welcome message
+        // me lleva al menu de inicio y me da la bienvenida
+        window.location.href="../menuDeInicio.html";
         showMessage("Bienvenido " + userCredentials.user.email);
 
         //TODO ver como se manejan los errores porque se ve que ahora firebase no devuelve los mismos errores
@@ -27,7 +28,7 @@ signInForm.addEventListener("submit", async (e) => {
         } else if (error.code === 'auth/user-not-found') {
             showMessage("Usuario no encontrado", "error")
         } else {
-            showMessage("Algo fue mal", "error")
+            showMessage("Algo salió mal", "error")
         }
     }
 });
