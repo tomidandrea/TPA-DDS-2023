@@ -53,7 +53,7 @@ Vue.component('navbar', {
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Mis Comunidades</a></li>
+                <li><a class="dropdown-item" href="./comunidades.html">Mis Comunidades</a></li>
                 </ul>
             </li>
             </ul>
