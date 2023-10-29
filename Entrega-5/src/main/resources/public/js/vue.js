@@ -15,7 +15,7 @@ Vue.component('navbar', {
                 <a class="nav-link" aria-current="page" href="./cargaCSV.html">Carga entidades</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Administración usuarios</a>
+                <a class="nav-link" href="./administracionUsuarios.html">Administración usuarios</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,7 +53,7 @@ Vue.component('navbar', {
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="./comunidades.html">Mis Comunidades</a></li>
+                <li><a class="dropdown-item" href="#">Mis Comunidades</a></li>
                 </ul>
             </li>
             </ul>
