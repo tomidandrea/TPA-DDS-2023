@@ -1,3 +1,264 @@
+:root {
+    --midnight-green: #093a3eff;
+    --pine-green: #05716aff;
+    --persian-green: #00a896ff;
+    --mint: #78ceaaff;
+    --cream: #f0f3bdff;
+    --antiflash-white: #f3f4f7ff;
+    --paynes-gray: #385f71ff;
+    --myrtle-green: #547a80ff;
+    --cambridge-blue: #8baf9eff;
+    --cambridge-blue-2: #a6c9adff;
+
+}
 .card-shadow{
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.quote{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--midnight-green);
+}
+
+.new-card {
+        width: 190px;
+        height: 254px;
+        border-radius: 30px;
+        background: #e0e0e0;
+        box-shadow: 15px 15px 30px #bebebe,
+                   -15px -15px 30px #ffffff;
+}
+
+/* -------------------------------- 
+
+File#: _1_feature-v6
+Title: Feature v6
+Descr: A section containing a list of features
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+/* reset */
+*, *::after, *::before {
+    box-sizing: border-box;
+  }
+  
+  * {
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    background-color: hsl(0, 0%, 100%);
+    font-family: system-ui, sans-serif;
+    color: hsl(230, 7%, 23%);
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.4;
+  }
+  
+  h1, h2, h3, h4 {
+    line-height: 1.2;
+    color: hsl(230, 13%, 9%);
+    font-weight: 700;
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* 40px */
+  }
+  
+  h2 {
+    font-size: 2.125rem; /* 34px */
+  }
+  
+  h3 {
+    font-size: 1.75rem; /* 28px */
+  }
+  
+  h4 {
+    font-size: 1.375rem; /* 22px */
+  }
+  
+  ol, ul, menu {
+    list-style: none;
+  }
+  
+  button, input, textarea, select {
+    background-color: transparent;
+    border-radius: 0;
+    color: inherit;
+    line-height: inherit;
+    -webkit-appearance: none;
+            appearance: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    overflow: auto;
+    vertical-align: top;
+  }
+  
+  a {
+    color: hsl(163, 51%, 50%);
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  img, video, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* -------------------------------- 
+  
+  Icons 
+  
+  -------------------------------- */
+  
+  .cd-icon {
+    --size: 1em;
+    font-size: var(--size);
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    color: inherit;
+    fill: currentColor;
+    line-height: 1;
+    flex-shrink: 0;
+    max-width: initial;
+  }
+  
+  .cd-icon use { /* SVG symbols - enable icon color corrections */
+    color: inherit;
+    fill: currentColor;
+  }
+  
+  /* -------------------------------- 
+  
+  Component 
+  
+  -------------------------------- */
+  
+  .feature-v6 {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .feature-v6__grid {
+    display: grid;
+    gap: 3rem;
+  }
+  
+  .feature-v6__grid > * {
+    min-width: 0;
+  }
+  
+  .feature-v6__img {
+    width: 100%;
+    border-radius: 0.375em;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-v6__icon-wrapper {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px hsla(230, 13%, 9%, 0.05);
+    background-color: hsl(0, 0%, 100%);
+    margin-bottom: 1rem;
+  }
+  
+  .feature-v6__icon {
+    --size: 40px;
+    color: var(--mint);
+  }
+  
+  .feature-v6__description {
+    color: hsl(225, 4%, 47%);
+    line-height: 1.58;
+  }
+  
+  @media (min-width: 64rem) {
+    .feature-v6__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* -------------------------------- 
+  
+  Utilities 
+  
+  -------------------------------- */
+  
+  .cd-margin-x-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cd-margin-bottom-2xs {
+    margin-bottom: 0.75rem;
+  }
+  
+  .cd-margin-bottom-xs {
+    margin-bottom: 1rem;
+  }
+  
+  .cd-padding-y-xl {
+    padding-top: 0.5rem;
+    padding-bottom: 4.5rem;
+  }
+  
+  .cd-container {
+    width: calc(100% - 3rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cd-max-width-adaptive-lg {
+    max-width: 32rem;
+  }
+  
+  @media (min-width: 64rem) {
+    .cd-max-width-adaptive-lg {
+      max-width: 64rem;
+    }
+  }
+  
+  @media (min-width: 85.5rem) {
+    .cd-max-width-adaptive-lg {
+      max-width: 80rem;
+    }
+  }
+  
+  .cd-link {
+    color: var(--midnight-green);
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--midnight-green) 50%, hsla(250, 84%, 54%, 0.2) 50%);
+    background-size: 200% 1px;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    transition: background-position 0.2s;
+  }
+  
+  .cd-link:hover {
+    background-position: 0% 100%;
+    color: var(--mint);
+  }
+  
+  .cd-text-center {
+    text-align: center;
+  }
