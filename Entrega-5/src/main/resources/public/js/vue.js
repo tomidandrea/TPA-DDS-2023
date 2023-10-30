@@ -59,7 +59,7 @@ Vue.component('navbar', {
             </ul>
             <div class="ms-auto">
             <button type="button" class="btn btn-dark text-white">
-                <a href="./login/LogIn.html" class="nav-link" role="button">
+                <a href="./LogIn.html" class="nav-link" role="button">
                 Cerrar Sesión 
                 </a>   
             </button>
