@@ -266,3 +266,24 @@ Usage: codyhouse.co/license
   .cd-text-center {
     text-align: center;
   }
+
+  .custom-shape-divider-top-1698778246 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1698778246 svg {
+    position: relative;
+    display: block;
+    width: calc(287% + 1.3px);
+    height: 328px;
+}
+
+.custom-shape-divider-top-1698778246 .shape-fill {
+    fill: #CADBB6;
+}

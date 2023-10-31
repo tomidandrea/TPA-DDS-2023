@@ -9,11 +9,7 @@
     --myrtle-green: #547a80ff;
     --cambridge-blue: #8baf9eff;
     --cambridge-blue-2: #a6c9adff;
-
-}
-
-.bg-principal {
-    background-color: var(--antiflash-white);
+    --card-container-gray: #e1e9e2; 
 }
 
 .bg-secundario {
@@ -64,9 +60,6 @@
     background-color: var(--antiflash-white);
 }
 
-.card-container {
-    background-color: var(--cambridge-blue-2);
-}
 
 .custom-shape-divider-bottom-1698624582 {
     position: absolute;
@@ -86,4 +79,8 @@
 
 .custom-shape-divider-bottom-1698624582 .shape-fill {
     fill: var(--paynes-gray);
+}
+
+.card-shadow{
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
