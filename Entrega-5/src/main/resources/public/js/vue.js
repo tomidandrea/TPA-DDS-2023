@@ -1,6 +1,7 @@
+
 Vue.component('navbar', {
-    template:`
-    <nav class="navbar navbar-expand-lg bg-light">
+    template:` 
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +58,7 @@ Vue.component('navbar', {
                 </ul>
             </li>
             </ul>
-            <div class="ms-auto">
+            <div class="ms-auto cerrar-sesion">
             <button type="button" class="btn btn-dark text-white">
                 <a href="./LogIn.html" class="nav-link" role="button">
                 Cerrar Sesión 

@@ -21,6 +21,10 @@
     color: var(--midnight-green);
 }
 
+.user-icon{
+    color: var(--midnight-green);
+}
+
 .new-card {
         width: 190px;
         height: 254px;
