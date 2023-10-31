@@ -17,7 +17,7 @@ signInForm.addEventListener("submit", async (e) => {
         //signInForm.reset();
 
         // me lleva al menu de inicio y me da la bienvenida
-        window.location.href="../menuDeInicio.html";
+        window.location.href="menuDeInicio.html";
         showMessage("Bienvenido " + userCredentials.user.email);
 
         //TODO ver como se manejan los errores porque se ve que ahora firebase no devuelve los mismos errores

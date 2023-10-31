@@ -1,6 +1,6 @@
-
+import {logout} from "../../Templates/Autenticacion-Firebase/app/logout.js"
 Vue.component('navbar', {
-    template:` 
+    template: ` 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
         <a class="navbar-brand" href="#">Logo</a>
@@ -59,18 +59,25 @@ Vue.component('navbar', {
             </li>
             </ul>
             <div class="ms-auto cerrar-sesion">
-            <button type="button" class="btn btn-dark text-white">
-                <a href="./LogIn.html" class="nav-link" role="button">
+            <button type="button" class="btn btn-dark text-white" @click ="cerrarSesion">
                 Cerrar Sesión 
-                </a>   
             </button>
             </div>
         </div>
         </div>
     </nav>
-    `
+    `,
+    methods: {
+        cerrarSesion() {
+            console.log("voy a cerrar sesión")
+            logout()
+        }
+    }
+
 })
 
-var app = new Vue({
+
+    var app = new Vue({
     el: '#app-nav'
+
 })
