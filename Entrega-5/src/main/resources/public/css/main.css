@@ -16,8 +16,13 @@
     background-color: var(--pine-green);
 }
 
+.bg-principal {
+    background-color: var(--card-container-gray);
+}
+
 .btn-principal {
-    background-color: var(--midnight-green);
+    background-color: var(--pine-green);
+    color: white;
 }
 
 .btn-principal:hover {
