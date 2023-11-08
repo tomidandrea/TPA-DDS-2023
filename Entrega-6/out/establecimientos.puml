@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package Establecimientos #back:lavender;line:Blue;line.bold{
+
+    abstract class Establecimiento {
+        nombre : String
+        localizacion: <Localizacion>
+        servicios: List<Servicio>
+        agrupaciones: List<Agrupacion>
+        obtenerListaTiemposCierre(): List<Duration>
+        cantidadDeIncidentes(): Int
+        incidentesDelEstablecimiento(): List<Incidente>
+    }
+
+  class Sucursal{
+  }
+
+  class Estacion{
+     serviciosFaltantes():List<Servicio>
+  }
+
+  class "RepoIncidentes" as CopiaRepoIncidentes{
+      }
+
+  Sucursal-down-|>Establecimiento
+  Estacion-down-|>Establecimiento
+  Establecimiento..>CopiaRepoIncidentes
+}
+
+@enduml

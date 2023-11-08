@@ -1,0 +1,91 @@
+:root {
+    --midnight-green: #093a3eff;
+    --pine-green: #05716aff;
+    --persian-green: #00a896ff;
+    --mint: #78ceaaff;
+    --cream: #f0f3bdff;
+    --antiflash-white: #f3f4f7ff;
+    --paynes-gray: #385f71ff;
+    --myrtle-green: #547a80ff;
+    --cambridge-blue: #8baf9eff;
+    --cambridge-blue-2: #a6c9adff;
+    --card-container-gray: #e1e9e2; 
+}
+
+.bg-secundario {
+    background-color: var(--pine-green);
+}
+
+.bg-principal {
+    background-color: var(--card-container-gray);
+}
+
+.btn-principal {
+    background-color: var(--pine-green);
+    color: white;
+}
+
+.btn-principal:hover {
+    background-color: var(--persian-green);
+    border-color: transparent;
+}
+
+.img-cover {
+    object-fit: cover;
+    height: 75%;
+
+}
+
+/* body {
+    background-color: var(--midnight-green);
+} */
+
+.chosen-container .chosen-results li {
+    font-size: 16px;
+    /* Establece el tamaño de la fuente dentro del control de selección */
+}
+
+.chosen-container {
+    font-size: 16px;
+    width: 100% !important;
+}
+
+/* Estilo para los elementos seleccionados */
+.chosen-container-multi .chosen-choices li.search-choice {
+    font-size: 16px;
+    /* Tamaño de la fuente para los elementos seleccionados */
+}
+
+.border-r-1 {
+    border-radius: 1rem
+}
+
+.card-ranking {
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: var(--antiflash-white);
+}
+
+
+.custom-shape-divider-bottom-1698624582 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1698624582 svg {
+    position: relative;
+    display: block;
+    width: calc(131% + 1.3px);
+    height: 260px;
+}
+
+.custom-shape-divider-bottom-1698624582 .shape-fill {
+    fill: var(--paynes-gray);
+}
+
+.card-shadow{
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

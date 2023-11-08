@@ -1,0 +1,36 @@
+:root {
+    --midnight-green: #093a3eff;
+    --pine-green: #05716aff;
+    --persian-green: #00a896ff;
+    --mint: #78ceaaff;
+    --cream: #f0f3bdff;
+    --antiflash-white: #f3f4f7ff;
+    --paynes-gray: #385f71ff;
+    --myrtle-green: #547a80ff;
+    --cambridge-blue: #8baf9eff;
+    --cambridge-blue-2: #a6c9adff;
+}
+
+.nav-item {
+    margin: 0 0.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    background-image: linear-gradient(to right, var(--midnight-green) 50%, hsla(250, 84%, 54%, 0.2) 50%);
+    background-size: 200% 2px;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    transition: background-position 0.2s;
+}
+
+.nav-link:hover {
+    background-position: 0% 100%;
+    color: var(--mint);
+}
+
+@media (max-width: 992px) {
+    .cerrar-sesion {
+        margin-top: 0.75rem;
+    }
+}
