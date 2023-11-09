@@ -37,20 +37,7 @@ public class LoginController {
         }
 
         request.session().attribute("usuario_logueado", usuario);
-        switch (usuarioEncontrado.getTipoUsuario()) {
-            case MIEMBRO:
-                request.session().attribute("tipo_usuario", "miembro");
-                break;
-            case ORGANIZACION:
-                request.session().attribute("tipo_usuario", "organizacion");
-                break;
-            case ADMINISTRADOR:
-                request.session().attribute("tipo_usuario", "administrador");
-                break;
-            case AGENTE_SECTORIAL:
-                request.session().attribute("tipo_usuario", "agente_sectorial");
-                break;
-        }
+
         request.session().attribute("login_error", false);
         response.redirect("/home");
         return null;
