@@ -1,13 +1,7 @@
-import Persistencia.*;
+import Presentacion.GetServiciosHandler;
 import Presentacion.GetRankingCIHandler;
 import Presentacion.GetRankingTCHandler;
-import Utils.BDUtils;
-import dominio.rankings.RankingCantidadIncidentes;
-import dominio.rankings.RankingTiempoCierre;
 import io.javalin.Javalin;
-
-import javax.persistence.EntityManager;
-import java.time.LocalDate;
 
 public class Main {
 
@@ -23,8 +17,9 @@ public class Main {
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
 
-    app.get("/api/rankingCI", new GetRankingCIHandler());
-    app.get("/api/rankingTC", new GetRankingTCHandler());
+    //app.get("/api/rankingCI", new GetRankingCIHandler());
+    //app.get("/api/rankingTC", new GetRankingTCHandler());
+    app.get("/api/servicios", new GetServiciosHandler());
 
     /*EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
