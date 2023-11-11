@@ -3,6 +3,7 @@ package dominio.comunidades;
 import dominio.servicios.Agrupacion;
 import dominio.servicios.Servicio;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Getter
 @Entity
+@Setter
 public class Incidente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,8 +73,11 @@ public class Incidente {
         repoIncidentes.agregar(this);
     }
 
-    public Incidente() {
+    public Incidente(String observacion) {
+        this.observacion = observacion;
+    }
 
+    public Incidente() {
     }
 
     public Duration obtenerTiempoCierre(){

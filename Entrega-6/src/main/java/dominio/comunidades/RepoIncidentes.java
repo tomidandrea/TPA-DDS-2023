@@ -1,8 +1,10 @@
 package dominio.comunidades;
 
+import Utils.BDUtils;
 import dominio.servicios.Agrupacion;
 import dominio.servicios.Servicio;
 
+import javax.persistence.EntityManager;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,6 +51,14 @@ public class RepoIncidentes {
                 .filter(i-> i.getHorarioCierre()!=null && i.cerradoUltimaSemana())
                 .filter(incidente->incidente.getServicio() != null && servicios.contains(incidente.getServicio()))
                 .collect(Collectors.toList());
+    }
+
+    public void persistirIncidente(Incidente incidente){
+        EntityManager em = BDUtils.getEntityManager();
+        BDUtils.comenzarTransaccion(em);
+        em.persist(incidente);
+        BDUtils.commit(em);
+        em.close();
     }
 
 

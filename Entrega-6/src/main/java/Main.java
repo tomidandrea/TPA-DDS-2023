@@ -1,6 +1,7 @@
 import Presentacion.GetServiciosHandler;
 import Presentacion.GetRankingCIHandler;
 import Presentacion.GetRankingTCHandler;
+import Presentacion.PostIncidenteHandler;
 import io.javalin.Javalin;
 
 public class Main {
@@ -20,6 +21,7 @@ public class Main {
     //app.get("/api/rankingCI", new GetRankingCIHandler());
     //app.get("/api/rankingTC", new GetRankingTCHandler());
     app.get("/api/servicios", new GetServiciosHandler());
+    app.post("/api/incidentes", new PostIncidenteHandler());
 
     /*EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);

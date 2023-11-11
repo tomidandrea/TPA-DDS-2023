@@ -81,5 +81,5 @@ Vue.component('navbar', {
 var app = new Vue({
     el: '#app-nav'
 
-
 })
+

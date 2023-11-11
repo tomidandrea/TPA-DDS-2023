@@ -8,6 +8,7 @@ import io.javalin.http.Handler;
 public class GetServiciosHandler implements Handler {
     @Override
     public void handle(Context context) throws Exception {
+
         context.json(new Gson().toJson(RepoServicios.getInstance().obtenerServicios()));
     }
 }
