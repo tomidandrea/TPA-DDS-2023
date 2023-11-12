@@ -12,10 +12,13 @@ public class PostIncidenteHandler implements Handler {
     public void handle(Context context) throws Exception {
         String incidenteJson = context.body();
         System.out.println(incidenteJson);
-        //Incidente incidente = new Gson().fromJson(incidenteJson, Incidente.class);
-        //System.out.println("-------");
-        //System.out.println(incidente.getObservacion());
-        //RepoIncidentes.getInstance().persistirIncidente(incidente);
+        //filtro segun cnatidad de servicios recibidos
+        // si recibo en el json mas de 1 servicio, seteo los mismos en la lista de agrupacion de incidente
+        // si recibo 1 servicio, seteo el mismo en el servicio de incidente
+        // si no recibo ningun servicio, no seteo nada
+
+        IncidenteParser incidenteParser = context.bodyAsClass(IncidenteParser.class);
+
         context.status(201);
     }
 }

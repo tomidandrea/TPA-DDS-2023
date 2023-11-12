@@ -3,7 +3,8 @@ function abrirIncidente(){
     console.log("voy a abrir un incidente")
     let inputObservacion = document.getElementById("observacion")
     var formData = {
-        observacion: inputObservacion.value
+        observacion: inputObservacion.value,
+        servicios: values
     };
     inputObservacion.value = ""
     $(".chosen-select").val('').trigger("chosen:updated");

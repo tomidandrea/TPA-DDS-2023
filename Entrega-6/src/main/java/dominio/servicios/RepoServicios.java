@@ -33,6 +33,10 @@ public class RepoServicios {
                 .getResultList();
     }
 
+    public Servicio obtenerServicioPorId(int id) {
+        return em.find(Servicio.class, id);
+    }
+
     public List<Servicio> serviciosQueFaltan(List<Servicio> servicios){
         return new ArrayList<>();
     }
