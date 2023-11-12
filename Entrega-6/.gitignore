@@ -4,7 +4,7 @@ target/
 !**/src/test/**/target/
 
 ## persistence.xml
-**/META-INF
+**/META-INF/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

@@ -1,10 +1,12 @@
 
 function abrirIncidente(){
-    console.log("voy a abrir un incidente");
+    console.log("voy a abrir un incidente")
+    let inputObservacion = document.getElementById("observacion")
     var formData = {
-        observacion: document.getElementById("observacion").value
+        observacion: inputObservacion.value
     };
-
+    inputObservacion.value = ""
+    $(".chosen-select").val('').trigger("chosen:updated");
     fetch("http://localhost:4567/api/incidentes", {
         method: "POST",
         body: JSON.stringify(formData),
@@ -14,6 +16,7 @@ function abrirIncidente(){
     }).then(function (response) {
         if (response.ok) {
             console.log("Incidente creado");
+            crearMensaje("Incidente creado con éxito!", "success")
             //return response.json();
         } else {
             console.log("Error al crear incidente");
