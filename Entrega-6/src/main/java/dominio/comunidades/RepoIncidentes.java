@@ -56,7 +56,7 @@ public class RepoIncidentes {
     public void persistirIncidente(Incidente incidente){
         EntityManager em = BDUtils.getEntityManager();
         BDUtils.comenzarTransaccion(em);
-        em.persist(incidente);
+        em.merge(incidente); // con persist tiraba error en el servicio asociado
         BDUtils.commit(em);
         em.close();
     }

@@ -73,8 +73,24 @@ public class Incidente {
         repoIncidentes.agregar(this);
     }
 
-    public Incidente(String observacion) {
+    public Incidente(Servicio servicio, String observacion, List<Comunidad> comunidades, LocalDateTime horarioApertura) {
+        this.servicio = servicio;
         this.observacion = observacion;
+        this.comunidades = comunidades;
+        this.horarioApertura = horarioApertura;
+        this.estadoIncidente = EstadoIncidente.ABIERTO;
+        RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+        repoIncidentes.agregar(this);
+    }
+
+    public Incidente(Agrupacion agrupacion, String observacion, List<Comunidad> comunidades, LocalDateTime horarioApertura) {
+        this.agrupacion = agrupacion;
+        this.observacion = observacion;
+        this.comunidades = comunidades;
+        this.horarioApertura = horarioApertura;
+        this.estadoIncidente = EstadoIncidente.ABIERTO;
+        RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+        repoIncidentes.agregar(this);
     }
 
     public Incidente() {
