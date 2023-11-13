@@ -1,15 +1,25 @@
-import Presentacion.GetServiciosHandler;
+import Persistencia.*;
 import Presentacion.GetRankingCIHandler;
 import Presentacion.GetRankingTCHandler;
+import Presentacion.GetServiciosHandler;
 import Presentacion.PostIncidenteHandler;
+import Presentacion.LoginHandler;
+import Utils.BDUtils;
+import dominio.rankings.RankingCantidadIncidentes;
+import dominio.rankings.RankingTiempoCierre;
 import io.javalin.Javalin;
+import io.javalin.openapi.plugin.OpenApiConfiguration;
+import io.javalin.openapi.plugin.OpenApiPlugin;
+
+import javax.persistence.EntityManager;
+import java.time.LocalDate;
 
 public class Main {
 
   public static void main(String[] args) {
 
     Javalin app = Javalin.create(javalinConfig -> {
-              javalinConfig.plugins.enableCors(cors -> {
+                javalinConfig.plugins.enableCors(cors -> {
                 cors.add(it -> it.anyHost());
               });
 
@@ -17,13 +27,14 @@ public class Main {
             })
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
-
-    //app.get("/api/rankingCI", new GetRankingCIHandler());
+    app.get("/api/rankingCI", new GetRankingCIHandler());
     //app.get("/api/rankingTC", new GetRankingTCHandler());
     app.get("/api/servicios", new GetServiciosHandler());
     app.post("/api/incidentes", new PostIncidenteHandler());
+    app.post("/api/login", new LoginHandler());
 
-    /*EntityManager em = BDUtils.getEntityManager();
+
+   /** EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
     InstanciasServicios servicios = new InstanciasServicios(em);
     InstanciasIncidentes incidentes = new InstanciasIncidentes(em, servicios);
@@ -48,8 +59,7 @@ public class Main {
 
     BDUtils.commit(em);
     em.close();
-
-     */
+    **/
 
   }
 

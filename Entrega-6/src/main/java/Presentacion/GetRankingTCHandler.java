@@ -4,6 +4,7 @@ import Presentacion.dto.EntidadDTO;
 import Presentacion.dto.RankingTCDTO;
 import Presentacion.dto.ResultadoTCDTO;
 import Utils.BDUtils;
+import com.google.gson.Gson;
 import dominio.clasesTecnicas.ResultadoTiempoCierre;
 import dominio.entidades.Entidad;
 import dominio.rankings.RankingTiempoCierre;
@@ -27,7 +28,7 @@ public class GetRankingTCHandler implements Handler {
     @Override
     public void handle(@NotNull Context context) throws Exception {
         List<ResultadoTCDTO> resultados = this.mapRankingTCToDTO(ranking).getResultadosDTO();
-        context.json(resultados);
+        context.json(new Gson().toJson(resultados));
     }
 
     private RankingTCDTO mapRankingTCToDTO(RankingTiempoCierre ranking) {

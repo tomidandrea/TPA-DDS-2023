@@ -14,7 +14,7 @@ public class LoginController {
 //    public ModelAndView index(Request request, Response response) {
 //        Map<String, Object> model = new HashMap<>();
 //        model.put("login_error", request.session().attribute("login_error"));
-//        return new ModelAndView(model, "LogIn.hbs");
+//        return new ModelAndView(model, "LogIn.html");
 //    }
 //
 //    public ModelAndView post(Request request, Response response) {

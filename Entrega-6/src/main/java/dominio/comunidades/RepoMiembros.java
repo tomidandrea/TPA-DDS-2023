@@ -1,5 +1,7 @@
 package dominio.comunidades;
 
+import dominio.servicios.Servicio;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,4 +26,5 @@ public class RepoMiembros {
     public void agregar(Miembro miembro) {
         miembros.add(miembro);
     }
+
 }

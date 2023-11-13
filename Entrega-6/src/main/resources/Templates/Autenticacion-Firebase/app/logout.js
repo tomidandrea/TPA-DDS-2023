@@ -7,7 +7,7 @@ export async function logout() {
         try {
             await signOut(auth)
             console.log('el usuario cerró sesión')
-            window.location.href="./LogIn.hbs"
+            window.location.href="./LogIn.html"
             showMessage("Se ha cerrado la sesión ")
 
         } catch (error) {

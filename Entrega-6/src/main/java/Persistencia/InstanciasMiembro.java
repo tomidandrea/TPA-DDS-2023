@@ -29,10 +29,10 @@ public class InstanciasMiembro {
         List<Provincia> provincias = crearProvincias(em);
         List<Notificador> notificadores = crearNotificadores(em);
 
-        this.miembro1 = new Miembro("Blue", "Label", "blue@label", provincias.get(1),
+        this.miembro1 = new Miembro("Blue", "Label", "blue@label.com", provincias.get(1),
                 new MedioCorreo(), "1234", notificadores.get(0),
                 "blueLabel", "23campeonDelMundo#3");
-        this.miembro2 = new Miembro("Azul","Lebal", "azul@lebal", provincias.get(0),
+        this.miembro2 = new Miembro("Azul","Lebal", "azul@lebal.com", provincias.get(0),
                 new MedioCorreo(), "1234", notificadores.get(1),
                 "azuLebal", "23campeonDelMundo#3");
         this.miembro3 = new Miembro("Rodolfo", "Gonzalez","rodo@gmail.com", provincias.get(2),
@@ -41,13 +41,13 @@ public class InstanciasMiembro {
         this.miembro4 = new Miembro("Chef", "Curry", "sthep@hotmail.com", provincias.get(2),
                 new MedioCorreo(), "1234", notificadores.get(3),
                 "curry34", "23campeonDelMundo#3");
-        this.miembro5 = new Miembro("Lucho", "Gonzalez", "lucho@gmail", provincias.get(1),
+        this.miembro5 = new Miembro("Lucho", "Gonzalez", "lucho@gmail.com", provincias.get(1),
                 new MedioCorreo(), "1234", notificadores.get(4),
                 "luchoGG", "23campeonDelMundo#3");
-        this.miembro6 = new Miembro("Lionel","Mezzi", "lio@gmail", provincias.get(1),
+        this.miembro6 = new Miembro("Lionel","Mezzi", "lio@gmail.com", provincias.get(1),
                 new MedioCorreo(), "1234", notificadores.get(5),
                 "marciano10", "23campeonDelMundo#3");
-        this.miembro7 = new Miembro("Pepe", "Argento", "pepe@argento", provincias.get(0),
+        this.miembro7 = new Miembro("Pepe", "Argento", "pepeargento@gmail.com", provincias.get(0),
                 new MedioCorreo(), "1234", notificadores.get(6),
                 "pepeArg", "23campeonDelMundo#3");
         em.persist(miembro1.getInteres());

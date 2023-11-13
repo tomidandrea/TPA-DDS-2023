@@ -115,4 +115,13 @@ public class Miembro extends Usuario {
         return notificador.compararHorarioActual();
     }
 
+    @Override
+    public String toString() {
+        return "Miembro{" +
+                "id=" + id +
+                ", nombre='" + nombre + "apellido'" + apellido + "correoElectronico'" + correoElectronico +'\'' +
+                '}';
+    }
 }
+
+
