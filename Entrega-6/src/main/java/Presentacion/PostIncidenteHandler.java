@@ -17,8 +17,9 @@ public class PostIncidenteHandler implements Handler {
         // si recibo 1 servicio, seteo el mismo en el servicio de incidente
         // si no recibo ningun servicio, no seteo nada
 
-        IncidenteParser incidenteParser = context.bodyAsClass(IncidenteParser.class);
-
+        IncidenteParser incidenteParser = new Gson().fromJson(incidenteJson, IncidenteParser.class);
+        System.out.println(incidenteParser.getObservacion());
+        System.out.println(incidenteParser.getServicios());
         context.status(201);
     }
 }
