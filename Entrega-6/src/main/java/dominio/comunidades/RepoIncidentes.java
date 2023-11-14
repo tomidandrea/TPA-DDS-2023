@@ -21,11 +21,19 @@ public class RepoIncidentes {
     }
 
     public List<Incidente> obtenerIncidentesPorEstado(EstadoIncidente estado){
-        return (List<Incidente>) incidentes.stream().filter(i->i.tieneEstado(estado));
+        EntityManager em = BDUtils.getEntityManager();
+        return em.createQuery("from Incidente where estadoIncidente = :estado", Incidente.class)
+                .setParameter("estado", estado)
+                .getResultList();
     }
 
     public void agregar(Incidente incidente) {
         incidentes.add(incidente);
+    }
+
+    public List<Incidente> obtenerIncidentes(){
+        EntityManager em = BDUtils.getEntityManager();
+        return em.createQuery("from Incidente").getResultList();
     }
 
     public List<Duration> obtenerTiempos(){

@@ -1,9 +1,5 @@
 import Persistencia.*;
-import Presentacion.GetRankingCIHandler;
-import Presentacion.GetRankingTCHandler;
-import Presentacion.GetServiciosHandler;
-import Presentacion.PostIncidenteHandler;
-import Presentacion.LoginHandler;
+import Presentacion.*;
 import Utils.BDUtils;
 import dominio.rankings.RankingCantidadIncidentes;
 import dominio.rankings.RankingTiempoCierre;
@@ -32,6 +28,7 @@ public class Main {
     app.get("/api/servicios", new GetServiciosHandler());
     app.post("/api/incidentes", new PostIncidenteHandler());
     app.post("/api/login", new LoginHandler());
+    app.get("/api/incidentes", new GetIncidentesPorEstadoHandler());
 
 
    /** EntityManager em = BDUtils.getEntityManager();

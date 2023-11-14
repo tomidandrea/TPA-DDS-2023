@@ -14,19 +14,23 @@
   </div>
     <div class="container bg-light card-shadow my-2 border-r-1">
         <h2 class="fw-bold p-4"> Consulta de incidentes </h2>
-        <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">
-            <div class="col-8 col-md-6 mx-auto mx-md-0 my-1">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected hidden>Seleccione estado de incidente</option>
-                    <option value="1">Todos</option>
-                    <option value="2">Abierto</option>
-                    <option value="3">Cerrado</option>
-                </select>
+        <form action="/api/incidentes" method="get">
+            <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">
+
+                <div class="col-8 col-md-6 mx-auto mx-md-0 my-1">
+                    <select class="form-select" aria-label="Default select example" name="estado" required>
+                        <option selected hidden>Seleccione estado de incidente</option>
+                        <option value="todos">Todos</option>
+                        <option value="abierto">Abierto</option>
+                        <option value="cerrado">Cerrado</option>
+                    </select>
+                </div>
+                <div class="col-8 col-md-4 mx-auto me-md-0 my-1 d-grid gap-2">
+                    <button class="btn btn-dark btn-principal" type="submit">Buscar</button>
+                </div>
             </div>
-            <div class="col-8 col-md-4 mx-auto me-md-0 my-1 d-grid gap-2">
-                <button class="btn btn-dark btn-principal" type="button">Buscar</button>
-            </div>
-        </div>
+        </form>
+
         <div class="container-fluid pb-1">
             <table class="table table-hover table-bordered">
                 <thead>
