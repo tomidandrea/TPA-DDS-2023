@@ -25,7 +25,7 @@ signUpForm.addEventListener("submit", async (e) => {
     } catch (error) {
         console.log(error)
         if (error.code === 'auth/email-already-in-use') {
-            showMessage("El correo electtrónico ya fue usado", "error")
+            showMessage("El correo electrónico ya fue usado", "error")
         } else if (error.code === 'auth/invalid-email') {
             showMessage("Correo electrónico invalido", "error")
         } else if (error.code === 'auth/weak-password') {

@@ -18,10 +18,16 @@ public class RepoComunidades {
         return instance;
     }
 
+    public RepoComunidades() {
+        this.comunidades = em.createQuery("from Comunidad").getResultList();
+    }
+
     public List<Comunidad> getComunidades() {
-        return em
-                .createQuery("from Comunidad")
-                .getResultList();
+        return comunidades;
+    }
+
+    public List<Comunidad> filtrarPorMiembro(int idMiembro) {
+        return comunidades.stream().filter(c -> c.tieneAlMiembro(idMiembro)).toList();
     }
 
     public void agregarComunidad(Comunidad comu) {

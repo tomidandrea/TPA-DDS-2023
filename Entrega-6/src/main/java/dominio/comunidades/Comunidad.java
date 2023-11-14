@@ -109,7 +109,11 @@ public class Comunidad {
         miembros.addAll(observadores);
         return miembros.stream().filter(miembro -> miembro.estaEnHorarioDeNotificacion()).toList();
     }
-
+    public Boolean tieneAlMiembro(int id) {
+        HashSet<Miembro> miembros = new HashSet<>(afectados);
+        miembros.addAll(observadores);
+        return miembros.stream().anyMatch(m -> m.getId() == id);
+    }
     public List<Incidente> obtenerIncidentesAbiertosDesde(LocalTime hora) {
         return null;
     }
@@ -122,4 +126,11 @@ public class Comunidad {
         incidentesAbiertos.add(incidente);
     }
 
+    @Override
+    public String toString() {
+        return "Comunidad{" +
+                "id = " + id +
+                ", nombre = " + nombre +'\'' +
+                '}';
+    }
 }

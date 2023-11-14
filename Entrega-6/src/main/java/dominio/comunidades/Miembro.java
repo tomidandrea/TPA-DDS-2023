@@ -118,8 +118,8 @@ public class Miembro extends Usuario {
     @Override
     public String toString() {
         return "Miembro{" +
-                "id=" + id +
-                ", nombre='" + nombre + "apellido'" + apellido + "correoElectronico'" + correoElectronico +'\'' +
+                "id = " + id +
+                ", nombre = " + nombre + " apellido = " + apellido + "correoElectronico = " + correoElectronico +'\'' +
                 '}';
     }
 }

@@ -16,12 +16,14 @@
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
+            <th>Posicion</th>
             <th>Entidad</th>
             <th>Cantidad de Incidentes</th>
         </tr>
         </thead>
 
-        <tr v-for="resultadoRanking in resultadosRanking">
+        <tr v-for="(resultadoRanking, index) in resultadosRanking">
+            <th>{{index}}</th>
             <td>{{resultadoRanking.entidad.nombre}} </td>
             <td>{{resultadoRanking.cantidadIncidentes}} </td>
         </tr>
