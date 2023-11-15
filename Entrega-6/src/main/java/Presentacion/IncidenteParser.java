@@ -11,9 +11,11 @@ import java.util.List;
 public class IncidenteParser {
     String observacion;
     List<String> servicios;
+    String idSesion;
 
-    public IncidenteParser(String observacion, List<String> servicios) {
+    public IncidenteParser(String observacion, List<String> servicios, String idSesion) {
         this.observacion = observacion;
         this.servicios = servicios;
+        this.idSesion = idSesion;
     }
 }

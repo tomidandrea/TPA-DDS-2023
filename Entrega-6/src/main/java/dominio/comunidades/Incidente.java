@@ -35,6 +35,7 @@ public class Incidente {
 
     private LocalDateTime horarioApertura;
     private LocalDateTime horarioCierre;
+    //TODO: tendriamos que agregar enumerated string
     private EstadoIncidente estadoIncidente;
 
     public Incidente(Servicio servicio, Agrupacion agrupacion, String observacion,

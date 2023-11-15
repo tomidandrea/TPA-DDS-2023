@@ -4,7 +4,8 @@ function abrirIncidente(){
     let inputObservacion = document.getElementById("observacion")
     var formData = {
         observacion: inputObservacion.value,
-        servicios: values
+        servicios: values,
+        idSesion: localStorage.getItem("IDSESION")
     };
     inputObservacion.value = ""
     $(".chosen-select").val('').trigger("chosen:updated");

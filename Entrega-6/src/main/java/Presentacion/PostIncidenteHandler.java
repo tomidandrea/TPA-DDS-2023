@@ -1,9 +1,7 @@
 package Presentacion;
 
 import com.google.gson.Gson;
-import dominio.comunidades.Comunidad;
-import dominio.comunidades.Incidente;
-import dominio.comunidades.RepoIncidentes;
+import dominio.comunidades.*;
 import dominio.servicios.Agrupacion;
 import dominio.servicios.RepoServicios;
 import dominio.servicios.Servicio;
@@ -28,8 +26,9 @@ public class PostIncidenteHandler implements Handler {
                 .toList();
 
         //todo: traer comunidades del usuario logueado
-        List<Comunidad> comunidades = new ArrayList<>();
-
+        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(incidenteParser.getIdSesion()).get("miembro");
+        List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembroLogueado.getId());
+        System.out.println(comunidades);
         Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
 
         RepoIncidentes.getInstance().persistirIncidente(incidente);
