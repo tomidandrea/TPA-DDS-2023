@@ -34,6 +34,10 @@ public class RepoIncidentes {
     public List<Incidente> obtenerIncidentes(){
         EntityManager em = BDUtils.getEntityManager();
         return em.createQuery("from Incidente").getResultList();
+//        return em.createQuery(
+//                "SELECT i.id, i.observacion, CAST(i.horarioApertura AS string), i.servicio.id " +
+//                    "FROM Incidente i")
+//            .getResultList();
     }
 
     public List<Duration> obtenerTiempos(){

@@ -2,11 +2,13 @@ package dominio.servicios;
 
 
 import dominio.Localizacion.Localizacion;
+import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Setter
+@Getter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Servicio {

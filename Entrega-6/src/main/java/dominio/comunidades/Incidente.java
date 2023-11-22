@@ -51,17 +51,21 @@ public class Incidente {
         comunidades.forEach(c->c.agregarIncidente(this));
     }
     // Constructor para test ranking
-    public Incidente(Servicio servicio, LocalDateTime horarioApertura, LocalDateTime horarioCierre){
+    public Incidente(Servicio servicio, LocalDateTime horarioApertura, LocalDateTime horarioCierre, String obs){
         this.servicio = servicio;
         this.horarioApertura = horarioApertura;
         this.horarioCierre = horarioCierre;
+        this.observacion = obs;
+        this.estadoIncidente = EstadoIncidente.CERRADO;
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
     }
-    public Incidente(Agrupacion agrupacion, LocalDateTime horarioApertura, LocalDateTime horarioCierre){
+    public Incidente(Agrupacion agrupacion, LocalDateTime horarioApertura, LocalDateTime horarioCierre, String obs){
         this.agrupacion = agrupacion;
         this.horarioApertura = horarioApertura;
         this.horarioCierre = horarioCierre;
+        this.observacion = obs;
+        this.estadoIncidente = EstadoIncidente.CERRADO;
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
     }
@@ -70,6 +74,7 @@ public class Incidente {
         this.servicio = servicio;
         this.horarioApertura = horarioApertura;
         this.observacion = obs;
+        this.estadoIncidente = EstadoIncidente.ABIERTO;
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
     }
@@ -115,7 +120,14 @@ public class Incidente {
 
     @Override
     public String toString() {
-        return "Incidente en el servicio: "+servicio.nombre+ ", abierto:"+
-            DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm:ss").format(horarioApertura);
+        String mensaje;
+        if (servicio==null){
+            mensaje = "Incidente en la agrupacion: "+agrupacion.getId()+ ", abierto:"+
+                DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm:ss").format(horarioApertura);
+        }else{
+            mensaje = "Incidente en el servicio: "+servicio.nombre+ ", abierto:"+
+                DateTimeFormatter.ofPattern("dd-MM-yyyy 'a las' HH:mm:ss").format(horarioApertura);
+        }
+        return mensaje;
     }
 }

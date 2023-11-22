@@ -1,6 +1,7 @@
 package Persistencia;
 
 import Utils.BDUtils;
+import dominio.comunidades.EstadoIncidente;
 import dominio.comunidades.Incidente;
 import dominio.comunidades.RepoIncidentes;
 import dominio.servicios.Agrupacion;
@@ -72,20 +73,24 @@ public class InstanciasIncidentes {
     Incidente incidente1 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(6, 16, 0),
-        restarDiasHorasMinutos(1, 16, 30));
+        restarDiasHorasMinutos(1, 16, 30),
+        "Canilla pierde agua");
+    incidente1.setEstadoIncidente(EstadoIncidente.CERRADO);
     em.persist(incidente1);
 
     Incidente incidente2 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(7, 16, 0),
-        restarDiasHorasMinutos(1, 8, 30));
+        restarDiasHorasMinutos(1, 8, 30),
+        "Dos lamparas no andan");
     em.persist(incidente2);
 
     //Incidente de agrupacion
     Incidente incidente3 = new Incidente(
         agrupaciones.get(0),
         restarDiasHorasMinutos(6, 16, 0),
-        restarDiasHorasMinutos(1, 8, 30));
+        restarDiasHorasMinutos(1, 8, 30),
+        "No funcionan las canillas");
     em.persist(incidente3);
   }
 
@@ -93,12 +98,14 @@ public class InstanciasIncidentes {
     Incidente incidente3 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(6, 8, 0),
-        restarDiasHorasMinutos(3, 8, 30));
+        restarDiasHorasMinutos(3, 8, 30),
+        "Puerta se queda trabada");
     em.persist(incidente3);
     Incidente incidente4 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(8, 16, 0),
-        restarDiasHorasMinutos(7, 8, 30));
+        restarDiasHorasMinutos(7, 8, 30),
+        "Canilla pierde agua");
     em.persist(incidente4);
 
   }
@@ -107,12 +114,14 @@ public class InstanciasIncidentes {
     Incidente incidente5 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(9, 8, 0),
-        restarDiasHorasMinutos(8, 0, 0));
+        restarDiasHorasMinutos(8, 0, 0),
+        "No funcionan dos inodoros");
     em.persist(incidente5);
     Incidente incidente6 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(9, 8, 0),
-        restarDiasHorasMinutos( 6, 0, 0));
+        restarDiasHorasMinutos( 6, 0, 0),
+        "Secador de manos roto");
     em.persist(incidente6);
   }
 
@@ -120,60 +129,70 @@ public class InstanciasIncidentes {
     Incidente incidente7 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(9, 8, 0),
-        restarDiasHorasMinutos(8, 1, 30));
+        restarDiasHorasMinutos(8, 1, 30),
+        "Canilla pierde agua");
     em.persist(incidente7);
     Incidente incidente8 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(9, 12, 30),
-        restarDiasHorasMinutos(9, 8, 0));
+        restarDiasHorasMinutos(9, 8, 0),
+        "Espejo roto");
     em.persist(incidente8);
   }
   private void incidentesEstacionA1(List<Servicio> servicios){
     Incidente incidente9 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(3, 8, 0),
-        restarDiasHorasMinutos(2, 0, 0));
+        restarDiasHorasMinutos(2, 0, 0),
+        "Inodoro no funciona la cadena");
     em.persist(incidente9);
     Incidente incidente10 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(0, 6, 0),
-        restarDiasHorasMinutos(0, 2, 0));
+        restarDiasHorasMinutos(0, 2, 0),
+        "Gotea el techo");
     em.persist(incidente10);
   }
   private void incidentesEstacionA2(List<Servicio> servicios){
     Incidente incidente11 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(1, 16, 0),
-        restarDiasHorasMinutos(0, 0, 30));
+        restarDiasHorasMinutos(0, 0, 30),
+        "Anda trabada la escalera");
     em.persist(incidente11);
     Incidente incidente12 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(1, 16, 0),
-        restarDiasHorasMinutos(1, 0, 30));
+        restarDiasHorasMinutos(1, 0, 30),
+        "Canilla gotea como duki");
     em.persist(incidente12);
   }
   private void incidentesEstacionB1(List<Servicio> servicios){
     Incidente incidente13 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(9, 16, 0),
-        restarDiasHorasMinutos(8, 16, 30));
+        restarDiasHorasMinutos(8, 16, 30),
+        "Cierran escalera por mantenimiento");
     em.persist(incidente13);
     Incidente incidente14 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(9, 8, 0),
-        restarDiasHorasMinutos(7, 16, 30));
+        restarDiasHorasMinutos(7, 16, 30),
+        "Puerta no tiene manija");
     em.persist(incidente14);
   }
   private void incidentesEstacionB2(List<Servicio> servicios){
     Incidente incidente15 = new Incidente(
         servicios.get(0),
         restarDiasHorasMinutos(9, 8, 0),
-        restarDiasHorasMinutos(8, 0, 0));
+        restarDiasHorasMinutos(8, 0, 0),
+        "Se rompió un escalón");
     em.persist(incidente15);
     Incidente incidente16 = new Incidente(
         servicios.get(1),
         restarDiasHorasMinutos(9, 8, 0),
-        restarDiasHorasMinutos(8, 0, 30));
+        restarDiasHorasMinutos(8, 0, 30),
+        "Luz parpadea");
     em.persist(incidente16);
   }
 

@@ -1,41 +1,107 @@
 
+Vue.component('form-incidentes', {
+    template: `
+    <form method="get" @submit.prevent="onSubmit">
+            <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">
 
+                <div class="col-8 col-md-6 mx-auto mx-md-0 my-1">
+                    <select class="form-select" aria-label="Default select example" name="estado" required  v-model="estado">
+                        <option selected hidden>Seleccione estado de incidente</option>
+                        <option value="todos">Todos</option>
+                        <option value="abierto">Abierto</option>
+                        <option value="cerrado">Cerrado</option>
+                    </select>
+                </div>
+                <div class="col-8 col-md-4 mx-auto me-md-0 my-1 d-grid gap-2">
+                    <button class="btn btn-dark btn-principal" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+    `,
+    data() {
+        return {
+            estado: null
+        }
+    },
+    methods: {
+        onSubmit() {
+            this.$emit('get-incidentes', this.estado)
+        }
+    }
+})
 
 //Falta ver si agrupacion es null, usar servicio y viceversa
 Vue.component('elemento-tabla', {
-    template:`
-        <tr v-for="(incidente, index) in incidentes">
-            <th scope="row">{{index}}</th>
-            <td>{{incidente.servicio}}</td>
-            <td>{{incidente.estadoIncidente}}</td>
-        </tr>`,
-
-    data(){
-        return {
-            incidentes: []
-            //servicios:[{id:200,nombre:"servicio 2"}, {id:400,nombre:"servicio baño coto"}]
+    props:{
+        incidentes:{
+            type: Array,
+            required: true
+        },
+        estado:{
+            type: String,
+            required: true
         }
     },
+    template:`
+        <table class="table table-hover table-bordered" v-if="incidentes.length > 0">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Servicio afectado</th>
+                    <th scope="col">Observación</th>
+                    <th scope="col" v-if="estado == 'todos'">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(incidente, index) in incidentes" :key="index">
+                    <th scope="row">{{index}}</th>
+                    <td>{{incidente.servicio}}</td>
+                    <td>{{incidente.observacion}}</td>
+                    <td v-if="estado == 'todos'">{{incidente.estadoIncidente}}</td>
+                </tr>
+            </tbody>
+        </table>`,
+
+    data() {
+        return {
+            incidentesLocal: [] // Copia local para trabajar con los incidentes
+        };
+    },
     created() {
-        this.fetchData();
+        // Copiar el valor de la prop a la copia local al inicio
+        this.incidentesLocal = [...this.incidentes];
     },
     methods: {
-        async fetchData() {
-            try {
-                const response = await fetch('http://localhost:4567/api/servicios');
-                const data = await response.json();
-                this.incidentes = data; // Asignar los datos a tu propiedad de datos
 
-            } catch (error) {
-                console.error('Error al obtener datos:', error);
-            }
-        },
     }
 })
 
 var app = new Vue({
     el: '#app-table',
-    // data:{
-    //     servicios:[]
-    // },
+    data:{
+        incidentes:[],
+        estado:''
+    },
+    methods:{
+        getIncidentes(estado) {
+            this.estado = estado
+            fetch(`/api/incidentes?estado=${estado}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Error al obtener la respuesta');
+                })
+                .then(data => {
+                    // Manejar la respuesta JSON obtenida
+                    console.log(data);
+                    this.incidentes = data;
+                    // Hacer algo con los datos recibidos, por ejemplo, actualizar el DOM con estos datos
+                })
+                .catch(error => {
+                    // Manejar errores en la solicitud o la respuesta
+                    console.error('Error:', error);
+                });
+        }
+    }
 })

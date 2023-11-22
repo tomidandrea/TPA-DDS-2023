@@ -30,8 +30,8 @@ public class Main {
     app.post("/api/login", new LoginHandler());
     app.get("/api/incidentes", new GetIncidentesPorEstadoHandler());
 
-    /*
-    EntityManager em = BDUtils.getEntityManager();
+
+    /*EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
     InstanciasServicios servicios = new InstanciasServicios(em);
     InstanciasIncidentes incidentes = new InstanciasIncidentes(em, servicios);
@@ -55,8 +55,8 @@ public class Main {
     em.persist(rankingTiempoCierre);
 
     BDUtils.commit(em);
-    em.close();
-*/
+    em.close();*/
+
   }
 
 }

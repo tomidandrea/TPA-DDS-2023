@@ -12,57 +12,34 @@
   <div id="app-nav">
     <navbar></navbar>
   </div>
-    <div class="container bg-light card-shadow my-2 border-r-1">
+    <div class="container bg-light card-shadow my-2 border-r-1" id="app-table">
         <h2 class="fw-bold p-4"> Consulta de incidentes </h2>
-        <form action="/api/incidentes" method="get">
-            <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">
+        <form-incidentes @get-incidentes="getIncidentes"></form-incidentes>
+<!--        <form method="get" @submit.prevent="onSubmit">-->
+<!--            <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">-->
 
-                <div class="col-8 col-md-6 mx-auto mx-md-0 my-1">
-                    <select class="form-select" aria-label="Default select example" name="estado" required>
-                        <option selected hidden>Seleccione estado de incidente</option>
-                        <option value="todos">Todos</option>
-                        <option value="abierto">Abierto</option>
-                        <option value="cerrado">Cerrado</option>
-                    </select>
-                </div>
-                <div class="col-8 col-md-4 mx-auto me-md-0 my-1 d-grid gap-2">
-                    <button class="btn btn-dark btn-principal" type="submit">Buscar</button>
-                </div>
-            </div>
-        </form>
+<!--                <div class="col-8 col-md-6 mx-auto mx-md-0 my-1">-->
+<!--                    <select class="form-select" aria-label="Default select example" name="estado" required>-->
+<!--                        <option selected hidden>Seleccione estado de incidente</option>-->
+<!--                        <option value="todos">Todos</option>-->
+<!--                        <option value="abierto">Abierto</option>-->
+<!--                        <option value="cerrado">Cerrado</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--                <div class="col-8 col-md-4 mx-auto me-md-0 my-1 d-grid gap-2">-->
+<!--                    <button class="btn btn-dark btn-principal" type="submit">Buscar</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
 
         <div class="container-fluid pb-1">
-            <table class="table table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Servicio afectado</th>
-                        <th scope="col">Estado</th>
-                    </tr>
-                </thead>
-                <tbody id="app-table">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Baños</td>
-                        <td>Abierto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Escalera</td>
-                        <td>Cerrado</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Escalera</td>
-                        <td>...</td>
-                    </tr>
-                </tbody>
-            </table>
+                <elemento-tabla :incidentes="incidentes" :estado="estado"></elemento-tabla>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script type="module" src="../public/js/vue.js"></script>
+  <script type="module" src="../public/js/consultaIncidentes.js"></script>
   </body>
 </html>
