@@ -5,8 +5,8 @@ Vue.component('form-incidentes', {
             <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">
 
                 <div class="col-8 col-md-6 mx-auto mx-md-0 my-1">
-                    <select class="form-select" aria-label="Default select example" name="estado" required  v-model="estado">
-                        <option selected hidden>Seleccione estado de incidente</option>
+                    <select class="form-select" name="estado" required  v-model="estado">
+                        <option value="" selected disabled hidden>Seleccione estado de incidente</option>
                         <option value="todos">Todos</option>
                         <option value="abierto">Abierto</option>
                         <option value="cerrado">Cerrado</option>
@@ -20,7 +20,7 @@ Vue.component('form-incidentes', {
     `,
     data() {
         return {
-            estado: null
+            estado: ''
         }
     },
     methods: {
