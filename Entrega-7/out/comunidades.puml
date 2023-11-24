@@ -1,0 +1,133 @@
+@startuml
+'https://plantuml.com/class-diagram
+package Comunidades #back:honeydew;line:Green;line.bold{
+    class Comunidad{
+        nombre:String
+        afectados:List<Miembro>
+        observadores:List<Miembro>
+        administradores: List<Administrador>
+        incidentesAbiertos:List<Incidente>
+        establecimientosObservados:List<Establecimiento>
+        serviciosEstandar:List<Servicio>
+        gradoDeConfianza:GradoDeConfianza
+
+        notificarIncidentes(): void
+        obtenerIncidentesAbiertosDesde(LocalTime): List<Incidente>
+        cerrarIncidente(incidente): void
+        ultimosIncidentesAbiertos(): List<Incidente>
+        filtrarMiembrosEnHorario(): List<Miembro>
+        obtenerIncidentesAbiertosDesde(LocalTime hora): List<Incidente>
+        removerIncidente(Incidente incidente): void
+        agregarIncidente(Incidente incidente): void
+
+    }
+
+    class RepoComunidades{
+        comunidades:List<Comunidad>
+
+        getComunidades(): List<Comunidad>
+    }
+
+    class Notificador {
+         horarios:List<LocalTime>
+
+         compararHorarioActual(): boolean
+         incidenteDentroDeRangoHorario(List<Incidente> incidentes, LocalTime horarioNotificacion): List<Incidente>
+         obtenerHorarioAnterior(LocalTime horarioNotificacion): LocalTime
+         obtenerListaSegunRango(List<Incidente> incidentes, LocalTime horarioAnterior, LocalTime horarioNotificacion): List<Incidente>
+    }
+
+    class Administrador{
+    }
+
+    class Miembro{
+        nombre:String
+        id: int
+        apellido:String
+        correoElectronico:String
+        interes: Interes
+        localizacion: Localizacion
+        medioPreferido:MedioDeComunicacion
+        nroDeTelefono: String
+        notificador: Notificador
+
+        compararId(int id): boolean
+        sugerirRevision(Incidente incidente): void
+        estaEnHorarioDeNotificacion(): boolean
+    }
+
+    enum TipoMiembro{
+        AFECTADO
+        OBSERVADOR
+    }
+
+    class RepoMiembros{
+        instance: RepoMiembros
+        miembros:List<Miembro>
+
+        getInstance(): RepoMiembros
+        agregar(miembro)
+        getMiembro():Miembro
+    }
+
+    class Interes{
+        servicios: List<Servicio>
+    }
+
+    class  Incidente{
+        servicio : Servicio
+        Agrupacion: Agrupacion
+        observacion: String
+        comunidades: List<Comunidad>
+        horarioApertura: LocalDateTime
+        horarioCierre: LocalDateTime
+        estadoIncidente: EstadoIncidente
+
+        obtenerTiempoCierre(): Duration
+        cerrar(): void
+        tieneEstado(EstadoIncidente estado): boolean
+        cerradoUltimaSemana(): boolean
+        toString(): String
+    }
+
+    class RepoIncidentes{
+        instance: RepoIncidentes
+        incidentes: List<Incidente>
+
+        getInstance(): RepoIncidentes
+        obtenerIncidentesPorEstado(EstadoIncidente estado):  List<Incidente>
+        agregar(Incidente incidente): void
+        obtenerTiempos(): List<Duration>
+        obtenerIncidentesDe(agrupaciones, servicios):List<Incidente>
+        obtenerIncidentesDe(List <Servicio> servicios): List<Incidente>
+    }
+
+    enum EstadoIncidente {
+        ABIERTO
+        CERRADO
+    }
+
+    enum GradoDeConfianza {
+        NO_CONFIABLE
+        CON_RESERVAS
+        CONFIABLE_NIVEL_1
+        CONFIABLE_NIVEL_2
+    }
+
+    Incidente-up-->"*"Comunidad
+    Incidente-->EstadoIncidente
+    Comunidad--down-->"*"Incidente
+    RepoIncidentes--left->"*" Incidente
+    RepoMiembros -->"*" Miembro
+    Comunidad -down-->"*" Miembro
+    Comunidad -down-->"*" Miembro
+    RepoComunidades -right->"*" Comunidad
+    Miembro-->TipoMiembro
+    Miembro--down->Interes
+    Miembro--down-->Notificador
+    Comunidad-->GradoDeConfianza
+    Comunidad --right->"*" Administrador
+}
+
+
+@enduml

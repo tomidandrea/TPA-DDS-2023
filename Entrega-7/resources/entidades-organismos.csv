@@ -1,0 +1,8 @@
+EntidadPropietaria,SBASE, ServicioTransporte, SUBTE,1
+OrganismoDeControl,CNRT, ServicioTransporte, SUBTE,3
+EntidadPropietaria,GCBA, ServicioTransporte, ECOBICI,2
+OrganismoDeControl,TEMBICI, ServicioTransporte, ECOBICI,4
+EntidadPropietaria,DOTA, ServicioTransporte, COLECTIVO,5
+OrganismoDeControl,CNRT, ServicioTransporte, COLECTIVO,3
+EntidadPropietaria,COTO, Organizacion, SUPERMECADO_COTO,5
+OrganismoDeControl,CNRT, Organizacion, SUPERMECADO_COTO,3

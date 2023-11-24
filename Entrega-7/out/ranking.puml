@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+package Rankings #back:bisque;line:darkorange;line.bold {
+    abstract class Ranking{
+        fecha:LocalDate
+    }
+    class RankingCantidadIncidentes extends Ranking{
+        resultados:List<ResultadoCantidadIncidentes>
+
+        obtenerRankingEntidadesConMasIncidentes(): void
+    }
+    class RankingTiempoCierre extends Ranking{
+        resultados:List<ResultadoTiempoCierre>
+
+        obtenerRankingEntidadesConMayorTiempoDeCierre(): void
+    }
+}
+@enduml
