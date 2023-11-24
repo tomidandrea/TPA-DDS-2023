@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import dominio.clasesTecnicas.ResultadoCantidadIncidentes;
 import dominio.entidades.Entidad;
 import dominio.rankings.RankingCantidadIncidentes;
+import dominio.rankings.RepoRankings;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
@@ -18,12 +19,10 @@ import java.util.stream.Collectors;
 
 public class GetRankingCIHandler implements Handler {
 
-    private EntityManager em = BDUtils.getEntityManager();
     private RankingCantidadIncidentes ranking;
 
     public GetRankingCIHandler() {
-        List<RankingCantidadIncidentes> resultados = em.createQuery("from RankingCantidadIncidentes").getResultList();
-        this.ranking = resultados.get(resultados.size() - 1);
+        this.ranking = RepoRankings.getInstance().obtenerRankingCIActual();
     }
 
     @Override

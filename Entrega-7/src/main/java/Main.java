@@ -23,12 +23,14 @@ public class Main {
             })
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
-    //app.get("/api/rankingCI", new GetRankingCIHandler());
+    app.get("/api/rankingCI", new GetRankingCIHandler());
     //app.get("/api/rankingTC", new GetRankingTCHandler());
     app.get("/api/servicios", new GetServiciosHandler());
     app.post("/api/incidentes", new PostIncidenteHandler());
     app.post("/api/login", new LoginHandler());
     app.get("/api/incidentes", new GetIncidentesPorEstadoHandler());
+
+    app.get("/rankingCI", new RankingCIViewHandler());
 
 
     /*EntityManager em = BDUtils.getEntityManager();

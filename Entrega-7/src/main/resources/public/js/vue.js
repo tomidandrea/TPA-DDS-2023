@@ -1,4 +1,4 @@
-import {logout} from "../../Static/Autenticacion-Firebase/app/logout.js"
+import {logout} from "../../static/Autenticacion-Firebase/app/logout.js"
 Vue.component('navbar', {
     template: ` 
     <nav class="navbar navbar-expand-lg pb-3">

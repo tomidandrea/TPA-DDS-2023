@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import dominio.clasesTecnicas.ResultadoTiempoCierre;
 import dominio.entidades.Entidad;
 import dominio.rankings.RankingTiempoCierre;
+import dominio.rankings.RepoRankings;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
@@ -17,12 +18,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GetRankingTCHandler implements Handler {
-    private EntityManager em = BDUtils.getEntityManager();
     private RankingTiempoCierre ranking;
 
     public GetRankingTCHandler() {
-        List<RankingTiempoCierre> resultados = em.createQuery("from RankingTiempoCierre").getResultList();
-        this.ranking = resultados.get(resultados.size() - 1);
+        this.ranking = RepoRankings.getInstance().obtenerRankingTCActual();
     }
 
     @Override

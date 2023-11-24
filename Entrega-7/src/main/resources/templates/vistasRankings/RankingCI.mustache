@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Rankings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="main-dib">
+
+    <h3>Ranking De Cantidad de Incidentes</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Posicion</th>
+            <th>Entidad</th>
+            <th>Cantidad de Incidentes</th>
+        </tr>
+        </thead>
+
+        {{#resultadosRanking}}
+        <tr>
+            <th>{{index}}</th>
+            <td>{{entidad.nombre}} </td>
+            <td>{{cantidadIncidentes}} </td>
+        </tr>
+        {{/resultadosRanking}}
+    </table>
+
+</div>
+
+</body>
+</html>
