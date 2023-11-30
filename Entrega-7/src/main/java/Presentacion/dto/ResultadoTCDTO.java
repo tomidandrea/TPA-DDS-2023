@@ -8,9 +8,10 @@ import lombok.Setter;
 @Getter
 public class ResultadoTCDTO {
     private EntidadDTO entidad;
-    private Duration tiempoCierre;
+    private long tiempoCierre;
+    private Integer posicion = 0;
 
-    public ResultadoTCDTO(EntidadDTO entidad, Duration tiempoCierre){
+    public ResultadoTCDTO(EntidadDTO entidad, long tiempoCierre){
             this.entidad = entidad;
             this.tiempoCierre = tiempoCierre;
     }

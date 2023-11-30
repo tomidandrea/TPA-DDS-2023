@@ -38,8 +38,8 @@ Vue.component('navbar', {
                 Rankings
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="./vistasRankings/vistaRankingCI.html">Mayor cantidad incidentes (CI)</a></li>
-                <li><a class="dropdown-item" href="./vistasRankings/vistaRankingTC.html">Mayor tiempo promedio cierre (TC)</a></li>
+                <li><a class="dropdown-item" href="./vistaRankingCI.html">Mayor cantidad incidentes (CI)</a></li>
+                <li><a class="dropdown-item" href="./vistaRankingTC.html">Mayor tiempo promedio cierre (TC)</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>

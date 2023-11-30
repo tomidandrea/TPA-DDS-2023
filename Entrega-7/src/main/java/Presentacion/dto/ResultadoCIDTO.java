@@ -8,6 +8,7 @@ import lombok.Setter;
 public class ResultadoCIDTO {
     private EntidadDTO entidad;
     private Integer cantidadIncidentes;
+    private Integer posicion = 0;
 
     public ResultadoCIDTO(EntidadDTO entidad, Integer cantidadIncidentes){
         this.entidad = entidad;

@@ -2,6 +2,7 @@ package Presentacion;
 
 import Presentacion.dto.EntidadDTO;
 import Presentacion.dto.RankingTCDTO;
+import Presentacion.dto.ResultadoCIDTO;
 import Presentacion.dto.ResultadoTCDTO;
 import Utils.BDUtils;
 import com.google.gson.Gson;
@@ -32,14 +33,18 @@ public class GetRankingTCHandler implements Handler {
 
     private RankingTCDTO mapRankingTCToDTO(RankingTiempoCierre ranking) {
         List<ResultadoTCDTO> resultadosDTO = ranking.getResultados().stream().map(this::mapResultadoTCToDTO).collect(Collectors.toList());
-
+        Integer posicion = 1;
+        for(ResultadoTCDTO resultado : resultadosDTO) {
+            resultado.setPosicion(posicion);
+            posicion++;
+        }
         return new RankingTCDTO(resultadosDTO, ranking.getFecha());
     }
 
     private ResultadoTCDTO mapResultadoTCToDTO(ResultadoTiempoCierre resultadoTC) {
         EntidadDTO entidadDTO = this.mapEntidadToDTO(resultadoTC.getEntidad());
-
-        return new ResultadoTCDTO(entidadDTO, resultadoTC.getTiempoDeCierre());
+        long tiempoAsSeconds = (int) resultadoTC.getTiempoDeCierre().toSeconds();
+        return new ResultadoTCDTO(entidadDTO, tiempoAsSeconds);
     }
 
     private EntidadDTO mapEntidadToDTO(Entidad entidad) {

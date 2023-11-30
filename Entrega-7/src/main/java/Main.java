@@ -23,15 +23,17 @@ public class Main {
             })
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
+    //pesado
     app.get("/api/rankingCI", new GetRankingCIHandler());
-    //app.get("/api/rankingTC", new GetRankingTCHandler());
+    app.get("/api/rankingTC", new GetRankingTCHandler());
     app.get("/api/servicios", new GetServiciosHandler());
     app.post("/api/incidentes", new PostIncidenteHandler());
     app.post("/api/login", new LoginHandler());
     app.get("/api/incidentes", new GetIncidentesPorEstadoHandler());
 
+    //liviano
     app.get("/rankingCI", new RankingCIViewHandler());
-
+    app.get("/rankingTC", new RankingTCViewHandler());
 
     /*EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);

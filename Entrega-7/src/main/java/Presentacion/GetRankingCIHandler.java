@@ -33,7 +33,11 @@ public class GetRankingCIHandler implements Handler {
 
     private RankingCIDTO mapRankingCIToDTO(RankingCantidadIncidentes ranking) {
         List<ResultadoCIDTO> resultadosDTO = ranking.getResultados().stream().map(this::mapResultadoCIToDTO).collect(Collectors.toList());
-
+        Integer posicion = 1;
+        for(ResultadoCIDTO resultado : resultadosDTO) {
+            resultado.setPosicion(posicion);
+            posicion++;
+        }
         return new RankingCIDTO(resultadosDTO, ranking.getFecha());
     }
 
