@@ -1,5 +1,6 @@
 package Presentacion;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -51,9 +52,17 @@ public class SesionManager {
         atributos.putAll(nuevosAtributos);
     }
 
-    public Map<String, Object> eliminar(String id) {
+    public void eliminarSesion(String id) {
         //esto no elimina la cookie del frontend
-        return this.sesiones.remove(id);
+
+        System.out.println("sesiones antes de eliminar: " + sesiones);
+        String idSinComillas = id.replaceAll("\"", "");
+        Map<String,Object> valorRemovido = sesiones.remove(idSinComillas);
+        System.out.println("valor removido: " + valorRemovido);
+        System.out.println("sesiones despues de eliminar: " + sesiones);
     }
 
+    public Map<String, Map<String, Object>> getSesiones() {
+        return this.sesiones;
+    }
 }

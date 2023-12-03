@@ -29,6 +29,7 @@ public class Main {
     app.get("/api/servicios", new GetServiciosHandler());
     app.post("/api/incidentes", new PostIncidenteHandler());
     app.post("/api/login", new LoginHandler());
+    app.post("/api/logout", new LogoutHandler());
     app.get("/api/incidentes", new GetIncidentesPorEstadoHandler());
 
     //liviano
