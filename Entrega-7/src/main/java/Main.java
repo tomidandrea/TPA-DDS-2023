@@ -28,7 +28,7 @@ public class Main {
     app.post("/api/incidentes", new PostIncidenteHandler());
     app.post("/api/login", new LoginHandler());
     app.post("/api/logout", new LogoutHandler());
-    app.get("/api/incidentes", new GetIncidentesPorEstadoHandler());
+    app.get("/api/{idSesion}/incidentes", new GetIncidentesPorEstadoHandler());
 
     //liviano
     app.get("/rankingCI", new RankingCIViewHandler());
