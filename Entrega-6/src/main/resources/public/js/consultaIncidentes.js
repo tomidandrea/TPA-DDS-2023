@@ -55,7 +55,14 @@ Vue.component('elemento-tabla', {
             <tbody>
                 <tr v-for="(incidente, index) in incidentes" :key="index">
                     <th scope="row">{{index}}</th>
-                    <td>{{incidente.servicio}}</td>
+                    <td>
+                        <template v-if="incidente.servicio == null">
+                            {{ obtenerNombresDeServicios(incidente.agrupacion) }}
+                        </template>
+                        <template v-else>
+                            {{ incidente.servicio.nombre }}
+                        </template>
+                    </td>
                     <td>{{incidente.observacion}}</td>
                     <td v-if="estado == 'todos'">{{incidente.estadoIncidente}}</td>
                 </tr>
@@ -72,7 +79,9 @@ Vue.component('elemento-tabla', {
         this.incidentesLocal = [...this.incidentes];
     },
     methods: {
-
+        obtenerNombresDeServicios(agrupacion) {
+            return agrupacion.servicios.map(servicio => servicio.nombre).join(', ');
+        }
     }
 })
 
@@ -85,7 +94,8 @@ var app = new Vue({
     methods:{
         getIncidentes(estado) {
             this.estado = estado
-            fetch(`/api/incidentes?estado=${estado}`)
+            let idSesion = localStorage.getItem("IDSESION")
+            fetch(`/api/${idSesion}/incidentes?estado=${estado}`)
                 .then(response => {
                     if (response.ok) {
                         return response.json();
