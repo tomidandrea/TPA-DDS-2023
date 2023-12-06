@@ -74,4 +74,15 @@ public class RepoIncidentes {
     }
 
 
+    public List<Incidente> obtenerIncidentesPorMiembro(Miembro miembroLogueado) {
+        List<Comunidad> comunidadesDeMiembro = RepoComunidades.getInstance().obtenerComunidadesPor(miembroLogueado);
+        return comunidadesDeMiembro.stream().flatMap(c -> c.getIncidentesAbiertos().stream()).toList();
+    }
+    public void actualizar(Incidente incidente) {
+        EntityManager em = BDUtils.getEntityManager();
+        BDUtils.comenzarTransaccion(em);
+        em.merge(incidente);
+        BDUtils.commit(em);
+        em.close();
+    }
 }

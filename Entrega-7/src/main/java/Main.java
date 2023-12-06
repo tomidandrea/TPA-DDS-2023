@@ -4,8 +4,6 @@ import Utils.BDUtils;
 import dominio.rankings.RankingCantidadIncidentes;
 import dominio.rankings.RankingTiempoCierre;
 import io.javalin.Javalin;
-import io.javalin.openapi.plugin.OpenApiConfiguration;
-import io.javalin.openapi.plugin.OpenApiPlugin;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -35,8 +33,10 @@ public class Main {
     //liviano
     app.get("/rankingCI", new RankingCIViewHandler());
     app.get("/rankingTC", new RankingTCViewHandler());
-
-    /*EntityManager em = BDUtils.getEntityManager();
+    app.get("/incidentes", new GetIncidentesViewHandler());
+    app.post("/incidentes", new PostIncidenteViewHandler());
+/*
+    EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
     InstanciasServicios servicios = new InstanciasServicios(em);
     InstanciasIncidentes incidentes = new InstanciasIncidentes(em, servicios);
@@ -60,8 +60,8 @@ public class Main {
     em.persist(rankingTiempoCierre);
 
     BDUtils.commit(em);
-    em.close();*/
-
+    em.close();
+*/
   }
 
 }

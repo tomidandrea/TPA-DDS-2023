@@ -29,8 +29,19 @@ public class RepoComunidades {
     public List<Comunidad> filtrarPorMiembro(int idMiembro) {
         return comunidades.stream().filter(c -> c.tieneAlMiembro(idMiembro)).toList();
     }
+    public List<Comunidad> obtenerComunidadesPor(Miembro miembro){
+        return em.createQuery("SELECT c FROM Comunidad c WHERE :miembro MEMBER OF c.observadores OR :miembro MEMBER OF c.afectados", Comunidad.class)
+                .setParameter("miembro", miembro)
+                .getResultList();
+    }
 
     public void agregarComunidad(Comunidad comu) {
         comunidades.add(comu);
+    }
+
+    public void actualizar(Comunidad comunidad) {
+        em.getTransaction().begin();
+        em.merge(comunidad);
+        em.getTransaction().commit();
     }
 }

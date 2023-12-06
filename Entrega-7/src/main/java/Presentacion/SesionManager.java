@@ -1,10 +1,11 @@
 package Presentacion;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
 public class SesionManager {
 
     private static SesionManager instancia;

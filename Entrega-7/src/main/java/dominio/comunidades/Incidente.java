@@ -108,6 +108,9 @@ public class Incidente {
 
     public void cerrar(){
         comunidades.forEach(c->c.removerIncidente(this));
+        this.horarioCierre = LocalDateTime.now();
+        this.estadoIncidente = EstadoIncidente.CERRADO;
+        RepoIncidentes.getInstance().actualizar(this);
     }
 
     public boolean tieneEstado(EstadoIncidente estado){
