@@ -50,7 +50,7 @@ public class LoginHandler implements Handler {
         System.out.println("Las comunidades del miembro: " + miembroLogueado.getNombre() + " logueado son: " + comunidades);
 
         //sesionManager.agregarAtributo(idSesion, "rol", repoRoles.getByUser(idUser));
-
+        context.sessionAttribute("sessionId", idSesion);
         //devuelvo id de la sesion
         context.json(new Gson().toJson(new LoginResponse(idSesion)));
 

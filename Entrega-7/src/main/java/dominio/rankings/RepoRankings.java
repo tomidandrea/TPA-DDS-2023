@@ -31,7 +31,8 @@ public class RepoRankings {
     }
 
     public RankingCantidadIncidentes obtenerRankingCIActual() {
+
         List<RankingCantidadIncidentes> resultados = em.createQuery("from RankingCantidadIncidentes").getResultList();
-        return resultados.get(resultados.size() - 1);
+        return resultados.get(resultados.size()-1);
     }
 }

@@ -20,21 +20,21 @@
 
 
                 <div class="card-body p-4 p-lg-5 text-black">
-                    <form>
+                    <form action="/incidentes" method="POST">
                         <div class="d-flex align-items-center mb-3 pb-1">
 
                             <span class="h2 fw-bold mb-0">Cerrar Incidente</span>
                         </div>
                         <label class="form-label">Seleccione el incidente</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="incidenteId" aria-label="Default select example" required>
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {{#incidentes}}
+                            <option value="{{id}}">{{servicio.nombre}}</option>
+                            {{/incidentes}}
                         </select>
                         <div class="d-grid gap-2 mx-auto pt-1 mb-4">
                             <br>
-                            <button class="btn btn-principal btn-lg btn-block" type="button">Cerrar</button>
+                            <button class="btn btn-principal btn-lg btn-block" type="submit">Cerrar</button>
                             <button class="btn btn-dark btn-lg btn-block" type="button">Volver</button>
                         </div>
 

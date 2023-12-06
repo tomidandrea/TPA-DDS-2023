@@ -32,7 +32,7 @@ export async function logout() {
                     localStorage.removeItem("IDSESION")
                     console.log('el usuario cerró sesión')
                     //me lleva
-                    window.location.href="./LogIn.html"
+                    window.location.href="http://localhost:4567/static/LogIn.html"
                     })
                 .catch(error => {
                 showMessage("Error en la solicitud", "error")
