@@ -28,7 +28,7 @@ public class Main {
     app.get("/api/servicios", new GetServiciosHandler());
     app.post("/api/incidentes", new PostIncidenteHandler());
     app.post("/api/login", new LoginHandler());
-    app.get("/api/incidentes", new GetIncidentesPorEstadoHandler());
+    app.get("/api/{idSesion}/incidentes", new GetIncidentesPorEstadoHandler());
 
 
     /*EntityManager em = BDUtils.getEntityManager();

@@ -120,6 +120,7 @@ public class Comunidad {
 
     public void removerIncidente(Incidente incidente){
         incidentesAbiertos.remove(incidente);
+        RepoComunidades.getInstance().actualizar(this);
     }
 
     public void agregarIncidente(Incidente incidente){
