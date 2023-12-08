@@ -1,11 +1,11 @@
 import Persistencia.*;
 import Presentacion.*;
+import Presentacion.PostCargaEntidadesViewHandler;
 import Utils.BDUtils;
 import dominio.rankings.RankingCantidadIncidentes;
 import dominio.rankings.RankingTiempoCierre;
 import io.javalin.Javalin;
-import io.javalin.openapi.plugin.OpenApiConfiguration;
-import io.javalin.openapi.plugin.OpenApiPlugin;
+import io.javalin.config.SizeUnit;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -14,12 +14,47 @@ public class Main {
 
   public static void main(String[] args) {
 
+      EntityManager em = BDUtils.getEntityManager();
+      BDUtils.comenzarTransaccion(em);
+      InstanciasServicios servicios = new InstanciasServicios(em);
+      InstanciasIncidentes incidentes = new InstanciasIncidentes(em, servicios);
+      InstanciasEstablecimientos establecimientos = new InstanciasEstablecimientos(em, servicios);
+      InstanciasEntidades entidades = new InstanciasEntidades(em, establecimientos);
+      InstanciasMiembro miembros = new InstanciasMiembro(em);
+      InstanciasComunidades comunidades = new InstanciasComunidades(em, incidentes, miembros, establecimientos, servicios);
+
+
+      RankingCantidadIncidentes rankingCantidadIncidentes = new RankingCantidadIncidentes(LocalDate.now());
+      RankingCantidadIncidentes rankingCantidadIncidentes2 = new RankingCantidadIncidentes(LocalDate.now());
+      rankingCantidadIncidentes.obtenerRankingEntidadesConMasIncidentes();
+      rankingCantidadIncidentes2.obtenerRankingEntidadesConMasIncidentes();
+
+      em.persist(rankingCantidadIncidentes);
+      em.persist(rankingCantidadIncidentes2);
+
+
+      RankingTiempoCierre rankingTiempoCierre = new RankingTiempoCierre(LocalDate.now());
+      rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
+      em.persist(rankingTiempoCierre);
+
+      BDUtils.commit(em);
+      em.close();
+
+
+
     Javalin app = Javalin.create(javalinConfig -> {
                 javalinConfig.plugins.enableCors(cors -> {
                 cors.add(it -> it.anyHost());
               });
 
               javalinConfig.staticFiles.add("/");
+
+    //          javalinConfig.multipartConfig(new MultipartConfigElement("/ruta/de/almacenamiento", 1024 * 1024, 1024 * 1024 * 5, 1024));
+                javalinConfig.jetty.multipartConfig.cacheDirectory("/resources"); //where to write files that exceed the in memory limit
+                javalinConfig.jetty.multipartConfig.maxFileSize(100, SizeUnit.MB); //the maximum individual file size allowed
+                javalinConfig.jetty.multipartConfig.maxInMemoryFileSize(10, SizeUnit.MB); //the maximum file size to handle in memory
+                javalinConfig.jetty.multipartConfig.maxTotalRequestSize(1, SizeUnit.GB); //the maximum size of the entire multipart request
+
             })
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
@@ -35,32 +70,10 @@ public class Main {
     //liviano
     app.get("/rankingCI", new RankingCIViewHandler());
     app.get("/rankingTC", new RankingTCViewHandler());
-
-    /*EntityManager em = BDUtils.getEntityManager();
-    BDUtils.comenzarTransaccion(em);
-    InstanciasServicios servicios = new InstanciasServicios(em);
-    InstanciasIncidentes incidentes = new InstanciasIncidentes(em, servicios);
-    InstanciasEstablecimientos establecimientos = new InstanciasEstablecimientos(em, servicios);
-    InstanciasEntidades entidades = new InstanciasEntidades(em, establecimientos);
-    InstanciasMiembro miembros = new InstanciasMiembro(em);
-    InstanciasComunidades comunidades = new InstanciasComunidades(em, incidentes, miembros, establecimientos, servicios);
+      app.get("/cargaCSV", new GetCargaEntidadesViewHandler());
+      app.post("/cargaCSV", new PostCargaEntidadesViewHandler());
 
 
-    RankingCantidadIncidentes rankingCantidadIncidentes = new RankingCantidadIncidentes(LocalDate.now());
-    RankingCantidadIncidentes rankingCantidadIncidentes2 = new RankingCantidadIncidentes(LocalDate.now());
-    rankingCantidadIncidentes.obtenerRankingEntidadesConMasIncidentes();
-    rankingCantidadIncidentes2.obtenerRankingEntidadesConMasIncidentes();
-
-    em.persist(rankingCantidadIncidentes);
-    em.persist(rankingCantidadIncidentes2);
-
-
-    RankingTiempoCierre rankingTiempoCierre = new RankingTiempoCierre(LocalDate.now());
-    rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
-    em.persist(rankingTiempoCierre);
-
-    BDUtils.commit(em);
-    em.close();*/
 
   }
 

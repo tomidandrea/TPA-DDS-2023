@@ -22,8 +22,13 @@ public class RepoMiembros {
 
     //get miembro por id
 
-    public Miembro getMiembro(int id){
-        return miembros.stream().filter(miembro -> miembro.compararId(id)).findFirst().get();
+    public Miembro getMiembro(int id_miembro){
+
+        //return miembros.stream().filter(miembro -> miembro.compararId(id)).findFirst().get();
+
+        return em.createQuery("from Miembro where id = :id_miembro ", Miembro.class)
+                .setParameter("id_miembro",id_miembro)
+                .getResultList().get(0);
     }
 
     public Miembro obtenerMiembroPorEmail(String email) {

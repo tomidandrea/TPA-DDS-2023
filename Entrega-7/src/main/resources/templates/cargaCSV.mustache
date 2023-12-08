@@ -18,16 +18,18 @@
 
                     <div class="card border-r-1 card-shadow bg-light">
                                 <div class="card-body p-4 p-lg-5 text-black">
-                                    <form>
+                                    <form method="post" action="/cargaCSV" enctype="multipart/form-data">
                                         <div class="d-flex align-items-center mb-3 pb-1">
                                             <i class="fa-solid fa-2x me-3 fa-cloud-arrow-up"></i>
                                             <span class="h2 fw-bold mb-0">Carga de entidades propietarias y organismos de control</span>
                                         </div>
                                         <label for="formFileSm" class="form-label">Sube tu archivo</label>
-                                        <input class="form-control form-control-sm" id="formFileSm" type="file" />
+                                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="FileCSV" />
                                         <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"></h5>
                                         <div class="d-grid gap-2 mx-auto pt-1 mb-4">
-                                            <button class="btn btn-principal btn-lg btn-block" type="button">Subir</button>
+                                         <!--   <button class="btn btn-principal btn-lg btn-block" type="button" onclick="subirArchivo()">  --->
+                                                <input class="btn btn-principal btn-lg btn-block" type="submit" name="Enviar Datos"  />
+                                            <!--   </button>--->
                                             <button class="btn btn-dark btn-lg btn-block" type="button">Volver</button>
                                         </div>
                                     </form>
@@ -41,7 +43,9 @@
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script type="module" src="../public/js/vue.js"></script>
+    <!---   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> --->
+    <!--- <script src="../public/js/uploadFiles.js"></script> --->
+
+    <!--- <script type="module" src="../public/js/vue.js"></script> --->
 </body>
 </html>

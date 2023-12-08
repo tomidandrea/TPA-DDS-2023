@@ -1,5 +1,6 @@
 package dominio.empresasYorganismos;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,9 @@ public class RepoEntidadesPropietarias {
     List<EntidadPropietaria> entidadesPropietarias = new ArrayList<>();
 
     public void agregar(EntidadPropietaria entidadPropietaria) {
-        entidadesPropietarias.add(entidadPropietaria);
+    //    entidadesPropietarias.add(entidadPropietaria);
+
+        System.out.println("se agregó" + entidadPropietaria.getNombre());
     }
 
     public List<EntidadPropietaria> getEntidadesPropietarias() {

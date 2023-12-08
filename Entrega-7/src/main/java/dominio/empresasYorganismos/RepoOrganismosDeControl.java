@@ -17,6 +17,7 @@ public class RepoOrganismosDeControl {
     List<OrganismoDeControl> organismosDeControl = new ArrayList<>();
 
     public void agregar(OrganismoDeControl organismoDeControl) {
-        organismosDeControl.add(organismoDeControl);
+       // organismosDeControl.add(organismoDeControl);
+        System.out.println("se agregó" + organismoDeControl.getNombre());
     }
 }

@@ -1,5 +1,6 @@
 package dominio.clasesTecnicas;
 
+import Utils.BDUtils;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import dominio.comunidades.Miembro;
@@ -10,6 +11,8 @@ import dominio.empresasYorganismos.RepoEntidadesPropietarias;
 import dominio.empresasYorganismos.RepoOrganismosDeControl;
 import dominio.entidades.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +21,7 @@ import java.util.List;
 
 public class IntegradorCSV {
     private static IntegradorCSV instance = null;
-
+    private EntityManager em = BDUtils.getEntityManager();
     public static IntegradorCSV getInstance(){
         if(instance == null){
             instance = new IntegradorCSV();
@@ -43,37 +46,113 @@ public class IntegradorCSV {
     public void transformaYCarga(List<String[]> datos) {
         datos.forEach(linea -> {
             // Asumimos que ya existen los miembros responsables, servicios de transporte y organizaciones
+            // También asumimos que los servicios transporte de un mismo tipo  solo pueden partenecer
+            // a lo sumo a una Entidad Porpietaria y a un Organismo de Control
+            // idem para las organizaciones con el mismo nombre
+
+
+
+            EntityTransaction transaction = em.getTransaction();
+            transaction.begin();
+
             String nombre = linea[1];
-            ArrayList<ServicioTransporte> serviciosTransporte = new ArrayList<ServicioTransporte>();
+            List<ServicioTransporte> serviciosTransporte = new ArrayList<ServicioTransporte> ();
             if (linea[2].equals("ServicioTransporte")) {
-                serviciosTransporte.add(RepoEntidades.getInstance().obtenerPorTipo(convertirTransporte(linea[2])));
+                serviciosTransporte.addAll(RepoEntidades.getInstance().obtenerPorNombre(linea[3]));
+
             }
-            ArrayList<Organizacion> organizaciones = new ArrayList<Organizacion>();
-            if (linea[3].equals("Organizacion")) {
-                organizaciones.add(RepoEntidades.getInstance().obtenerOrgPorNombre(linea[3]));
+            List<Organizacion> organizaciones = new ArrayList<Organizacion>();
+            if (linea[2].equals("Organizacion")) {
+                organizaciones.addAll(RepoEntidades.getInstance().obtenerOrgPorNombre(linea[3]));
             }
             Miembro responsable = RepoMiembros.getInstance().getMiembro(Integer.parseInt(linea[4]));
 
             if(linea[0].equals("EntidadPropietaria")) {
+                EntidadPropietaria entidadPropietaria;
 
-                EntidadPropietaria entidadPropietaria = new EntidadPropietaria(
-                        nombre,
-                        serviciosTransporte,
-                        organizaciones,
-                        responsable);
+                if( em.createQuery("from EntidadPropietaria where nombre = :nombre ", EntidadPropietaria.class)
+                        .setParameter("nombre",nombre)
+                        .getResultList()
+                        .isEmpty()
+                ) {
+                     entidadPropietaria = new EntidadPropietaria(
+                            nombre,
+                            serviciosTransporte,
+                            organizaciones,
+                            responsable);
+                    //  RepoEntidadesPropietarias.getInstance().agregar(entidadPropietaria);
+                }
+             else {
 
-                RepoEntidadesPropietarias.getInstance().agregar(entidadPropietaria);
+                 entidadPropietaria = em.createQuery("from EntidadPropietaria where nombre = :nombre ", EntidadPropietaria.class)
+                         .setParameter("nombre",nombre)
+                         .getResultList()
+                         .get(0);
 
-            }else if(linea[0].equals("OrganismoDeControl")) {
-                OrganismoDeControl organismoDeControl = new OrganismoDeControl(
-                        nombre,
-                        serviciosTransporte,
-                        organizaciones,
-                        responsable);
+                    if (linea[2].equals("ServicioTransporte")) {
+                        entidadPropietaria.agregarServicios(serviciosTransporte);
 
-                RepoOrganismosDeControl.getInstance().agregar(organismoDeControl);
+                    }
+
+                    if (linea[2].equals("Organizacion")) {
+                        entidadPropietaria.agregarOrganizaciones(organizaciones);
+                    }
+
+                }
+
+
+
+                em.persist(entidadPropietaria);
+
+
+
+
+
+            }else{
+                if(linea[0].equals("OrganismoDeControl")) {
+
+                    OrganismoDeControl organismoDeControl;
+
+                    if( em.createQuery("from OrganismoDeControl where nombre = :nombre ", OrganismoDeControl.class)
+                            .setParameter("nombre",nombre)
+                            .getResultList()
+                            .isEmpty()
+                    ) {
+                         organismoDeControl = new OrganismoDeControl(
+                                nombre,
+                                serviciosTransporte,
+                                organizaciones,
+                                responsable);
+                    }
+
+                    else {
+                        organismoDeControl = em.createQuery("from OrganismoDeControl where nombre = :nombre ", OrganismoDeControl.class)
+                                .setParameter("nombre",nombre)
+                                .getResultList()
+                                .get(0);
+
+                        if (linea[2].equals("ServicioTransporte")) {
+                            organismoDeControl.agregarServicios(serviciosTransporte);
+
+                        }
+
+                        if (linea[2].equals("Organizacion")) {
+                            organismoDeControl.agregarOrganizaciones(organizaciones);
+                        }
+                    // RepoOrganismosDeControl.getInstance().agregar(organismoDeControl);
+                    }
+
+                em.persist(organismoDeControl);
+
+                }
             }
+            transaction.commit();
+
+
+
+
         });
+        em.close();
     }
 
     private MedioDeTransporte convertirTransporte(String transporte) {
@@ -82,6 +161,10 @@ public class IntegradorCSV {
                 return MedioDeTransporte.SUBTE;
             case "TREN":
                 return MedioDeTransporte.TREN;
+            case "COLECTIVO":
+                return MedioDeTransporte.COLECTIVO;
+            case "ECOBICI":
+                return MedioDeTransporte.ECOBICI;
             default:
                 throw new RuntimeException("Transporte no valido");
         }
