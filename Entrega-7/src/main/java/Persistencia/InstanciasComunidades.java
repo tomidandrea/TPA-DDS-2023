@@ -34,16 +34,21 @@ public class InstanciasComunidades {
     List<Miembro> observadores3 = List.of(miembros.getMiembro2());
     List<Miembro> observadores4 = List.of(miembros.getMiembro7());
 
-    Administrador admin1 = new Administrador();
-    Administrador admin2 = new Administrador();
+//    Administrador admin1 = new Administrador();
+//    Administrador admin2 = new Administrador();
+//
+//    em.persist(admin1);
+//    em.persist(admin2);
 
-    em.persist(admin1);
-    em.persist(admin2);
+//    List<Administrador> administradores1 = List.of(admin1);
+//    List<Administrador> administradores2 = List.of(admin2);
+//    List<Administrador> administradores3 = List.of(admin1);
+//    List<Administrador> administradores4 = List.of(admin2);
 
-    List<Administrador> administradores1 = List.of(admin1);
-    List<Administrador> administradores2 = List.of(admin2);
-    List<Administrador> administradores3 = List.of(admin1);
-    List<Administrador> administradores4 = List.of(admin2);
+    List<Miembro> administradores1 = List.of(miembros.getMiembro1());
+    List<Miembro> administradores2 = List.of(miembros.getMiembro2());
+    List<Miembro> administradores3 = List.of(miembros.getMiembro1());
+    List<Miembro> administradores4 = List.of(miembros.getMiembro2());
 
     List<Establecimiento> establecimientosObservados1 = List.of(establecimientos.getEstacionA1(),establecimientos.getSucursalDia2(),
         establecimientos.getSucursalCoto1(), establecimientos.getEstacionA2(), establecimientos.getSucursalCoto2());

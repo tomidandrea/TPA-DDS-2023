@@ -23,11 +23,13 @@ public class Incidente {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id")
+    @Getter
     private Servicio servicio;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "agrupacion_id")
     private Agrupacion agrupacion;
+    @Getter
     private String observacion;
 
     @ManyToMany(mappedBy = "incidentesAbiertos", cascade = CascadeType.ALL)

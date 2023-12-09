@@ -37,7 +37,7 @@ public class Comunidad {
     private List<Miembro> observadores;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Administrador> administradores;
+    private List<Miembro> administradores;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "comunidades_incidentes",
@@ -73,7 +73,7 @@ public class Comunidad {
 
 
 
-    public Comunidad(String nombre, List<Miembro> afectados, List<Miembro> observadores, List<Administrador> admins,
+    public Comunidad(String nombre, List<Miembro> afectados, List<Miembro> observadores, List<Miembro> admins,
                      List<Establecimiento> establecimientosObservados, List<Servicio> serviciosEstandar,
                      GradoDeConfianza gradoDeConfianza, List<Incidente> incidentes) {
         this.nombre = nombre;

@@ -35,6 +35,12 @@ public class RepoComunidades {
                 .getResultList();
     }
 
+    public List<Comunidad> obtenerComunidadesAdminPor(Miembro miembro){
+        return em.createQuery("SELECT c FROM Comunidad c WHERE :miembro MEMBER OF c.administradores", Comunidad.class)
+                .setParameter("miembro", miembro)
+                .getResultList();
+    }
+
     public void agregarComunidad(Comunidad comu) {
         comunidades.add(comu);
     }

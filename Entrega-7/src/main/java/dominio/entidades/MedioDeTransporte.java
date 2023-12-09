@@ -1,5 +1,5 @@
 package dominio.entidades;
 
 public enum MedioDeTransporte {
-    SUBTE, TREN
+    SUBTE, TREN, COLECTIVO, ECOBICI
 }

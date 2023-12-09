@@ -114,7 +114,7 @@ public class InstanciasMiembro {
         Notificador notificador6 = new Notificador(horarios6);
 
         List<LocalTime> horarios7 = new ArrayList<LocalTime>();
-        horarios6.add(LocalTime.now().plusHours(2));
+        horarios7.add(LocalTime.now().plusHours(2));
         Notificador notificador7 = new Notificador(horarios7);
 
         return List.of(notificador1, notificador2, notificador3, notificador4,

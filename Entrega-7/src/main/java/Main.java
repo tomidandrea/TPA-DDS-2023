@@ -8,6 +8,7 @@ import io.javalin.Javalin;
 import io.javalin.config.SizeUnit;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import io.javalin.http.Handler;
 
 public class Main {
 
@@ -27,6 +28,11 @@ public class Main {
             })
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
+
+//      List<UsuarioDTO> elementos = new ArrayList<>();
+//      elementos.add(new UsuarioDTO(TipoMiembro.AFECTADO));
+//      elementos.add(new UsuarioDTO(TipoMiembro.OBSERVADOR));
+
     //pesado
     app.get("/api/rankingCI", new GetRankingCIHandler());
     app.get("/api/rankingTC", new GetRankingTCHandler());
@@ -39,10 +45,14 @@ public class Main {
     //liviano
     app.get("/rankingCI", new RankingCIViewHandler());
     app.get("/rankingTC", new RankingTCViewHandler());
-      app.get("/incidentes", new GetIncidentesViewHandler());
-      app.post("/incidentes", new PostIncidenteViewHandler());
-      app.get("/cargaCSV", new GetCargaEntidadesViewHandler());
-      app.post("/cargaCSV", new PostCargaEntidadesViewHandler());
+    app.get("/incidentes", new GetIncidentesViewHandler());
+    app.post("/incidentes", new PostIncidenteViewHandler());
+    app.get("/cargaCSV", new GetCargaEntidadesViewHandler());
+    app.post("/cargaCSV", new PostCargaEntidadesViewHandler());
+    app.get("/usuarios", new AdministracionUsuariosViewHandler());
+    app.post("/buscarUsuarios", (Handler) new BuscarViewHandler());
+
+
     /*EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
     InstanciasServicios servicios = new InstanciasServicios(em);
