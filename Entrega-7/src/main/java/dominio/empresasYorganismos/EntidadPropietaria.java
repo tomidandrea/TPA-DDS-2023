@@ -27,16 +27,20 @@ public class EntidadPropietaria {
     private Usuario responsable;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> suscriptores;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Incidente> incidentesAbiertos;
 
-    public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, Miembro responsable) {
+
+    public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, List<Incidente> incidentesAbiertos, Miembro responsable) {
         this.nombre = nombre;
         this.serviciosTransporte = serviciosTransporte;
         this.organizaciones = organizaciones;
+        this.incidentesAbiertos = incidentesAbiertos;
         this.responsable = responsable;
     }
 
-    public EntidadPropietaria() {
 
+    public EntidadPropietaria() {
     }
 
     public void notificarSuscriptores(List<Incidente> incidentes){
