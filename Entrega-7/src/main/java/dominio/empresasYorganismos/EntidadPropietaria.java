@@ -43,6 +43,9 @@ public class EntidadPropietaria {
     public EntidadPropietaria() {
     }
 
+    public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, Miembro responsable) {
+    }
+
     public void notificarSuscriptores(List<Incidente> incidentes){
         suscriptores.forEach(suscriptor -> suscriptor.getMedioPreferido().notificarIncidentes(suscriptor, incidentes, this.nombre));
     }

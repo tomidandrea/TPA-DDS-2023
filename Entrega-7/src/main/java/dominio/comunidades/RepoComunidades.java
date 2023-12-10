@@ -41,6 +41,12 @@ public class RepoComunidades {
                 .getResultList();
     }
 
+    public Comunidad obtenerComunidadPorId(int comunidad_id){
+        return em.createQuery("SELECT c FROM Comunidad c WHERE c.id = :comunidad_id", Comunidad.class)
+                .setParameter("comunidad_id", comunidad_id)
+                .getSingleResult();
+    }
+
     public void agregarComunidad(Comunidad comu) {
         comunidades.add(comu);
     }

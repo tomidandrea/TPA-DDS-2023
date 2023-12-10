@@ -29,10 +29,6 @@ public class Main {
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
 
-//      List<UsuarioDTO> elementos = new ArrayList<>();
-//      elementos.add(new UsuarioDTO(TipoMiembro.AFECTADO));
-//      elementos.add(new UsuarioDTO(TipoMiembro.OBSERVADOR));
-
     //pesado
     app.get("/api/rankingCI", new GetRankingCIHandler());
     app.get("/api/rankingTC", new GetRankingTCHandler());
@@ -49,8 +45,8 @@ public class Main {
     app.post("/incidentes", new PostIncidenteViewHandler());
     app.get("/cargaCSV", new GetCargaEntidadesViewHandler());
     app.post("/cargaCSV", new PostCargaEntidadesViewHandler());
-    app.get("/usuarios", new AdministracionUsuariosViewHandler());
-    app.post("/buscarUsuarios", (Handler) new BuscarViewHandler());
+    app.get("/comunidades", new AdministracionComunidadesViewHandler());
+    app.get("/comunidades/{id}", new AdministracionUsuariosViewHandler());
 
 
     /*EntityManager em = BDUtils.getEntityManager();
@@ -80,7 +76,5 @@ public class Main {
 
     BDUtils.commit(em);
     em.close();*/
-
   }
-
 }
