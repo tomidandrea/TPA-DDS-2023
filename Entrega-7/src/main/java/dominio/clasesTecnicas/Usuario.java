@@ -1,18 +1,23 @@
 package dominio.clasesTecnicas;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
 
-//@Entity
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Getter
 public abstract class Usuario {
-  /*@Id
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-*/
+  @Transient
   private String usuario;
+  @Transient
   private String contrasenia;
+
+  private String nombre;
+  private String apellido;
 
   /*public Cuenta(String usuario, String contrasenia) {
     this.usuario = usuario;
@@ -20,12 +25,25 @@ public abstract class Usuario {
     this.contrasenia = contrasenia;
   }*/
 
-  public String getUsuario() {
-    return this.usuario;
+  public Usuario(){
   }
 
-  public String getContrasenia() {
-    return this.contrasenia;
+  public Usuario(String nombre, String apellido) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+  }
+
+  public Usuario(String nombre, String apellido, int id) {
+    this.id = id;
+    this.nombre = nombre;
+    this.apellido = apellido;
+  }
+
+  public Usuario(String usuario, String contrasenia, String nombre, String apellido) {
+    this.usuario = usuario;
+    this.contrasenia = contrasenia;
+    this.nombre = nombre;
+    this.apellido = apellido;
   }
 
   public void setUsuario(String usuario) {

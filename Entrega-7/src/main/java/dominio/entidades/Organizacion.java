@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Organizacion extends Entidad{
     @Setter
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Sucursal> sucursales;
 
     public Organizacion() {

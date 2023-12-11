@@ -29,6 +29,8 @@ public class Main {
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
 
+    persistirInstancias();
+
     //pesado
     app.get("/api/rankingCI", new GetRankingCIHandler());
     app.get("/api/rankingTC", new GetRankingTCHandler());
@@ -49,32 +51,34 @@ public class Main {
     app.get("/comunidades/{id}", new AdministracionUsuariosViewHandler());
 
 
-    /*EntityManager em = BDUtils.getEntityManager();
+  }
+
+  private static void persistirInstancias(){
+    EntityManager em = BDUtils.getEntityManager();
     BDUtils.comenzarTransaccion(em);
     InstanciasServicios servicios = new InstanciasServicios(em);
     InstanciasIncidentes incidentes = new InstanciasIncidentes(em, servicios);
     InstanciasEstablecimientos establecimientos = new InstanciasEstablecimientos(em, servicios);
     InstanciasEntidades entidades = new InstanciasEntidades(em, establecimientos);
+
     InstanciasMiembro miembros = new InstanciasMiembro(em);
     InstanciasComunidades comunidades = new InstanciasComunidades(em, incidentes, miembros, establecimientos, servicios);
-    InstanciasEntidadesOrganismos entidadesOrganismos = new InstanciasEntidadesOrganismos(em, establecimientos);
-    InstanciasUsuarios usuarios = new InstanciasUsuarios(em, entidadesOrganismos);
+    InstanciasUsuarios usuarios = new InstanciasUsuarios(em);
+    InstanciasEntidadesOrganismos entidadesOrganismos = new InstanciasEntidadesOrganismos(em, establecimientos, usuarios);
 
 
     RankingCantidadIncidentes rankingCantidadIncidentes = new RankingCantidadIncidentes(LocalDate.now());
     RankingCantidadIncidentes rankingCantidadIncidentes2 = new RankingCantidadIncidentes(LocalDate.now());
     rankingCantidadIncidentes.obtenerRankingEntidadesConMasIncidentes();
     rankingCantidadIncidentes2.obtenerRankingEntidadesConMasIncidentes();
-
     em.persist(rankingCantidadIncidentes);
     em.persist(rankingCantidadIncidentes2);
-
 
     RankingTiempoCierre rankingTiempoCierre = new RankingTiempoCierre(LocalDate.now());
     rankingTiempoCierre.obtenerRankingEntidadesConMayorTiempoDeCierre();
     em.persist(rankingTiempoCierre);
 
     BDUtils.commit(em);
-    em.close();*/
+    em.close();
   }
 }

@@ -1,5 +1,6 @@
 package dominio.empresasYorganismos;
 
+import dominio.clasesTecnicas.AdminEntidadOrganismo;
 import dominio.clasesTecnicas.Usuario;
 import dominio.comunidades.Incidente;
 import dominio.comunidades.Miembro;
@@ -7,6 +8,7 @@ import dominio.entidades.Organizacion;
 import dominio.entidades.ServicioTransporte;
 import dominio.servicios.Servicio;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,16 +28,17 @@ public class EntidadPropietaria {
     private List<Organizacion> organizaciones;
     @ManyToMany(cascade = CascadeType.ALL) // idem para servicios
     private List<ServicioTransporte> serviciosTransporte;
-    //@OneToOne
-    @Transient
+    @Setter
+    @OneToOne
     private Usuario responsable;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> suscriptores;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Incidente> incidentesAbiertos;
+    //TODO: tendriamos que fijarnos que al cerrar un incidente tambien se fije estos - Alejo
 
 
-    public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, List<Incidente> incidentesAbiertos, Miembro responsable) {
+    public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, List<Incidente> incidentesAbiertos, AdminEntidadOrganismo responsable) {
         this.nombre = nombre;
         this.serviciosTransporte = serviciosTransporte;
         this.organizaciones = organizaciones;
