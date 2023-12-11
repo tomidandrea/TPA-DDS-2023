@@ -81,6 +81,24 @@ public class Incidente {
         repoIncidentes.agregar(this);
     }
 
+    public Incidente(Servicio servicio, LocalDateTime horarioApertura, LocalDateTime horarioCierre){
+        this.servicio = servicio;
+        this.horarioApertura = horarioApertura;
+        this.horarioCierre = horarioCierre;
+        this.estadoIncidente = EstadoIncidente.CERRADO;
+        RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+        repoIncidentes.agregar(this);
+    }
+
+    public Incidente(Agrupacion agrupacion, LocalDateTime horarioApertura, LocalDateTime horarioCierre){
+        this.agrupacion = agrupacion;
+        this.horarioApertura = horarioApertura;
+        this.horarioCierre = horarioCierre;
+        this.estadoIncidente = EstadoIncidente.CERRADO;
+        RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
+        repoIncidentes.agregar(this);
+    }
+
     public Incidente(Servicio servicio, String observacion, List<Comunidad> comunidades, LocalDateTime horarioApertura) {
         this.servicio = servicio;
         this.observacion = observacion;

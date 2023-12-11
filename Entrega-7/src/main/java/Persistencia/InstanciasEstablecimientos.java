@@ -16,7 +16,6 @@ public class InstanciasEstablecimientos {
   private Estacion estacionA2;
   private Estacion estacionB1;
   private Estacion estacionB2;
-
   private Sucursal sucursalCoto1;
   private Sucursal sucursalCoto2;
   private Sucursal sucursalDia1;

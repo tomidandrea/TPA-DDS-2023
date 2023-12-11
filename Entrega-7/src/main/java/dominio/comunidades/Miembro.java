@@ -14,16 +14,17 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "miembro")
+@PrimaryKeyJoinColumn(name = "miembro_id")
 public class Miembro extends Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "miembro_id")
-    private int id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "miembro_id")
+//    private int id;
 
     @Transient
     private static int cantidadMiembros;
-    private String nombre;
-    private String apellido;
+//    private String nombre;
+//    private String apellido;
     private String correoElectronico;
 
     @OneToOne(cascade = CascadeType.REMOVE)
@@ -61,19 +62,21 @@ public class Miembro extends Usuario {
 
     public Miembro(String nombre, String apellido, String correoElectronico,
                    String usuario, String contrasenia, int id){
-        this.nombre = nombre;
-        this.apellido = apellido;
+//        this.nombre = nombre;
+//        this.apellido = apellido;
+        super(nombre, apellido, id);
         this.correoElectronico = correoElectronico;
         this.setUsuario(usuario);;
         Validador.validarContrasenia(contrasenia);
         this.setContrasenia(contrasenia);
-        this.id = id;
+//        this.id = id;
     }
     public Miembro(String nombre, String apellido, String correoElectronico, Localizacion localizacion,
                    MedioDeComunicacion medioPreferido, String nroDeTelefono,
                    Notificador notificador, String usuario, String contrasenia) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+//        this.nombre = nombre;
+//        this.apellido = apellido;
+        super(nombre, apellido);
         this.correoElectronico = correoElectronico;
         this.interes = new Interes();
         this.localizacion = localizacion;
@@ -90,8 +93,9 @@ public class Miembro extends Usuario {
     public Miembro(String nombre, String apellido, String correoElectronico, //Localizacion localizacion,
                    MedioDeComunicacion medioPreferido, String nroDeTelefono,
                    Notificador notificador, String usuario, String contrasenia) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+//        this.nombre = nombre;
+//        this.apellido = apellido;
+        super(nombre, apellido);
         this.correoElectronico = correoElectronico;
         //this.localizacion = localizacion;
         this.medioPreferido = medioPreferido;
@@ -104,7 +108,7 @@ public class Miembro extends Usuario {
     }
 
     public boolean compararId(int id){
-        return this.id == id;
+        return this.getId() == id;
     }
 
     public void sugerirRevision(Incidente incidente){
@@ -118,8 +122,8 @@ public class Miembro extends Usuario {
     @Override
     public String toString() {
         return "Miembro{" +
-                "id = " + id +
-                ", nombre = " + nombre + " apellido = " + apellido + "correoElectronico = " + correoElectronico +'\'' +
+                "id = " + this.getId() +
+                ", nombre = " + this.getNombre() + " apellido = " + this.getApellido() + "correoElectronico = " + correoElectronico +'\'' +
                 '}';
     }
 }
