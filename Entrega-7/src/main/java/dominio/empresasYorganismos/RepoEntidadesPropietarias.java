@@ -1,6 +1,7 @@
 package dominio.empresasYorganismos;
 
 import Utils.BDUtils;
+import dominio.clasesTecnicas.AdminEntidadOrganismo;
 import dominio.entidades.Entidad;
 import dominio.entidades.ServicioTransporte;
 import dominio.establecimientos.Establecimiento;
@@ -33,10 +34,13 @@ public class RepoEntidadesPropietarias {
         return entidadesPropietarias;
     }
 
-    public EntidadPropietaria obtenerEntidadPropPorId(int id) {
-        EntityManager em = BDUtils.getEntityManager();
 
-        return em.find(EntidadPropietaria.class, id);
+
+    public EntidadPropietaria obtenerEntidadPropACargoDe(AdminEntidadOrganismo responsable) {
+        EntityManager em = BDUtils.getEntityManager();
+        int idResponsable = responsable.getId();
+        return em.createQuery("FROM EntidadPropietaria where responsable = :idResponsable", EntidadPropietaria.class)
+                .setParameter("idResponsable",idResponsable ).getResultList().get(0);
     }
 
 }

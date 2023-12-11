@@ -29,7 +29,7 @@ public class Main {
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
 
-    persistirInstancias();
+    //persistirInstancias();
 
     //pesado
     app.get("/api/rankingCI", new GetRankingCIHandler());

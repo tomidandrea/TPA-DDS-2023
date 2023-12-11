@@ -20,7 +20,7 @@ signUpForm.addEventListener("submit", async (e) => {
         // reset the form
         signUpForm.reset();
 
-        showMessage("Se ha registrado exitosamente " + userCredential.user.email);
+        showMessage("Se ha registrado exitosamente " + userCredential.user.email, "success");
 
     } catch (error) {
         console.log(error)

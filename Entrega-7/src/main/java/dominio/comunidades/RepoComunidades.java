@@ -41,6 +41,11 @@ public class RepoComunidades {
                 .getResultList();
     }
 
+    public List<Comunidad> comunidadesAdministradasPor(Miembro miembro, List<Comunidad> comunidades){
+        return  comunidades.stream().filter(comunidad ->comunidad.getAdministradores().contains(miembro)).toList();
+    }
+
+
     public Comunidad obtenerComunidadPorId(int comunidad_id){
         return em.createQuery("SELECT c FROM Comunidad c WHERE c.id = :comunidad_id", Comunidad.class)
                 .setParameter("comunidad_id", comunidad_id)

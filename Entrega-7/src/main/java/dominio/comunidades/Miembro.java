@@ -110,13 +110,6 @@ public class Miembro extends Usuario {
         return notificador.compararHorarioActual();
     }
 
-    @Override
-    public String toString() {
-        return "Miembro{" +
-                "id = " + this.getId() +
-                ", nombre = " + this.getNombre() + " apellido = " + this.getApellido() + "correoElectronico = " + this.getCorreoElectronico() +'\'' +
-                '}';
-    }
 }
 
 

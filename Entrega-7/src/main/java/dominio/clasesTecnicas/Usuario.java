@@ -58,4 +58,12 @@ public abstract class Usuario {
   public void setContrasenia(String contrasenia) {
     this.contrasenia = contrasenia;
   }
+
+  @Override
+  public String toString() {
+    return "Usuario{" +
+            "id = " + this.getId() +
+            ", nombre = " + this.getNombre() + " apellido = " + this.getApellido() + "correoElectronico = " + this.getCorreoElectronico() +'\'' +
+            '}';
+  }
 }
