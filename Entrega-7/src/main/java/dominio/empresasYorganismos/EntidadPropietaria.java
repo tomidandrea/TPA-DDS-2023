@@ -5,10 +5,14 @@ import dominio.comunidades.Incidente;
 import dominio.comunidades.Miembro;
 import dominio.entidades.Organizacion;
 import dominio.entidades.ServicioTransporte;
+import dominio.servicios.Servicio;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -56,5 +60,20 @@ public class EntidadPropietaria {
 
     public void agregarOrganizaciones(List<Organizacion> organizaciones) {
         organizaciones.addAll(organizaciones);
+    }
+
+    public List<Servicio> serviciosDePropiedades() {
+
+        HashSet<Servicio> s = new HashSet<>(serviciosTransporte.stream().
+                flatMap(st -> st.servicios().stream())
+                .collect(Collectors.toList()));
+        HashSet<Servicio> o = new HashSet<>(organizaciones.stream().
+                flatMap(organizacion -> organizacion.servicios().stream())
+                .collect(Collectors.toList()));
+
+        HashSet<Servicio> serviciosEntProp = new HashSet<>(s);
+        serviciosEntProp.addAll(o);
+
+        return serviciosEntProp.stream().toList();
     }
 }

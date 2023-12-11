@@ -3,6 +3,8 @@ package dominio.entidades;
 import dominio.comunidades.EstadoIncidente;
 import dominio.establecimientos.Establecimiento;
 import dominio.establecimientos.Estacion;
+import dominio.servicios.Agrupacion;
+import dominio.servicios.Servicio;
 import lombok.Getter;
 import org.apache.commons.collections.ListUtils;
 
@@ -13,13 +15,13 @@ import java.util.stream.Collectors;
 
 @Getter
 @Entity
-public class ServicioTransporte extends Entidad{
+public class ServicioTransporte extends Entidad {
     @Enumerated(EnumType.STRING)
     private MedioDeTransporte tipoTransporte;
     @OneToOne(cascade = CascadeType.ALL)
     private Linea lineaDeTransporteIda;
     @OneToOne(cascade = CascadeType.ALL)
-    private  Linea lineaDeTransporteVuelta;
+    private Linea lineaDeTransporteVuelta;
 
     public ServicioTransporte(MedioDeTransporte tipoTransporte, String nombre, Linea lineaDeTransporteIda, Linea lineaDeTransporteVuelta) {
         this.tipoTransporte = tipoTransporte;
@@ -54,24 +56,39 @@ public class ServicioTransporte extends Entidad{
 //        }
 //    }
 
-    public Duration calcularPromedioTiempoCierre(){
-        Set<Estacion> estaciones = new HashSet<>(lineaDeTransporteIda.getEstaciones());
-        estaciones.addAll(lineaDeTransporteVuelta.getEstaciones());
-        List<Duration> tiempos = estaciones.stream()
-            .map(Establecimiento::obtenerListaTiemposCierre)
-            .flatMap(List::stream)
-            .collect(Collectors.toList());
+    public Duration calcularPromedioTiempoCierre() {
+        List<Duration> tiempos = estaciones().stream()
+                .map(Establecimiento::obtenerListaTiemposCierre)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
 
         Optional<Duration> tiempoTotalOptional = tiempos.stream()
-            .reduce(Duration::plus);
+                .reduce(Duration::plus);
 
         return tiempoTotalOptional.orElse(Duration.ZERO)
-            .dividedBy(tiempos.size()==0?1:tiempos.size());
+                .dividedBy(tiempos.size() == 0 ? 1 : tiempos.size());
     }
 
-    public Integer cantidadIncidentes(){
+    public Integer cantidadIncidentes() {
+
+        return estaciones().stream().mapToInt(Establecimiento::cantidadDeIncidentes).sum();
+    }
+
+    public Set<Estacion> estaciones() {
         Set<Estacion> estaciones = new HashSet<>(lineaDeTransporteIda.getEstaciones());
         estaciones.addAll(lineaDeTransporteVuelta.getEstaciones());
-        return estaciones.stream().mapToInt(Establecimiento::cantidadDeIncidentes).sum();
+        return estaciones;
     }
+
+    public List<Servicio> servicios() {
+        List<Servicio> servicios = new ArrayList<>();
+
+        HashSet<Servicio> s = new HashSet<>(servicios = estaciones().stream()
+                .flatMap(estacion -> estacion.getServicios().stream())
+                .collect(Collectors.toList()));
+        servicios = s.stream().toList();
+
+        return servicios;
+    }
+
 }

@@ -1,5 +1,11 @@
 package dominio.empresasYorganismos;
 
+import Utils.BDUtils;
+import dominio.entidades.Entidad;
+import dominio.entidades.ServicioTransporte;
+import dominio.establecimientos.Establecimiento;
+
+import javax.persistence.EntityManager;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +32,11 @@ public class RepoEntidadesPropietarias {
     public List<EntidadPropietaria> getEntidadesPropietarias() {
         return entidadesPropietarias;
     }
+
+    public EntidadPropietaria obtenerEntidadPropPorId(int id) {
+        EntityManager em = BDUtils.getEntityManager();
+
+        return em.find(EntidadPropietaria.class, id);
+    }
+
 }
