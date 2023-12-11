@@ -16,8 +16,8 @@ public class AdminEntidadOrganismo extends Usuario {
 
     }
 
-    public AdminEntidadOrganismo(String usuario, String contrasenia, String nombre, String apellido) {
-        super(usuario, contrasenia, nombre, apellido);
+    public AdminEntidadOrganismo(String usuario, String contrasenia, String nombre, String apellido, String correoElectronico) {
+        super(usuario, contrasenia, nombre, apellido, correoElectronico);
         this.fechaInicioAdministracion = LocalDate.now();
     }
 

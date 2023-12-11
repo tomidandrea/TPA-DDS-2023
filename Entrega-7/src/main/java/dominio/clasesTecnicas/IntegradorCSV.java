@@ -65,7 +65,7 @@ public class IntegradorCSV {
             if (linea[2].equals("Organizacion")) {
                 organizaciones.addAll(RepoEntidades.getInstance().obtenerOrgPorNombre(linea[3]));
             }
-            Miembro responsable = RepoMiembros.getInstance().getMiembro(Integer.parseInt(linea[4]));
+            AdminEntidadOrganismo responsable = RepoAdminEntYOrg.getInstance().getAdministrador(Integer.parseInt(linea[4]));
 
             if(linea[0].equals("EntidadPropietaria")) {
                 EntidadPropietaria entidadPropietaria;

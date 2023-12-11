@@ -1,5 +1,6 @@
 package dominio.empresasYorganismos;
 
+import dominio.clasesTecnicas.AdminEntidadOrganismo;
 import dominio.clasesTecnicas.Usuario;
 import dominio.comunidades.Miembro;
 import dominio.entidades.Organizacion;
@@ -21,11 +22,10 @@ public class OrganismoDeControl {
     private List<ServicioTransporte> serviciosTransporte;
     @ManyToMany(cascade = CascadeType.ALL) // idem para organizaciones
     private List<Organizacion> organizaciones;
-    //@OneToOne
-    @Transient
-    private Usuario responsable;
+    @OneToOne
+    private AdminEntidadOrganismo responsable;
 
-    public OrganismoDeControl(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, Miembro responsable) {
+    public OrganismoDeControl(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, AdminEntidadOrganismo responsable) {
         this.nombre = nombre;
         this.serviciosTransporte = serviciosTransporte;
         this.organizaciones = organizaciones;

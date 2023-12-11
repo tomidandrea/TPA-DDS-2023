@@ -30,7 +30,7 @@ public class EntidadPropietaria {
     private List<ServicioTransporte> serviciosTransporte;
     @Setter
     @OneToOne
-    private Usuario responsable;
+    private AdminEntidadOrganismo responsable;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> suscriptores;
     @ManyToMany(cascade = CascadeType.ALL)
@@ -50,7 +50,7 @@ public class EntidadPropietaria {
     public EntidadPropietaria() {
     }
 
-    public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, Miembro responsable) {
+    public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, AdminEntidadOrganismo responsable) {
     }
 
     public void notificarSuscriptores(List<Incidente> incidentes){

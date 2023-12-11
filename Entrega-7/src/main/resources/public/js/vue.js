@@ -15,7 +15,7 @@ Vue.component('navbar', {
                 <a class="nav-link" aria-current="page" href="./../../static/menuDeInicio.html">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./../../static/cargaCSV.html">Carga entidades</a>
+                <a class="nav-link" aria-current="page" href="./../cargaCSV">Carga entidades</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./../../static/administracionUsuarios.html">Administración usuarios</a>

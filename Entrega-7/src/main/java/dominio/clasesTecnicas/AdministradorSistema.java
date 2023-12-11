@@ -14,7 +14,7 @@ public class AdministradorSistema extends Usuario {
     public AdministradorSistema(){
         this.cantidadEntidadesCargadas = 0;
     }
-    public AdministradorSistema(String usuario, String contrasenia, String nombre, String apellido) {
-        super(usuario, contrasenia, nombre, apellido);
+    public AdministradorSistema(String usuario, String contrasenia, String nombre, String apellido, String correoElectronico) {
+        super(usuario, contrasenia, nombre, apellido, correoElectronico);
     }
 }

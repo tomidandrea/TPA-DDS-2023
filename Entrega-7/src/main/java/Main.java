@@ -64,7 +64,7 @@ public class Main {
     InstanciasMiembro miembros = new InstanciasMiembro(em);
     InstanciasComunidades comunidades = new InstanciasComunidades(em, incidentes, miembros, establecimientos, servicios);
     InstanciasUsuarios usuarios = new InstanciasUsuarios(em);
-    InstanciasEntidadesOrganismos entidadesOrganismos = new InstanciasEntidadesOrganismos(em, establecimientos, usuarios);
+    InstanciasEntidadesOrganismos entidadesOrganismos = new InstanciasEntidadesOrganismos(em, entidades, usuarios);
 
 
     RankingCantidadIncidentes rankingCantidadIncidentes = new RankingCantidadIncidentes(LocalDate.now());
