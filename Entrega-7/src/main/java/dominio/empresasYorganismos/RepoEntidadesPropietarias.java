@@ -38,9 +38,8 @@ public class RepoEntidadesPropietarias {
 
     public EntidadPropietaria obtenerEntidadPropACargoDe(AdminEntidadOrganismo responsable) {
         EntityManager em = BDUtils.getEntityManager();
-        int idResponsable = responsable.getId();
-        return em.createQuery("FROM EntidadPropietaria where responsable = :idResponsable", EntidadPropietaria.class)
-                .setParameter("idResponsable",idResponsable ).getResultList().get(0);
+        return em.createQuery("FROM EntidadPropietaria where responsable = :responsable", EntidadPropietaria.class)
+                .setParameter("responsable", responsable).getSingleResult();
     }
 
 }

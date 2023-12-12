@@ -51,7 +51,7 @@ public class LoginHandler implements Handler {
                 // La instancia es de la subclase Miembro
                 Miembro miembro = (Miembro) usuarioLogueado;
                 // Realizar operaciones específicas del Miembro
-                sesionManager.agregarAtributo(idSesion, "rol", "miembro");
+                sesionManager.agregarAtributo(idSesion, "rol", "miembro");;
                 //busco las comunidades del miembro y las agrego a la sesion
                 List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembro.getId());
                 sesionManager.agregarAtributo(idSesion, "comunidades", comunidades);
@@ -71,9 +71,12 @@ public class LoginHandler implements Handler {
                 sesionManager.agregarAtributo(idSesion, "rol", "AdminSistema");
             }
 
+
+            System.out.println("Rol del usuario: " + sesionManager.obtenerAtributos(idSesion).get("rol"));
             context.sessionAttribute("sessionId", idSesion);
             //devuelvo id de la sesion
             context.json(new Gson().toJson(new LoginResponse(idSesion)));
+            //context.redirect("/static/menuDeInicio.html");
 
         } else {
             // No se encontró ningún usuario con el ID proporcionado
