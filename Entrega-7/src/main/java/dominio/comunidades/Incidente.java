@@ -32,7 +32,7 @@ public class Incidente {
     @Getter
     private String observacion;
 
-    @ManyToMany(mappedBy = "incidentesAbiertos", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "incidentesAbiertos")
     private List<Comunidad> comunidades;
 
     private LocalDateTime horarioApertura;

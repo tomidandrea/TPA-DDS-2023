@@ -32,7 +32,15 @@ public class PostIncidenteHandler implements Handler {
         System.out.println(comunidades);
         Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
 
-        RepoIncidentes.getInstance().persistirIncidente(incidente);
+       // RepoIncidentes.getInstance().persistirIncidente(incidente);
+        RepoComunidades.getInstance().agregarIncidenteAComunidades(incidente, comunidades);
+        RepoIncidentes.getInstance().actualizar(incidente);
+        // imprimir ids de incidentes abiertos de las comunidades
+        System.out.println("Incidentes abiertos de las comunidades:");
+        comunidades.forEach(comunidad -> {
+            System.out.println("Comunidad: " + comunidad.getNombre());
+            comunidad.getIncidentesAbiertos().forEach(incidente1 -> System.out.println("Incidente: " + incidente1.getId()));
+        });
         context.status(201);
     }
 
