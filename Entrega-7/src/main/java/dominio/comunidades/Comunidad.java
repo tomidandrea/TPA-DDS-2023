@@ -40,11 +40,11 @@ public class Comunidad {
     private List<Miembro> administradores;
 
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "comunidades_incidentes",
-        joinColumns = @JoinColumn(name = "comunidad_id"),
-        inverseJoinColumns = @JoinColumn(name = "incidente_id")
-    )
+    @ManyToMany(mappedBy = "comunidades", cascade = CascadeType.ALL)
+//    @JoinTable(name = "incidente_comunidad",
+//        joinColumns = @JoinColumn(name = "comunidad_id"),
+//        inverseJoinColumns = @JoinColumn(name = "incidente_id")
+//    )
     private List<Incidente> incidentesAbiertos;
 
     @ManyToMany(cascade = CascadeType.ALL)

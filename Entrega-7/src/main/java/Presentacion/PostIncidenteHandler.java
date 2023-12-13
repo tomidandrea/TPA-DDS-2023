@@ -1,5 +1,6 @@
 package Presentacion;
 
+import Utils.BDUtils;
 import com.google.gson.Gson;
 import dominio.comunidades.*;
 import dominio.servicios.Agrupacion;
@@ -8,6 +9,7 @@ import dominio.servicios.Servicio;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +34,20 @@ public class PostIncidenteHandler implements Handler {
         System.out.println(comunidades);
         Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
 
-       // RepoIncidentes.getInstance().persistirIncidente(incidente);
-        RepoComunidades.getInstance().agregarIncidenteAComunidades(incidente, comunidades);
-        RepoIncidentes.getInstance().actualizar(incidente);
+        //RepoIncidentes.getInstance().actualizar(incidente);
         // imprimir ids de incidentes abiertos de las comunidades
-        System.out.println("Incidentes abiertos de las comunidades:");
-        comunidades.forEach(comunidad -> {
-            System.out.println("Comunidad: " + comunidad.getNombre());
-            comunidad.getIncidentesAbiertos().forEach(incidente1 -> System.out.println("Incidente: " + incidente1.getId()));
-        });
+//        System.out.println("Incidentes abiertos de las comunidades:");
+//        comunidades.forEach(comunidad -> {
+//            System.out.println("Comunidad: " + comunidad.getNombre());
+//            comunidad.getIncidentesAbiertos().forEach(incidente1 -> System.out.println("Incidente: " + incidente1.getId()));
+//        });
+
+        EntityManager em = BDUtils.getEntityManager();
+        BDUtils.comenzarTransaccion(em);
+        em.merge(incidente);
+        BDUtils.commit(em);
+        em.close();
+
         context.status(201);
     }
 
