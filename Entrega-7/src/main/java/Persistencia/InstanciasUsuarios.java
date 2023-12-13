@@ -14,8 +14,8 @@ public class InstanciasUsuarios {
     private AdminEntidadOrganismo adminOrganismoDeControl;
 
     public InstanciasUsuarios(EntityManager em) {
-        this.adminSistema = new AdministradorSistema("admin", "23campeonDelMundo#3", "David", "Argento");
-        this.adminEntidadPropietaria = new AdminEntidadOrganismo("adminEntidadPropietaria", "23campeonDelMundo#3", "Marcos", "Puerta");
+        this.adminSistema = new AdministradorSistema("admin", "23campeonDelMundo#3", "David", "Argento", "david@gmail.com");
+        this.adminEntidadPropietaria = new AdminEntidadOrganismo("adminEntidadPropietaria", "23campeonDelMundo#3", "Marcos", "Puerta", "marcos@gmail.com");
         em.persist(adminSistema);
         em.persist(adminEntidadPropietaria);
     }

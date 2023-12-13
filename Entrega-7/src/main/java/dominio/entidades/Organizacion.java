@@ -1,12 +1,16 @@
 package dominio.entidades;
+import dominio.comunidades.Incidente;
 import dominio.establecimientos.Establecimiento;
 import dominio.establecimientos.Sucursal;
+import dominio.servicios.Agrupacion;
+import dominio.servicios.Servicio;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,4 +62,12 @@ public class Organizacion extends Entidad{
         return sucursales.stream().mapToInt(Establecimiento::cantidadDeIncidentes).sum();
     }
 
+    public List<Servicio> servicios() {
+        List<Servicio> servicios = new ArrayList<>();
+        HashSet<Servicio> s = new HashSet<>(servicios = sucursales.stream()
+                .flatMap(sucursal -> sucursal.getServicios().stream())
+                .collect(Collectors.toList()));
+        servicios = s.stream().toList();
+        return servicios;
+    }
 }

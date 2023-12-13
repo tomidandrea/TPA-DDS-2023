@@ -26,8 +26,9 @@ public class PostIncidenteHandler implements Handler {
                 .toList();
 
         //todo: traer comunidades del usuario logueado
-        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(incidenteParser.getIdSesion()).get("miembro");
-        List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembroLogueado.getId());
+        //Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(incidenteParser.getIdSesion()).get("usuario");
+        //List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembroLogueado.getId());
+        List<Comunidad> comunidades = (List<Comunidad>) SesionManager.get().obtenerAtributos(incidenteParser.getIdSesion()).get("comunidades");
         System.out.println(comunidades);
         Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
 

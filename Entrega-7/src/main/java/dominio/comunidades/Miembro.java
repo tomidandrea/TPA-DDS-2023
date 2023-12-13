@@ -25,7 +25,7 @@ public class Miembro extends Usuario {
     private static int cantidadMiembros;
 //    private String nombre;
 //    private String apellido;
-    private String correoElectronico;
+//    private String correoElectronico;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private Interes interes;
@@ -44,9 +44,6 @@ public class Miembro extends Usuario {
     @Embedded
     private Notificador notificador;
 
-    public String getCorreo() {
-        return correoElectronico;
-    }
 
     public MedioDeComunicacion getMedioPreferido () {
         return medioPreferido;
@@ -62,10 +59,7 @@ public class Miembro extends Usuario {
 
     public Miembro(String nombre, String apellido, String correoElectronico,
                    String usuario, String contrasenia, int id){
-//        this.nombre = nombre;
-//        this.apellido = apellido;
-        super(nombre, apellido, id);
-        this.correoElectronico = correoElectronico;
+        super(nombre, apellido, id, correoElectronico);
         this.setUsuario(usuario);;
         Validador.validarContrasenia(contrasenia);
         this.setContrasenia(contrasenia);
@@ -74,10 +68,8 @@ public class Miembro extends Usuario {
     public Miembro(String nombre, String apellido, String correoElectronico, Localizacion localizacion,
                    MedioDeComunicacion medioPreferido, String nroDeTelefono,
                    Notificador notificador, String usuario, String contrasenia) {
-//        this.nombre = nombre;
-//        this.apellido = apellido;
-        super(nombre, apellido);
-        this.correoElectronico = correoElectronico;
+
+        super(nombre, apellido, correoElectronico);
         this.interes = new Interes();
         this.localizacion = localizacion;
         this.medioPreferido = medioPreferido;
@@ -95,8 +87,7 @@ public class Miembro extends Usuario {
                    Notificador notificador, String usuario, String contrasenia) {
 //        this.nombre = nombre;
 //        this.apellido = apellido;
-        super(nombre, apellido);
-        this.correoElectronico = correoElectronico;
+        super(nombre, apellido, correoElectronico);
         //this.localizacion = localizacion;
         this.medioPreferido = medioPreferido;
         this.nroDeTelefono = nroDeTelefono;
@@ -119,13 +110,6 @@ public class Miembro extends Usuario {
         return notificador.compararHorarioActual();
     }
 
-    @Override
-    public String toString() {
-        return "Miembro{" +
-                "id = " + this.getId() +
-                ", nombre = " + this.getNombre() + " apellido = " + this.getApellido() + "correoElectronico = " + correoElectronico +'\'' +
-                '}';
-    }
 }
 
 

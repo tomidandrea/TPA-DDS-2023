@@ -14,7 +14,7 @@ public class GetIncidentesViewHandler implements Handler {
     public void handle(Context context) throws Exception {
         String sessionId = context.sessionAttribute("sessionId");
 
-        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(sessionId).get("miembro");
+        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(sessionId).get("usuario");
         Set<Incidente> incidentes = new HashSet<>(RepoIncidentes.getInstance().obtenerIncidentesPorMiembro(miembroLogueado));
 
         Map<String, Object> model = new HashMap<String, Object>();

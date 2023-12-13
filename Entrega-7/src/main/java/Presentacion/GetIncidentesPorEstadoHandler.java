@@ -21,7 +21,7 @@ public class GetIncidentesPorEstadoHandler implements Handler {
         String filtro = context.queryParam("estado");
         List<Incidente> incidentes = new ArrayList<>();
 
-        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(idSesion).get("miembro");
+        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(idSesion).get("usuario");
         List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembroLogueado.getId());
         comunidades.forEach(c->System.out.println(c.getId() + ", " + c.getNombre()));
         comunidades.forEach(c->System.out.println(c.getIncidentesAbiertos()));

@@ -17,63 +17,9 @@
     <h2 class="fw-bold p-4"> Administrar usuarios </h2>
     <div class="container-fluid pb-1">
         <h4>Miembros</h4>
-        <!--        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-        <!--            <div class="modal-dialog">-->
-        <!--                <div class="modal-content">-->
-        <!--                    <div class="modal-header">-->
-        <!--                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar miembro</h1>-->
-        <!--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-        <!--                    </div>-->
-        <!--                    <div class="modal-body">-->
-        <!--                        ¿Realmente desea eliminar el miembro de la comunidad?-->
-        <!--                    </div>-->
-        <!--                    <div class="modal-footer">-->
-        <!--                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="eliminarElemento('{{id}}')">Eliminar</button>-->
-        <!--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>-->
-        <!--                    </div>-->
-        <!--                    <script>-->
-        <!--                        function eliminarElemento(id) {-->
-        <!--                          var elemento = document.getElementById(id);-->
-        <!--                          elemento.parentNode.removeChild(elemento);-->
-        <!--                        }-->
-        <!--                    </script>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modificando </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Miembro:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Tipo de miembro:</label>
-                                <select class="form-select" aria-label="Default select example" required>
-                                    <option selected hidden>Seleccione tipo de miembro</option>
-                                    <option value="2">Afectado</option>
-                                    <option value="3">Observador</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row border-bottom border-dark p-1">
             <div class="col-8 d-flex align-items-center pt-2">
-                <ul>
+                <ul id="itemList">
                     <style>
                         li {
                             margin-bottom: 15px; /* Separación entre elementos */
@@ -88,6 +34,55 @@
                             {{nombre}} {{apellido}} - <span class="fw-bold">{{tipo}}</span> - <span class="fw-bold">{{#comunidades}} {{nombre}} {{/comunidades}}</span>
                             <button href="#" onclick="toggleCollapse('{{id}}')">Ver detalles</button>
                             <button type="button" class="btn btn-principal text-white mb-2 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever={{nombre}} {{apellido}}>Modificar</button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modificando </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="recipient-name" class="col-form-label">Miembro:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="message-text" class="col-form-label">Tipo de miembro:</label>
+                                                    <select class="form-select" aria-label="Default select example" required>
+                                                        <option selected hidden>Seleccione tipo de miembro</option>
+                                                        <option value="2">Afectado</option>
+                                                        <option value="3">Observador</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary">Guardar cambios onclick="eliminarElemento('{{nombre}}')"</button>
+                                        </div>
+                                        <script>
+                                            function cambiarEstado(id) {
+                                                // Encuentra el elemento con el ID correspondiente
+                                                let elemento = items.find(usuarios => usuarios.id === id);
+                                                if (elemento) {
+                                                    // Cambia el estado
+                                                    usuarios. = 'Nuevo estado'; // Aquí puedes cambiar el estado como desees
+
+                                                    // Vuelve a renderizar la lista
+                                                    renderizarLista();
+                                                }
+                                            }
+
+                                            // Función para renderizar la lista
+                                            function renderizarLista() {
+                                                let rendered = Mustache.render(administracionUsuarios.mustache, { usuarios: usuarios });
+                                                document.getElementById('itemList').innerHTML = rendered;
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
                             <a type="" class="mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #a80000;" onclick=""></i>
                             </a>
@@ -102,28 +97,23 @@
                                             ¿Realmente desea eliminar el miembro de la comunidad?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="eliminarElemento('{{id}}','{{comunidades}}')">Eliminar</button>
+                                            <button type="button" class="eliminar" data-bs-dismiss="modal" data-id="{{id}}">Eliminar</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                         </div>
-                                        <!--                                        <script>-->
-                                        <!--                                            function eliminarElemento(id) {-->
-                                        <!--                                                     var elemento = document.getElementById(id);-->
-                                        <!--                                                     elemento.parentNode.removeChild(elemento);-->
-                                        <!--                                            }-->
-                                        <!--                                        </script>-->
                                         <script>
-                                            function eliminarElemento(id,comunidad) {
-                                                fetch(`/comunidades/${id}`, {
-                                                    method: 'DELETE'
-                                                }).then(response => {
-                                                    if (response.ok) {
-                                                        console.log(`Elemento ${id} eliminado`);
-                                                    } else {
-                                                        console.error('Error al eliminar el elemento');
-                                                    }
-                                                }).catch(error => {
-                                                    console.error('Error al eliminar el elemento:', error);
+                                            function render(data) {
+                                              const template = document.getElementById('administracionUsuarios.mustache').innerHTML;
+                                              const rendered = Mustache.render(template, data);
+                                              document.getElementById('itemList').innerHTML = rendered;
+
+                                              const buttons = document.querySelectorAll('.eliminar');
+                                              buttons.forEach(button => {
+                                                button.addEventListener('click', function() {
+                                                  const itemId = button.getAttribute('data-id');
+                                                    data.usuarios = data.usuarios.filter(usuario => usuario.id !== parseInt(itemId));
+                                                    render(data);
                                                 });
+                                              });
                                             }
                                         </script>
                                     </div>

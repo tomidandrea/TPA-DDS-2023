@@ -14,7 +14,7 @@ public class AdministracionComunidadesViewHandler implements Handler {
     public void handle(Context context) throws Exception {
 
         String sessionId = context.sessionAttribute("sessionId");
-        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(sessionId).get("miembro");
+        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(sessionId).get("usuario");
 
         Set<Comunidad> comunidades = new HashSet<>(RepoComunidades.getInstance().obtenerComunidadesAdminPor(miembroLogueado));
 
