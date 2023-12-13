@@ -43,6 +43,7 @@ public class LoginHandler implements Handler {
         Usuario usuarioLogueado = RepoUsuarios.getInstance().obtenerUsuarioPorEmail(loginRequest.getEmail());
         System.out.println("El usuario logueado es: " + usuarioLogueado);
 
+        String rol;
         if (usuarioLogueado != null) {
             //Una vez que tenemos al usuario creamos la sesion en el backend y respondemos con el id de la sesion al front
             SesionManager sesionManager = SesionManager.get();
@@ -51,7 +52,8 @@ public class LoginHandler implements Handler {
                 // La instancia es de la subclase Miembro
                 Miembro miembro = (Miembro) usuarioLogueado;
                 // Realizar operaciones específicas del Miembro
-                sesionManager.agregarAtributo(idSesion, "rol", "miembro");;
+                sesionManager.agregarAtributo(idSesion, "rol", "miembro");
+                rol = "miembro";
                 //busco las comunidades del miembro y las agrego a la sesion
                 List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembro.getId());
                 sesionManager.agregarAtributo(idSesion, "comunidades", comunidades);
@@ -64,18 +66,20 @@ public class LoginHandler implements Handler {
                 AdminEntidadOrganismo adminEntidadOrg = (AdminEntidadOrganismo) usuarioLogueado;
                 // Realizar operaciones específicas de AdminEntidadOrganismo
                 sesionManager.agregarAtributo(idSesion, "rol", "responsableEntidad");
+                rol = "responsableEntidad";
 
             } else {
                 //es administrador del sistema
                 AdministradorSistema adminDelSistema = (AdministradorSistema) usuarioLogueado;
                 sesionManager.agregarAtributo(idSesion, "rol", "AdminSistema");
+                rol = "AdminSistema";
             }
 
 
             System.out.println("Rol del usuario: " + sesionManager.obtenerAtributos(idSesion).get("rol"));
             context.sessionAttribute("sessionId", idSesion);
             //devuelvo id de la sesion
-            context.json(new Gson().toJson(new LoginResponse(idSesion)));
+            context.json(new Gson().toJson(new LoginResponse(idSesion,rol)));
             //context.redirect("/static/menuDeInicio.html");
 
         } else {
