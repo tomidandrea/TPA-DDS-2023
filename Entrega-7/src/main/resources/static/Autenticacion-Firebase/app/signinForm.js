@@ -47,7 +47,16 @@ signInForm.addEventListener("submit",async (e) => {
                 var id = data.idSesion
                 localStorage.setItem("IDSESION", id);
                 // me lleva al menu de inicio
-                window.location.href = "menuDeInicio.html";
+
+                var rol = data.rol
+                if (rol == "responsableEntidad") {
+                    window.location.href = "menuDeInicioAdminEntidadOrganismo.html";
+                } else if (rol == "AdminSistema") {
+                    window.location.href = "/cargaCSV";
+                } else if (rol == "miembro") {
+                    window.location.href = "menuDeInicio.html";
+                }
+                //window.location.href = "menuDeInicio.html";
             }).catch(error => {
                 showMessage("Error en el servidor", "error")
             });

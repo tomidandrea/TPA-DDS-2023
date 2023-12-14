@@ -24,9 +24,15 @@ public class EntidadPropietaria {
     private int id;
 
     private String nombre;
-    @ManyToMany(cascade = CascadeType.ALL) // en realidad es OneToMany, pero en la bd los tratamos como ManyToMany
+    @ManyToMany//(cascade = CascadeType.ALL) // en realidad es OneToMany, pero en la bd los tratamos como ManyToMany
     private List<Organizacion> organizaciones;
-    @ManyToMany(cascade = CascadeType.ALL) // idem para servicios
+    @ManyToMany//(cascade = CascadeType.ALL) // idem para servicios
+   /* @JoinTable(name = "entidadpropietaria_serviciotransporte",
+            joinColumns = {
+                    @JoinColumn(name = "EntidadPropietaria_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "serviciosTransporte_entidad_id")})
+    */
     private List<ServicioTransporte> serviciosTransporte;
     @Setter
     @OneToOne
@@ -51,6 +57,11 @@ public class EntidadPropietaria {
     }
 
     public EntidadPropietaria(String nombre, List<ServicioTransporte> serviciosTransporte, List<Organizacion> organizaciones, AdminEntidadOrganismo responsable) {
+        this.nombre = nombre;
+        this.serviciosTransporte = serviciosTransporte;
+        this.organizaciones = organizaciones;
+        this.responsable = responsable;
+
     }
 
     public void notificarSuscriptores(List<Incidente> incidentes){
@@ -58,11 +69,11 @@ public class EntidadPropietaria {
     }
 
     public void agregarServicios(List<ServicioTransporte> serviciosTransporte) {
-        serviciosTransporte.addAll(serviciosTransporte);
+        this.serviciosTransporte.addAll(serviciosTransporte);
     }
 
     public void agregarOrganizaciones(List<Organizacion> organizaciones) {
-        organizaciones.addAll(organizaciones);
+        this.organizaciones.addAll(organizaciones);
     }
 
     public List<Servicio> serviciosDePropiedades() {
