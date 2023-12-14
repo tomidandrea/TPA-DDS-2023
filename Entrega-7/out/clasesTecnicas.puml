@@ -48,6 +48,14 @@ package ClasesTecnicas #back:thistle;line:purple;line.bold{
             convertirtransporte(String transporte): MedioDeTransporte
         }
 
+      class AdminEntidadOrganismo {
+        fechaInicioAdminstracion: Date
+      }
+      class AdministadorSistema {
+      cantidadEntidadesCargadas: Int
+      }
+
+
       class "RepoMiembros" as CopiaRepoMiembros{
       }
       class "RepoEntidadesPropietarias" as CopiaRepoEntidadesPropietarias{
@@ -59,6 +67,7 @@ package ClasesTecnicas #back:thistle;line:purple;line.bold{
       class "Miembro" as CopiaMiembro{
       }
 
+
     IntegradorCSV ..down.> CopiaRepoEntidades
     IntegradorCSV ...> CopiaRepoEntidades
     IntegradorCSV ..> CopiaRepoMiembros
@@ -68,5 +77,7 @@ package ClasesTecnicas #back:thistle;line:purple;line.bold{
     CopiaRepoEntidades..down>ResultadoCantidadIncidentes
     CopiaMiembro -up-|>Usuario
     CopiaMiembro ...> Validador
+     AdminEntidadOrganismo -up-|>Usuario
+        AdministadorSistema -up-|>Usuario
 }
 @enduml

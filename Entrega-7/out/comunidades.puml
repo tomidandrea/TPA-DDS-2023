@@ -5,7 +5,7 @@ package Comunidades #back:honeydew;line:Green;line.bold{
         nombre:String
         afectados:List<Miembro>
         observadores:List<Miembro>
-        administradores: List<Administrador>
+        administradores: List<Miembro>
         incidentesAbiertos:List<Incidente>
         establecimientosObservados:List<Establecimiento>
         serviciosEstandar:List<Servicio>
@@ -37,8 +37,6 @@ package Comunidades #back:honeydew;line:Green;line.bold{
          obtenerListaSegunRango(List<Incidente> incidentes, LocalTime horarioAnterior, LocalTime horarioNotificacion): List<Incidente>
     }
 
-    class Administrador{
-    }
 
     class Miembro{
         nombre:String
@@ -126,7 +124,7 @@ package Comunidades #back:honeydew;line:Green;line.bold{
     Miembro--down->Interes
     Miembro--down-->Notificador
     Comunidad-->GradoDeConfianza
-    Comunidad --right->"*" Administrador
+    Comunidad --right->"*" Miembro
 }
 
 

@@ -17,37 +17,23 @@
     <h2 class="fw-bold p-4"> Comunidades administradas </h2>
     <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">
         {{#esAdmin}}
-            <ul>
-                <style>
-                    .texto-grande-admin {
-                        font-size: 18px;
-                        justify-content: center;
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-                    }
-                    a {
-                        text-decoration: none;
-                        color: green;
-                        margin-bottom: 5px;
-                        justify-content: center;
-                        font-size: 18px;
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-                    }
-                </style>
-                <div class="texto-grande-admin" style="text-align: center;">
-                    <br>
-                    {{#comunidades}}
-                        <li><a style="font-size: 18px;" href="comunidades/{{id}}"> {{nombre}}
-                            <div>
-                                <br>
+                <div class="container">
+                    <div class="row mx-4">
+                        {{#comunidades}}
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Comunidad-{{id}}</h5>
+                                        <p class="card-text">Usted puede administrar la comunidad {{nombre}}.</p>
+                                        <div class="d-flex">
+                                            <a href="comunidades/{{id}}" class="btn btn-principal ms-auto">Administrar</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </a></li>
-                    {{/comunidades}}
+                        {{/comunidades}}
+                        </div>
                 </div>
-            </ul>
         {{/esAdmin}}
 
         {{^esAdmin}}

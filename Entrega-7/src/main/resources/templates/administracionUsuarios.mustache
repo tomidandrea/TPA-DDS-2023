@@ -6,7 +6,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
     <link href="../public/css/main.css" rel="stylesheet">
     <link href="../public/css/navbar.css" rel="stylesheet">
-    <link href="../public/css/navbar.css" rel="stylesheet">
     <title>Administrar usuarios</title>
 </head>
 <body>
@@ -15,137 +14,88 @@
 </div>
 <div class="container bg-light my-2 border-r-1 card-shadow">
     <h2 class="fw-bold p-4"> Administrar usuarios </h2>
-    <div class="container-fluid pb-1">
-        <h4>Miembros</h4>
-        <div class="row border-bottom border-dark p-1">
+<!--    <div class="row d-block d-md-flex my-2 p-2 border-bottom border-secondary">-->
+<!--        <div class="col-8 col-md-6 mx-auto mx-md-0 my-1">-->
+<!--            <select class="form-select" aria-label="Default select example" id="select-miembro" name="tipoMiembro" onchange="filtrar({{data}})">-->
+<!--                <option value="" selected disabled hidden>Seleccione tipo de miembro</option>-->
+<!--                <option value="todos">Todos</option>-->
+<!--                <option value="afectado">Afectado</option>-->
+<!--                <option value="observador">Observador</option>-->
+<!--            </select>-->
+<!--        </div>-->
+        <!--<div class="col-8 col-md-4 mx-auto me-md-0 my-1 d-grid gap-2">
+            <button class="btn btn-dark btn-principal" type="submit">Buscar</button>
+        </div>-->
+<!--     </div>-->
+    <div class="container-fluid pb-1" id="itemList">
+        {{#comunidades}}
+        <h4>Miembros de {{nombre}}</h4>
+        {{/comunidades}}
+        {{#usuarios}}
+        <div class="row border-bottom border-dark p-1" >
             <div class="col-8 d-flex align-items-center pt-2">
-                <ul id="itemList">
-                    <style>
-                        li {
-                            margin-bottom: 15px; /* Separación entre elementos */
-                            font-size: 18px;
-                        }
-                        .contenido-colapsado {
-                            display: none;
-                        }
-                    </style>
-                    {{#usuarios}}
-                        <li>
-                            {{nombre}} {{apellido}} - <span class="fw-bold">{{tipo}}</span> - <span class="fw-bold">{{#comunidades}} {{nombre}} {{/comunidades}}</span>
-                            <button href="#" onclick="toggleCollapse('{{id}}')">Ver detalles</button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modificando </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label for="recipient-name" class="col-form-label">Miembro:</label>
-                                                    <input type="text" class="form-control" id="recipient-name">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="message-text" class="col-form-label">Tipo de miembro:</label>
-                                                    <select class="form-select" aria-label="Default select example" required>
-                                                        <option selected hidden>Seleccione tipo de miembro</option>
-                                                        <option value="2">Afectado</option>
-                                                        <option value="3">Observador</option>
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-primary">Guardar cambios onclick="eliminarElemento('{{nombre}}')"</button>
-                                        </div>
-                                        <script>
-                                            function cambiarEstado(id) {
-                                                // Encuentra el elemento con el ID correspondiente
-                                                let elemento = items.find(usuarios => usuarios.id === id);
-                                                if (elemento) {
-                                                    // Cambia el estado
-                                                    usuarios. = 'Nuevo estado'; // Aquí puedes cambiar el estado como desees
-
-                                                    // Vuelve a renderizar la lista
-                                                    renderizarLista();
-                                                }
-                                            }
-
-                                            // Función para renderizar la lista
-                                            function renderizarLista() {
-                                                let rendered = Mustache.render(administracionUsuarios.mustache, { usuarios: usuarios });
-                                                document.getElementById('itemList').innerHTML = rendered;
-                                            }
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                            <a type="" class="mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{id}}">
-                                <i class="fa-solid fa-trash fa-xl" style="color: #a80000;" onclick=""></i>
-                            </a>
-                            <div class="modal fade" id="staticBackdrop{{id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar miembro</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ¿Realmente desea eliminar el miembro de la comunidad?
-                                        </div>
-                                        <div class="modal-footer">
-                                            {{#comunidades}}
-                                            <form action="/comunidades/{{id}}" method="post">
-                                                {{/comunidades}}
-                                                <input type="hidden" name="miembroId" value="{{id}}">
-                                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                            </form>
-                                        </div>
-                                        <script>
-                                            function render(data) {
-                                              const template = document.getElementById('administracionUsuarios.mustache').innerHTML;
-                                              const rendered = Mustache.render(template, data);
-                                              document.getElementById('itemList').innerHTML = rendered;
-
-                                              const buttons = document.querySelectorAll('.eliminar');
-                                              buttons.forEach(button => {
-                                                button.addEventListener('click', function() {
-                                                  const itemId = button.getAttribute('data-id');
-                                                    data.usuarios = data.usuarios.filter(usuario => usuario.id !== parseInt(itemId));
-                                                    render(data);
-                                                });
-                                              });
-                                            }
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="{{id}}" class="contenido-colapsado">
-                                <div class="card card-body">
-                                    <div>Email: <span class="fw-bold">{{correoElectronico}}</span></div>
-                                    <div>Telefono: <span class="fw-bold">{{nroDeTelefono}}</span></div>
-                                </div>
-                            </div>
-                        </li>
-                    {{/usuarios}}
-                </ul>
-                <script>
-                    function toggleCollapse(id) {
-                      var contenido = document.getElementById(id);
-                      if (contenido.style.display === "none") {
-                        // Si está oculto, mostrarlo
-                        contenido.style.display = "block";
-                      } else {
-                        // Si está visible, ocultarlo
-                        contenido.style.display = "none";
-                      }
-                    }
-                </script>
+                <p class="mb-2">{{nombre}} - <span class="fw-bold">{{tipo}}</span></p>
             </div>
-        </div>
+            <div class="col-4 d-flex align-items-center border-start pt-2">
+                <p class="mb-2 me-auto">
+                    <a class="" data-bs-toggle="collapse" href="#collapseExample{{id}}" aria-expanded="false">
+                        Ver detalles
+                    </a>
+                </p>
+                <a type="" class="mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{id}}">
+                    <i class="fa-solid fa-trash-can fa-xl" style="color: #a80000;"></i>
+                </a>
+            </div>
+            <div class="collapse col-12 mb-2" id="collapseExample{{id}}">
+                <div class="card card-body">
+                    <ul>
+                        <li>Apellido: {{apellido}}</li>
+                        <li>Correo electrónico: {{correoElectronico}}</li>
+                        <li>Teléfono: {{nroDeTelefono}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="modal fade" id="staticBackdrop{{id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar miembro</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Realmente desea eliminar el miembro de la comunidad?
+                        </div>
+                        <div class="modal-footer">
+                            {{#comunidades}}
+                            <form action="/comunidades/{{id}}" method="post">
+                            {{/comunidades}}
+                                <input type="hidden" name="miembroId" value="{{id}}">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            </form>
+                        </div>
+                        <script>
+                            function render(data) {
+                                const template = document.getElementById('administracionUsuarios.mustache').innerHTML;
+                                const rendered = Mustache.render(template, data);
+                                document.getElementById('itemList').innerHTML = rendered;
+
+                                const buttons = document.querySelectorAll('.eliminar');
+                                buttons.forEach(button => {
+                                    button.addEventListener('click', function() {
+                                        const itemId = button.getAttribute('data-id');
+                                        data.usuarios = data.usuarios.filter(usuario => usuario.id !== parseInt(itemId));
+                                        render(data);
+                                    });
+                                });
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+        </div>{{/usuarios}}
     </div>
 </div>
 
