@@ -148,6 +148,22 @@ public class Comunidad {
                     //RepoComunidades.getInstance().actualizar(this);
     }
 
+    public void removerMiembro(int miembroId, TipoMiembro tipoMiembro){
+        if(tipoMiembro == TipoMiembro.AFECTADO){
+            afectados = afectados.stream()
+                .filter(afectado -> afectado.getId() != miembroId)
+                .collect(Collectors.toList());
+            System.out.println("Afectado removido de la comunidad");
+        } else if (tipoMiembro == TipoMiembro.OBSERVADOR) {
+            observadores = observadores.stream()
+                .filter(observador -> observador.getId() != miembroId)
+                .collect(Collectors.toList());
+            System.out.println("Observador removido de la comunidad");
+        }
+
+    }
+    
+
     @Override
     public String toString() {
         return "Comunidad{" +

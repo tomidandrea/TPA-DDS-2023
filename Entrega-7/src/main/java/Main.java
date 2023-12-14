@@ -39,6 +39,10 @@ public class Main {
     app.post("/api/login", new LoginHandler());
     app.post("/api/logout", new LogoutHandler());
     app.get("/api/{id_sesion}/incidentes", new GetIncidentesPorEstadoHandler());
+    app.get("/api/{id_sesion}/miembros", new GetIncidentesPorEstadoHandler());
+    app.get("/api/{id_sesion}/comunidadAdmin/", new GetComunidadesAdministradasHandler());
+    app.get("/api/{id_sesion}/comunidadAdmin/{id}", new GetMiembrosComunidadAdministradaHandler());
+    app.post("/api/comunidad/{id}", new PostComunidadMiembroHandler());
 
     //liviano
     app.get("/rankingCI", new RankingCIViewHandler());
