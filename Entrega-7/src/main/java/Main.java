@@ -43,7 +43,7 @@ public class Main {
     app.get("/api/{id_sesion}/comunidadAdmin/", new GetComunidadesAdministradasHandler());
     app.get("/api/{id_sesion}/comunidadAdmin/{id}", new GetMiembrosComunidadAdministradaHandler());
     app.post("/api/comunidad/{id}", new PostComunidadMiembroHandler());
-
+    app.get("/api/{id_sesion}/rol", new GetUsuarioRolHandler());
     //liviano
     app.get("/rankingCI", new RankingCIViewHandler());
     app.get("/rankingTC", new RankingTCViewHandler());

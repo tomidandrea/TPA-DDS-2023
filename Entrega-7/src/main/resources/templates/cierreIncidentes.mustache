@@ -10,32 +10,39 @@
 </head>
 <body>
     <div id="app-nav">
-        <navbar></navbar>
+        <navbar :rol="rol"></navbar>
     </div>
 <section class="vh-100 bg-principal">
     <div class="container py-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
 
             <div class="card border-r-1">
-
-
                 <div class="card-body p-4 p-lg-5 text-black">
                     <form action="/incidentes" method="POST">
                         <div class="d-flex align-items-center mb-3 pb-1">
 
                             <span class="h2 fw-bold mb-0">Cerrar Incidente</span>
                         </div>
-                        <label class="form-label">Seleccione el incidente</label>
                         <select class="form-select" name="incidenteId" aria-label="Default select example" required>
-                            <option selected>Open this select menu</option>
+                            <option selected disabled hidden>Seleccione un incidente abierto</option>
                             {{#incidentes}}
-                            <option value="{{id}}">{{servicio.nombre}}</option>
+                                {{#servicio}}
+                                    <option value="{{id}}">{{servicio.nombre}}</option>
+                                {{/servicio}}
+                                {{^servicio}}
+                                    <option value="{{id}}">
+                                        {{#agrupacion.servicios}}
+                                            {{nombre}}
+                                        {{/agrupacion.servicios}}
+                                    </option>
+                                {{/servicio}}
+
                             {{/incidentes}}
                         </select>
                         <div class="d-grid gap-2 mx-auto pt-1 mb-4">
                             <br>
-                            <button class="btn btn-principal btn-lg btn-block" type="submit">Cerrar</button>
-                            <button class="btn btn-dark btn-lg btn-block" type="button">Volver</button>
+                            <button class="btn btn-principal btn-block" type="submit">Cerrar</button>
+<!--                            <button class="btn btn-dark btn-lg btn-block" type="button">Volver</button>-->
                         </div>
 
                     </form>
