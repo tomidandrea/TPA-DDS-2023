@@ -28,6 +28,8 @@ public class GetServiciosHandler implements Handler {
 
             AdminEntidadOrganismo adminLogueado = (AdminEntidadOrganismo) SesionManager.get().obtenerAtributos(sessionId).get("usuario");
             EntidadPropietaria entidadPropietaria = RepoEntidadesPropietarias.getInstance().obtenerEntidadPropACargoDe(adminLogueado);
+
+            SesionManager.get().agregarAtributo(sessionId, "entidadPropietaria", entidadPropietaria);
             servicios = entidadPropietaria.serviciosDePropiedades();
 
         } else {

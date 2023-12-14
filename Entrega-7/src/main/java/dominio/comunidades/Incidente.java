@@ -21,12 +21,12 @@ public class Incidente {
     @Column(name = "incidente_id")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id")
     @Getter
     private Servicio servicio;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "agrupacion_id")
     private Agrupacion agrupacion;
     @Getter

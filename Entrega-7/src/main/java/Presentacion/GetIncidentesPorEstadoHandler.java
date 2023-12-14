@@ -12,17 +12,21 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GetIncidentesPorEstadoHandler implements Handler {
     @Override
     public void handle(Context context) throws Exception {
-        String idSesion = context.pathParam("idSesion");
+        String idSesion = context.pathParam("id_sesion");
         String filtro = context.queryParam("estado");
         List<Incidente> incidentes = new ArrayList<>();
 
-        Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(idSesion).get("usuario");
-        List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembroLogueado.getId());
+        Map<String,Object> session  = SesionManager.get().obtenerAtributos(idSesion);
+
+        Miembro miembroLogueado = (Miembro) session.get("usuario");
+       // List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembroLogueado.getId());
+        List<Comunidad> comunidades = (List<Comunidad>) session.get("comunidades");
         comunidades.forEach(c->System.out.println(c.getId() + ", " + c.getNombre()));
         comunidades.forEach(c->System.out.println(c.getIncidentesAbiertos()));
 

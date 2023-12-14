@@ -79,4 +79,8 @@ public class EntidadPropietaria {
 
         return serviciosEntProp.stream().toList();
     }
+
+    public void agregarIncidente(Incidente incidente) {
+        incidentesAbiertos.add(incidente);
+    }
 }

@@ -15,6 +15,7 @@ public class RepoEntidadesPropietarias {
     // singleton
     private static RepoEntidadesPropietarias instance = null;
 
+    private  EntityManager em = BDUtils.getEntityManager();
     public static RepoEntidadesPropietarias getInstance(){
         if(instance == null){
             instance = new RepoEntidadesPropietarias();
