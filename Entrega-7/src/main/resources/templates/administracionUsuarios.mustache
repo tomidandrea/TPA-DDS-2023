@@ -33,7 +33,6 @@
                         <li>
                             {{nombre}} {{apellido}} - <span class="fw-bold">{{tipo}}</span> - <span class="fw-bold">{{#comunidades}} {{nombre}} {{/comunidades}}</span>
                             <button href="#" onclick="toggleCollapse('{{id}}')">Ver detalles</button>
-                            <button type="button" class="btn btn-principal text-white mb-2 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever={{nombre}} {{apellido}}>Modificar</button>
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -83,10 +82,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <a type="" class="mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #a80000;" onclick=""></i>
+                            <a type="" class="mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{id}}">
+                                <i class="fa-solid fa-trash fa-xl" style="color: #a80000;" onclick=""></i>
                             </a>
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="staticBackdrop{{id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -97,8 +96,13 @@
                                             ¿Realmente desea eliminar el miembro de la comunidad?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="eliminar" data-bs-dismiss="modal" data-id="{{id}}">Eliminar</button>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            {{#comunidades}}
+                                            <form action="/comunidades/{{id}}" method="post">
+                                                {{/comunidades}}
+                                                <input type="hidden" name="miembroId" value="{{id}}">
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            </form>
                                         </div>
                                         <script>
                                             function render(data) {

@@ -57,7 +57,9 @@ public class RepoComunidades {
     }
 
     public void actualizar(Comunidad comunidad) {
+        BDUtils.comenzarTransaccion(em);
         em.merge(comunidad);
+        BDUtils.commit(em);
     }
 
     public void agregarIncidenteAComunidades(Incidente incidente, List<Comunidad> comunidades) {

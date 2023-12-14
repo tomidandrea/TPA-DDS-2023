@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Entity
@@ -87,6 +88,24 @@ public class Comunidad {
         this.administradores = admins;
     }
 
+    public void quitarMiembro(Miembro miembro) {
+        // filtro si existe miembro con ese id
+        if (afectados.stream().anyMatch(m -> m.getId() == miembro.getId())) {
+            afectados = afectados.stream()
+                    .filter(afectado -> afectado.getId() != miembro.getId())
+                    .collect(Collectors.toList());
+        }
+        if (observadores.stream().anyMatch(m -> m.getId() == miembro.getId())) {
+            observadores = observadores.stream()
+                    .filter(observador -> observador.getId() != miembro.getId())
+                    .collect(Collectors.toList());
+        }
+        if (administradores.stream().anyMatch(m -> m.getId() == miembro.getId())) {
+            administradores = administradores.stream()
+                    .filter(admin -> admin.getId() != miembro.getId())
+                    .collect(Collectors.toList());
+        }
+    }
 
     public void notificarIncidentes() {
         List<Miembro> miembrosANotificar = filtrarMiembrosEnHorario();
