@@ -1,8 +1,4 @@
 EntidadPropietaria,SBASE,ServicioTransporte,subteA,9
 OrganismoDeControl,CNRT,ServicioTransporte,subteb,9
-EntidadPropietaria,GCBA,ServicioTransporte,Ecobike Itau,9
-OrganismoDeControl,TEMBICI,ServicioTransporte,BA Ecobici,9
-EntidadPropietaria,DOTA,ServicioTransporte,colectivo 110,9
-OrganismoDeControl,CNRT,ServicioTransporte,colectivo 111,9
 EntidadPropietaria,COTO,Organizacion,SUPERMECADO_COTO,9
 OrganismoDeControl,CNRT,Organizacion,SUPERMECADO_COTO,9

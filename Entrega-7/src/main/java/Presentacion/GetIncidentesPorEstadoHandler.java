@@ -3,6 +3,8 @@ package Presentacion;
 import Presentacion.dto.IncidenteDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import dominio.clasesTecnicas.HibernateProxyTypeAdapter;
 import dominio.comunidades.*;
 import dominio.servicios.RepoServicios;
 import io.javalin.http.Context;
@@ -21,6 +23,9 @@ public class GetIncidentesPorEstadoHandler implements Handler {
         String idSesion = context.pathParam("id_sesion");
         String filtro = context.queryParam("estado");
         List<Incidente> incidentes = new ArrayList<>();
+        GsonBuilder b = new GsonBuilder();
+        b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
+        Gson gson = b.create();
 
         Map<String,Object> session  = SesionManager.get().obtenerAtributos(idSesion);
 
@@ -53,7 +58,7 @@ public class GetIncidentesPorEstadoHandler implements Handler {
 //        ObjectMapper mapper = new ObjectMapper();
 //        String jsonString = mapper.writeValueAsString(incidentes);
 //        System.out.println(jsonString);
-        String jsonString= new Gson().toJson(incidenteDTOs);
+        String jsonString= gson.toJson(incidenteDTOs);
         System.out.println(jsonString);
         context.json(jsonString);
     }
