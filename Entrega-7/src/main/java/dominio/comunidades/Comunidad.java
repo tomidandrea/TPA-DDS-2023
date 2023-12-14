@@ -39,11 +39,12 @@ public class Comunidad {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> administradores;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "comunidades_incidentes",
-        joinColumns = @JoinColumn(name = "comunidad_id"),
-        inverseJoinColumns = @JoinColumn(name = "incidente_id")
-    )
+
+    @ManyToMany(mappedBy = "comunidades")
+//    @JoinTable(name = "incidente_comunidad",
+//        joinColumns = @JoinColumn(name = "comunidad_id"),
+//        inverseJoinColumns = @JoinColumn(name = "incidente_id")
+//    )
     private List<Incidente> incidentesAbiertos;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -124,7 +125,8 @@ public class Comunidad {
     }
 
     public void agregarIncidente(Incidente incidente){
-        incidentesAbiertos.add(incidente);
+                    incidentesAbiertos.add(incidente);
+                    //RepoComunidades.getInstance().actualizar(this);
     }
 
     @Override
