@@ -1,16 +1,15 @@
-const exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', event => {
-  // Button that triggered the modal
-  const button = event.relatedTarget
-  // Extract info from data-bs-* attributes
-  const recipient = button.getAttribute('data-bs-whatever')
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-  //
-  // Update the modal's content.
-  const modalTitle = exampleModal.querySelector('.modal-title')
-  const modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-  modalTitle.textContent = `Modificando miembro: ${recipient}`
-  modalBodyInput.value = recipient
-})
+function filtrar(){
+    const template = document.getElementById('administracionUsuarios.mustache').innerHTML;
+    const rendered = Mustache.render(template, data);
+    const selectedTipo = this.value;
+    console.log(selectedTipo)
+    if (selectedTipo === 'todos') {
+        // Si se selecciona "todos", restaurar la lista original de usuarios
+        data.usuarios = usuariosOriginales;
+    } else {
+        // Filtrar por el tipo seleccionado
+        const filteredUsuarios = usuariosOriginales.filter(usuario => usuario.tipo === selectedTipo.toLowerCase());
+        data.usuarios = filteredUsuarios;
+    }
+    // renderSelect(data);
+}

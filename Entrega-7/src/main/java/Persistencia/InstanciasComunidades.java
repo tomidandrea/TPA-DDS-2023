@@ -71,20 +71,20 @@ public class InstanciasComunidades {
     List<Servicio> serviciosEstandar4 = new ArrayList<>();
     serviciosEstandar4.addAll(servicios.getServiciosCoto2());
 
-    this.comunidad1 = new Comunidad("com1", afectados1, observadores1, administradores1,
+    this.comunidad1 = new Comunidad("Barrio Almagro", afectados1, observadores1, administradores1,
             establecimientosObservados1, serviciosEstandar1, GradoDeConfianza.CON_RESERVAS, incidentesAbiertos1);
     em.persist(this.comunidad1);
 
 
-    this.comunidad2 = new Comunidad("com2", afectados2, observadores2, administradores2,
+    this.comunidad2 = new Comunidad("Comedores", afectados2, observadores2, administradores2,
             establecimientosObservados2, serviciosEstandar2, GradoDeConfianza.CON_RESERVAS, incidentesAbiertos2);
     em.persist(this.comunidad2);
 
-    this.comunidad3 = new Comunidad("com3", afectados3, observadores3, administradores1,
+    this.comunidad3 = new Comunidad("Extranjeros", afectados3, observadores3, administradores1,
             establecimientosObservados3, serviciosEstandar3, GradoDeConfianza.CONFIABLE_NIVEL_1, incidentesAbiertos1);
     em.persist(this.comunidad3);
 
-    this.comunidad4 = new Comunidad("com4", afectados4, observadores4, administradores2,
+    this.comunidad4 = new Comunidad("Barrio Caballito", afectados4, observadores4, administradores2,
             establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CONFIABLE_NIVEL_1, incidentesAbiertos2);
     em.persist(this.comunidad4);
 
