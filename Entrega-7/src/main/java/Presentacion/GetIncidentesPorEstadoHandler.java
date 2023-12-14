@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class GetIncidentesPorEstadoHandler implements Handler {
     @Override
     public void handle(Context context) throws Exception {
-        String idSesion = context.pathParam("idSesion");
+        String idSesion = context.pathParam("id_sesion");
         String filtro = context.queryParam("estado");
         List<Incidente> incidentes = new ArrayList<>();
 

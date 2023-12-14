@@ -1,5 +1,6 @@
 package Presentacion;
 
+import Utils.BDUtils;
 import com.google.gson.Gson;
 import dominio.comunidades.*;
 import dominio.servicios.Agrupacion;
@@ -8,6 +9,7 @@ import dominio.servicios.Servicio;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,14 @@ public class PostIncidenteHandler implements Handler {
         System.out.println(comunidades);
         Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
 
-        RepoIncidentes.getInstance().persistirIncidente(incidente);
+        EntityManager em = BDUtils.getEntityManager();
+        BDUtils.comenzarTransaccion(em);
+        em.merge(incidente);
+        comunidades.forEach(em::merge);
+        BDUtils.commit(em);
+        em.clear();
+        em.close();
+
         context.status(201);
     }
 

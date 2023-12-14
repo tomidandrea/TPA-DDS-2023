@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,19 +22,24 @@ public class Incidente {
     @Column(name = "incidente_id")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id")
     @Getter
     private Servicio servicio;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "agrupacion_id")
     private Agrupacion agrupacion;
     @Getter
     private String observacion;
 
-    @ManyToMany(mappedBy = "incidentesAbiertos", cascade = CascadeType.ALL)
-    private List<Comunidad> comunidades;
+    //@ManyToMany(mappedBy = "incidentesAbiertos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   /*@JoinTable(name = "incidente_comunidad",
+        joinColumns = @JoinColumn(name = "incidente_id"),
+        inverseJoinColumns = @JoinColumn(name = "comunidad_id")
+    )*/
+    private List<Comunidad> comunidades = new ArrayList<>();
 
     private LocalDateTime horarioApertura;
     private LocalDateTime horarioCierre;
@@ -107,6 +113,7 @@ public class Incidente {
         this.estadoIncidente = EstadoIncidente.ABIERTO;
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
+        comunidades.forEach(c ->c.agregarIncidente(this));
     }
 
     public Incidente(Agrupacion agrupacion, String observacion, List<Comunidad> comunidades, LocalDateTime horarioApertura) {
@@ -117,6 +124,7 @@ public class Incidente {
         this.estadoIncidente = EstadoIncidente.ABIERTO;
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
+        comunidades.forEach(c ->c.agregarIncidente(this));
     }
 
     public Incidente() {
@@ -139,6 +147,14 @@ public class Incidente {
 
     public boolean cerradoUltimaSemana(){
        return Duration.between(this.getHorarioCierre() , LocalDateTime.now()).minusDays(7).isNegative();
+    }
+
+    public void agregarComunidad(Comunidad... comunidades){
+        for(Comunidad comunidad:comunidades){
+            if(! this.comunidades.contains(comunidad)){
+                this.comunidades.add(comunidad);
+            }
+        }
     }
 
     @Override

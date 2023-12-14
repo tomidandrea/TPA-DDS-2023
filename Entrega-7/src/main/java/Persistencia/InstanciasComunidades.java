@@ -87,5 +87,8 @@ public class InstanciasComunidades {
     this.comunidad4 = new Comunidad("com4", afectados4, observadores4, administradores2,
             establecimientosObservados4, serviciosEstandar4, GradoDeConfianza.CONFIABLE_NIVEL_1, incidentesAbiertos2);
     em.persist(this.comunidad4);
+
+    incidentesAbiertos1.forEach(i->i.agregarComunidad(this.comunidad1, this.comunidad3));
+    incidentesAbiertos2.forEach(i->i.agregarComunidad(this.comunidad2, this.comunidad4));
   }
 }

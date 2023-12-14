@@ -13,7 +13,7 @@ public class Agrupacion {
     @Column(name = "agrupacion_id")
     private int id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Servicio> servicios;
 
     public Agrupacion(List<Servicio> servicios) {
