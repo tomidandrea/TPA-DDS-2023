@@ -113,7 +113,10 @@ public class Incidente {
         this.estadoIncidente = EstadoIncidente.ABIERTO;
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
-        comunidades.forEach(c ->c.agregarIncidente(this));
+        if(comunidades != null) {
+            comunidades.forEach(c ->c.agregarIncidente(this));
+        }
+
     }
 
     public Incidente(Agrupacion agrupacion, String observacion, List<Comunidad> comunidades, LocalDateTime horarioApertura) {
