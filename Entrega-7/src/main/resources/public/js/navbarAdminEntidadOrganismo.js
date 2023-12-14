@@ -1,6 +1,6 @@
 import {logout} from "../../static/Autenticacion-Firebase/app/logout.js"
 Vue.component('navbar', {
-    template: ` 
+    template: `
     <nav class="navbar navbar-expand-lg pb-3">
         <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -12,10 +12,7 @@ Vue.component('navbar', {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./../../static/menuDeInicio.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./../../static/administracionUsuarios.html">Administración usuarios</a>
+                <a class="nav-link" aria-current="page" href="./../../static/menuDeInicioAdminEntidadOrganismo.html">Inicio</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,6 +25,19 @@ Vue.component('navbar', {
                     <hr class="dropdown-divider">
                 </li>
                 <li><a class="dropdown-item" href="./../../static/consultaIncidentes.html">Consulta incidentes</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Rankings
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="../../../static/vistaRankingCI.html">Mayor cantidad incidentes (CI)</a></li>
+                <li><a class="dropdown-item" href="./../../static/vistaRankingTC.html">Mayor tiempo promedio cierre (TC)</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="./../../static/consultaRankings.html">Consulta rankings</a></li>
                 </ul>
             </li>
              <li class="nav-item dropdown">
@@ -46,7 +56,7 @@ Vue.component('navbar', {
             </ul>
             <div class="ms-auto cerrar-sesion">
             <button type="button" class="btn btn-dark text-white" @click ="cerrarSesion">
-                Cerrar Sesión 
+                Cerrar Sesión
             </button>
             </div>
         </div>
@@ -65,7 +75,6 @@ Vue.component('navbar', {
 
 
 var app = new Vue({
-    el: '#app-nav'
+    el: '#app-nav-entidad'
 
 })
-
