@@ -20,7 +20,6 @@ Vue.component('navbar', {
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item" href="./../../static/aperturaIncidentes.html">Apertura nuevo incidente</a></li>
-                <li><a class="dropdown-item" href="./../incidentes">Cierre incidente</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
@@ -38,19 +37,6 @@ Vue.component('navbar', {
                     <hr class="dropdown-divider">
                 </li>
                 <li><a class="dropdown-item" href="./../../static/consultaRankings.html">Consulta rankings</a></li>
-                </ul>
-            </li>
-             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Comunidades
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Crear Comunidad</a></li>
-                <li><a class="dropdown-item" href="#">Unirse a Comunidad</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Mis Comunidades</a></li>
                 </ul>
             </li>
             </ul>

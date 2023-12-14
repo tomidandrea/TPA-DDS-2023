@@ -16,12 +16,13 @@ public class RepoIncidentes {
     static RepoIncidentes instance = new RepoIncidentes();
     List<Incidente> incidentes = new ArrayList<>();
 
+    private EntityManager em = BDUtils.getEntityManager();
+
     public static RepoIncidentes getInstance() {
         return instance;
     }
 
     public List<Incidente> obtenerIncidentesPorEstado(EstadoIncidente estado){
-        EntityManager em = BDUtils.getEntityManager();
         return em.createQuery("from Incidente where estadoIncidente = :estado", Incidente.class)
                 .setParameter("estado", estado)
                 .getResultList();
@@ -32,7 +33,6 @@ public class RepoIncidentes {
     }
 
     public List<Incidente> obtenerIncidentes(){
-        EntityManager em = BDUtils.getEntityManager();
         return em.createQuery("from Incidente").getResultList();
 //        return em.createQuery(
 //                "SELECT i.id, i.observacion, CAST(i.horarioApertura AS string), i.servicio.id " +
@@ -66,7 +66,6 @@ public class RepoIncidentes {
     }
 
     public void persistirIncidente(Incidente incidente){
-        EntityManager em = BDUtils.getEntityManager();
         BDUtils.comenzarTransaccion(em);
         em.merge(incidente); // con persist tiraba error en el servicio asociado
         BDUtils.commit(em);
@@ -79,7 +78,6 @@ public class RepoIncidentes {
         return comunidadesDeMiembro.stream().flatMap(c -> c.getIncidentesAbiertos().stream()).toList();
     }
     public void actualizar(Incidente incidente) {
-        EntityManager em = BDUtils.getEntityManager();
         BDUtils.comenzarTransaccion(em);
         em.merge(incidente);
         BDUtils.commit(em);
