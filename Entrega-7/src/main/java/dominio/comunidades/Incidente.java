@@ -22,7 +22,7 @@ public class Incidente {
     @Column(name = "incidente_id")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "servicio_id", referencedColumnName = "servicio_id")
     @Getter
     private Servicio servicio;

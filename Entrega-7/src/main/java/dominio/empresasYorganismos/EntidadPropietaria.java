@@ -39,7 +39,7 @@ public class EntidadPropietaria {
     private AdminEntidadOrganismo responsable;
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> suscriptores;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.ALL})
     private List<Incidente> incidentesAbiertos;
     //TODO: tendriamos que fijarnos que al cerrar un incidente tambien se fije estos - Alejo
 

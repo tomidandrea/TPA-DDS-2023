@@ -56,8 +56,10 @@ public class PostIncidenteHandler implements Handler {
 
             EntityManager em = BDUtils.getEntityManager();
             BDUtils.comenzarTransaccion(em);
+            em.persist(incidente);
             em.merge(entidadPropietaria);
             BDUtils.commit(em);
+            em.clear();
             em.close();
             context.status(201);
         }
