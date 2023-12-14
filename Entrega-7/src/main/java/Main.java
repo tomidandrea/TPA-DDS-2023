@@ -53,6 +53,7 @@ public class Main {
     app.post("/cargaCSV", new PostCargaEntidadesViewHandler());
     app.get("/comunidades", new AdministracionComunidadesViewHandler());
     app.get("/comunidades/{id}", new AdministracionUsuariosViewHandler());
+    app.post("/comunidades/{id}", new PostMiembroComunidadViewHandler());
 
 
   }

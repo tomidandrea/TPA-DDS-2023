@@ -18,9 +18,9 @@ public class OrganismoDeControl {
     private int id;
 
     String nombre;
-    @ManyToMany(cascade = CascadeType.ALL) // los tratamos como manytomany aunque sean onetomany
+    @ManyToMany // los tratamos como manytomany aunque sean onetomany
     private List<ServicioTransporte> serviciosTransporte;
-    @ManyToMany(cascade = CascadeType.ALL) // idem para organizaciones
+    @ManyToMany // idem para organizaciones
     private List<Organizacion> organizaciones;
     @OneToOne
     private AdminEntidadOrganismo responsable;
@@ -38,10 +38,10 @@ public class OrganismoDeControl {
     }
 
     public void agregarServicios(List<ServicioTransporte> serviciosTransporte) {
-        serviciosTransporte.addAll(serviciosTransporte);
+        this.serviciosTransporte.addAll(serviciosTransporte);
     }
 
     public void agregarOrganizaciones(List<Organizacion> organizaciones) {
-        organizaciones.addAll(organizaciones);
+        this.organizaciones.addAll(organizaciones);
     }
 }

@@ -57,12 +57,14 @@ public class IntegradorCSV {
 
             String nombre = linea[1];
             List<ServicioTransporte> serviciosTransporte = new ArrayList<ServicioTransporte> ();
+
+
             if (linea[2].equals("ServicioTransporte")) {
                 serviciosTransporte.addAll(RepoEntidades.getInstance().obtenerPorNombre(linea[3]));
-
             }
             List<Organizacion> organizaciones = new ArrayList<Organizacion>();
             if (linea[2].equals("Organizacion")) {
+
                 organizaciones.addAll(RepoEntidades.getInstance().obtenerOrgPorNombre(linea[3]));
             }
             AdminEntidadOrganismo responsable = RepoAdminEntYOrg.getInstance().getAdministrador(Integer.parseInt(linea[4]));
@@ -75,19 +77,22 @@ public class IntegradorCSV {
                         .getResultList()
                         .isEmpty()
                 ) {
+
                      entidadPropietaria = new EntidadPropietaria(
                             nombre,
                             serviciosTransporte,
                             organizaciones,
                             responsable);
-                    //  RepoEntidadesPropietarias.getInstance().agregar(entidadPropietaria);
+
                 }
              else {
+
 
                  entidadPropietaria = em.createQuery("from EntidadPropietaria where nombre = :nombre ", EntidadPropietaria.class)
                          .setParameter("nombre",nombre)
                          .getResultList()
                          .get(0);
+
 
                     if (linea[2].equals("ServicioTransporte")) {
                         entidadPropietaria.agregarServicios(serviciosTransporte);
@@ -113,6 +118,7 @@ public class IntegradorCSV {
 
                     OrganismoDeControl organismoDeControl;
 
+
                     if( em.createQuery("from OrganismoDeControl where nombre = :nombre ", OrganismoDeControl.class)
                             .setParameter("nombre",nombre)
                             .getResultList()
@@ -131,15 +137,17 @@ public class IntegradorCSV {
                                 .getResultList()
                                 .get(0);
 
+
+
                         if (linea[2].equals("ServicioTransporte")) {
                             organismoDeControl.agregarServicios(serviciosTransporte);
-
                         }
 
                         if (linea[2].equals("Organizacion")) {
                             organismoDeControl.agregarOrganizaciones(organizaciones);
+
                         }
-                    // RepoOrganismosDeControl.getInstance().agregar(organismoDeControl);
+
                     }
 
                 em.persist(organismoDeControl);

@@ -1,16 +1,20 @@
 package Presentacion;
 
+import Utils.BDUtils;
 import com.google.gson.Gson;
 import dominio.comunidades.*;
+import dominio.empresasYorganismos.EntidadPropietaria;
 import dominio.servicios.Agrupacion;
 import dominio.servicios.RepoServicios;
 import dominio.servicios.Servicio;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PostIncidenteHandler implements Handler {
@@ -28,12 +32,35 @@ public class PostIncidenteHandler implements Handler {
         //todo: traer comunidades del usuario logueado
         //Miembro miembroLogueado = (Miembro) SesionManager.get().obtenerAtributos(incidenteParser.getIdSesion()).get("usuario");
         //List<Comunidad> comunidades = RepoComunidades.getInstance().filtrarPorMiembro(miembroLogueado.getId());
-        List<Comunidad> comunidades = (List<Comunidad>) SesionManager.get().obtenerAtributos(incidenteParser.getIdSesion()).get("comunidades");
-        System.out.println(comunidades);
-        Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
+        Map<String,Object> session = SesionManager.get().obtenerAtributos(incidenteParser.getIdSesion());
+        String rol = (String) session.get("rol");
 
-        RepoIncidentes.getInstance().persistirIncidente(incidente);
-        context.status(201);
+
+        if(rol.equals("miembro")) {
+            List<Comunidad> comunidades = (List<Comunidad>) session.get("comunidades");
+            System.out.println(comunidades);
+            Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
+            EntityManager em = BDUtils.getEntityManager();
+            BDUtils.comenzarTransaccion(em);
+            em.merge(incidente);
+            comunidades.forEach(em::merge);
+            BDUtils.commit(em);
+            em.clear();
+            em.close();
+            context.status(201);
+        }
+        else if (rol.equals("responsableEntidad")) {
+            EntidadPropietaria entidadPropietaria = (EntidadPropietaria) session.get("entidadPropietaria");
+            Incidente incidente = crearIncidente(idsServicios, incidenteParser, null);
+            entidadPropietaria.agregarIncidente(incidente);
+
+            EntityManager em = BDUtils.getEntityManager();
+            BDUtils.comenzarTransaccion(em);
+            em.merge(entidadPropietaria);
+            BDUtils.commit(em);
+            em.close();
+            context.status(201);
+        }
     }
 
     public Incidente crearIncidente(List<Integer> idsServicios, IncidenteParser incidenteParser, List<Comunidad> comunidades) {

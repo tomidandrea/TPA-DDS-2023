@@ -40,11 +40,12 @@ public class Comunidad {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Miembro> administradores;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "comunidades_incidentes",
-        joinColumns = @JoinColumn(name = "comunidad_id"),
-        inverseJoinColumns = @JoinColumn(name = "incidente_id")
-    )
+
+    @ManyToMany(mappedBy = "comunidades")
+//    @JoinTable(name = "incidente_comunidad",
+//        joinColumns = @JoinColumn(name = "comunidad_id"),
+//        inverseJoinColumns = @JoinColumn(name = "incidente_id")
+//    )
     private List<Incidente> incidentesAbiertos;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -87,6 +88,24 @@ public class Comunidad {
         this.administradores = admins;
     }
 
+    public void quitarMiembro(Miembro miembro) {
+        // filtro si existe miembro con ese id
+        if (afectados.stream().anyMatch(m -> m.getId() == miembro.getId())) {
+            afectados = afectados.stream()
+                    .filter(afectado -> afectado.getId() != miembro.getId())
+                    .collect(Collectors.toList());
+        }
+        if (observadores.stream().anyMatch(m -> m.getId() == miembro.getId())) {
+            observadores = observadores.stream()
+                    .filter(observador -> observador.getId() != miembro.getId())
+                    .collect(Collectors.toList());
+        }
+        if (administradores.stream().anyMatch(m -> m.getId() == miembro.getId())) {
+            administradores = administradores.stream()
+                    .filter(admin -> admin.getId() != miembro.getId())
+                    .collect(Collectors.toList());
+        }
+    }
 
     public void notificarIncidentes() {
         List<Miembro> miembrosANotificar = filtrarMiembrosEnHorario();
@@ -125,7 +144,8 @@ public class Comunidad {
     }
 
     public void agregarIncidente(Incidente incidente){
-        incidentesAbiertos.add(incidente);
+                    incidentesAbiertos.add(incidente);
+                    //RepoComunidades.getInstance().actualizar(this);
     }
 
     public void removerMiembro(int miembroId, TipoMiembro tipoMiembro){
