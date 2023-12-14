@@ -16,10 +16,7 @@ public class InstanciasEntidades {
   private ServicioTransporte subteB;
   private Organizacion coto;
   private Organizacion dia;
-  private ServicioTransporte ecobike;
-  private ServicioTransporte ecobici;
-  private ServicioTransporte colectivo110;
-  private ServicioTransporte colectivo111;
+
 
   public InstanciasEntidades(EntityManager em, InstanciasEstablecimientos establecimientos){
     Linea lineaAIda = lineaAIda(establecimientos);
@@ -38,29 +35,19 @@ public class InstanciasEntidades {
     this.subteB = new ServicioTransporte(MedioDeTransporte.SUBTE, "subteb", lineaBIda,lineaBVuelta);
     this.coto = new Organizacion("SUPERMECADO_COTO", sucursalesCoto);
     this.dia = new Organizacion("SUPERMERCADO_DIA", sucursalesDia);
-    this.ecobike = new ServicioTransporte(MedioDeTransporte.ECOBICI, "Ecobike Itau", lineaAIda,lineaBVuelta);
-    this.ecobici = new ServicioTransporte(MedioDeTransporte.ECOBICI, "BA Ecobici", lineaAIda,lineaAVuelta);
-    this.colectivo110 = new ServicioTransporte(MedioDeTransporte.COLECTIVO, "colectivo 110", lineaBIda,lineaBVuelta);
-    this.colectivo111 = new ServicioTransporte(MedioDeTransporte.COLECTIVO, "colectivo 111", lineaBIda,lineaAVuelta);
 
     RepoEntidades repoEntidades = RepoEntidades.getInstance();
     repoEntidades.agregar(coto);
     repoEntidades.agregar(dia);
     repoEntidades.agregar(subteA);
     repoEntidades.agregar(subteB);
-    repoEntidades.agregar(ecobike);
-    repoEntidades.agregar(ecobici);
-    repoEntidades.agregar(colectivo110);
-    repoEntidades.agregar(colectivo111);
+
 
     em.persist(coto);
     em.persist(dia);
     em.persist(subteA);
     em.persist(subteB);
-    em.persist(ecobike);
-    em.persist(ecobici);
-    em.persist(colectivo110);
-    em.persist(colectivo111);
+
   }
 
   private Linea lineaAIda(InstanciasEstablecimientos establecimientos){
