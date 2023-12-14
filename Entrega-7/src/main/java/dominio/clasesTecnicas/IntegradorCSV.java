@@ -60,12 +60,12 @@ public class IntegradorCSV {
 
 
             if (linea[2].equals("ServicioTransporte")) {
-                serviciosTransporte.addAll(RepoEntidades.getInstance().obtenerPorNombre(linea[3]));
+                serviciosTransporte.addAll(RepoEntidades.getInstance().obtenerPorID(Integer.parseInt(linea[3])));
             }
             List<Organizacion> organizaciones = new ArrayList<Organizacion>();
             if (linea[2].equals("Organizacion")) {
 
-                organizaciones.addAll(RepoEntidades.getInstance().obtenerOrgPorNombre(linea[3]));
+                organizaciones.addAll(RepoEntidades.getInstance().obtenerOrgPorID(Integer.parseInt(linea[3])));
             }
             AdminEntidadOrganismo responsable = RepoAdminEntYOrg.getInstance().getAdministrador(Integer.parseInt(linea[4]));
 

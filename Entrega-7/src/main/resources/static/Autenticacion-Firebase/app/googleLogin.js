@@ -12,7 +12,7 @@ googleButton.addEventListener("click", async (e) => {
         const credentials = await signInWithPopup(auth, provider)
         console.log(credentials);
         console.log("google sign in");
-        //window.location.href="menuDeInicio.html";
+        window.location.href="EligeTuUsuario.html";
         showMessage("Bienvenido " + credentials.user.displayName,"success");
     } catch (error) {
         console.log(error);

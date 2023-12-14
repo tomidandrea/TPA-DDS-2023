@@ -1,4 +1,4 @@
-EntidadPropietaria,SBASE,ServicioTransporte,subteA,9
-OrganismoDeControl,CNRT,ServicioTransporte,subteb,9
-EntidadPropietaria,COTO,Organizacion,SUPERMECADO_COTO,9
-OrganismoDeControl,CNRT,Organizacion,SUPERMECADO_COTO,9
+EntidadPropietaria,SBASE,ServicioTransporte,3,9
+OrganismoDeControl,CNRT,ServicioTransporte,4,9
+EntidadPropietaria,COTO,Organizacion,1,9
+OrganismoDeControl,CNRT,Organizacion,1,9
