@@ -34,18 +34,12 @@ public class PostIncidenteHandler implements Handler {
         System.out.println(comunidades);
         Incidente incidente = crearIncidente(idsServicios, incidenteParser, comunidades);
 
-        //RepoIncidentes.getInstance().actualizar(incidente);
-        // imprimir ids de incidentes abiertos de las comunidades
-//        System.out.println("Incidentes abiertos de las comunidades:");
-//        comunidades.forEach(comunidad -> {
-//            System.out.println("Comunidad: " + comunidad.getNombre());
-//            comunidad.getIncidentesAbiertos().forEach(incidente1 -> System.out.println("Incidente: " + incidente1.getId()));
-//        });
-
         EntityManager em = BDUtils.getEntityManager();
         BDUtils.comenzarTransaccion(em);
         em.merge(incidente);
+        comunidades.forEach(em::merge);
         BDUtils.commit(em);
+        em.clear();
         em.close();
 
         context.status(201);

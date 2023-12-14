@@ -34,11 +34,11 @@ public class Incidente {
     private String observacion;
 
     //@ManyToMany(mappedBy = "incidentesAbiertos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "incidente_comunidad",
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   /*@JoinTable(name = "incidente_comunidad",
         joinColumns = @JoinColumn(name = "incidente_id"),
         inverseJoinColumns = @JoinColumn(name = "comunidad_id")
-    )
+    )*/
     private List<Comunidad> comunidades = new ArrayList<>();
 
     private LocalDateTime horarioApertura;
@@ -124,6 +124,7 @@ public class Incidente {
         this.estadoIncidente = EstadoIncidente.ABIERTO;
         RepoIncidentes repoIncidentes = RepoIncidentes.getInstance();
         repoIncidentes.agregar(this);
+        comunidades.forEach(c ->c.agregarIncidente(this));
     }
 
     public Incidente() {
