@@ -30,38 +30,6 @@ Vue.component('form-tipo-miembro', {
     }
 })
 
-Vue.component('div-eliminar', {
-    template: `
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar miembro</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      ¿Realmente desea eliminar el miembro de la comunidad?
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-    `,
-    data() {
-        return {
-            estado: ''
-        }
-    },
-    methods: {
-        onSubmit() {
-            console.log("Mando eliminar")
-            //this.$emit('get-comunidades', this.estado)
-        }
-    }
-})
 
 //Falta ver si agrupacion es null, usar servicio y viceversa
 Vue.component('miembros', {
@@ -80,24 +48,28 @@ Vue.component('miembros', {
             <h4 v-if="tipo_miembro == 'todos'">Miembros de {{comunidad.nombre}}</h4>
             <h4 v-else-if="tipo_miembro == 'afectado'">Afectados de {{comunidad.nombre}}</h4>
             <h4 v-else-if="tipo_miembro == 'observador'">Observadores de {{comunidad.nombre}}</h4>
-            <div class="row border-bottom border-dark p-1">
+            <p v-if="comunidad.miembros.length == 0">La comunidad no tiene miembros {{tipo_miembro}}</p>
+            <div class="row border-bottom border-dark p-1" v-for="miembro in comunidad.miembros" :key="miembro.id">
                 <div class="col-8 d-flex align-items-center pt-2">
-                    <p class="mb-2">Pepe Argento - <span class="fw-bold">Observador</span></p>
+                    <p class="mb-2">{{miembro.nombre}} - <span class="fw-bold">{{miembro.tipo}}</span></p>
                 </div>
                 <div class="col-4 d-flex align-items-center border-start pt-2">
                     <p class="mb-2 me-auto">
-                        <a class="" data-bs-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                        <a class="" data-bs-toggle="collapse" :href="'#collapseExample' + miembro.id" aria-expanded="false" aria-controls="collapseExample">
                             Ver detalles
                         </a>
                     </p>
-                    <button type="button" class="btn btn-principal text-white mb-2 me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="Pepe Argento">Modificar</button>
                     <a type="" class="mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #a80000;" onclick=""></i>
+                        <i class="fa-solid fa-trash-can fa-xl" style="color: #a80000;" @click="eliminarMiembro(miembro)"></i>
                     </a>
                 </div>
-                <div class="collapse col-12 mb-2" id="collapseExample2">
+                <div class="collapse col-12 mb-2" :id="'collapseExample' + miembro.id">
                     <div class="card card-body">
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        <ul>
+                            <li>Apellido: {{miembro.apellido}}</li>
+                            <li>Correo electrónico: {{miembro.correoElectronico}}</li>
+                            <li>Teléfono: {{miembro.nroDeTelefono}}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -105,32 +77,37 @@ Vue.component('miembros', {
 
     data() {
         return {
-            comunidadLocal: null // Copia local para trabajar con los incidentes
+            miembros: []
         };
     },
     created() {
-        // Copiar el valor de la prop a la copia local al inicio
-        this.comunidadLocal = this.comunidad;
+        this.miembros = this.comunidad.miembros;
     },
     methods: {
-        // obtenerNombresDeServicios(agrupacion) {
-        //     return agrupacion.servicios.map(servicio => servicio.nombre).join(', ');
-        // }
+        eliminarMiembro(miembro) {
+            this.$emit('eliminar-miembro', miembro);
+        },
     }
+
 })
 
 var app = new Vue({
     el: '#app-miembros',
     data:{
+        comunidades:[],
         comunidad: {},
         tipo_miembro:'',
-        idComunidad: 1
+        idComunidad: '',
+        miembro: {}
+    },
+    created() {
+        this.fetchData()
     },
     methods:{
         getComunidad(tipo_miembro) {
             this.tipo_miembro = tipo_miembro
             let idSesion = localStorage.getItem("IDSESION")
-            fetch(`/api/${idSesion}/comunidadAdmin/${this.idComunidad}`)
+            fetch(`/api/${idSesion}/comunidadAdmin/${this.idComunidad}?tipoMiembro=${tipo_miembro}`)
                 .then(response => {
                     if (response.ok) {
                         return response.json();
@@ -147,6 +124,43 @@ var app = new Vue({
                     // Manejar errores en la solicitud o la respuesta
                     console.error('Error:', error);
                 });
+        },
+        async fetchData() {
+            try {
+                let idSesion = localStorage.getItem("IDSESION")
+                const response = await fetch(`/api/${idSesion}/comunidadAdmin/`);
+                const data = await response.json();
+                this.comunidades = data; // Asignar los datos a tu propiedad de datos
+                console.log(data)
+            } catch (error) {
+                console.error('Error al obtener datos:', error);
+            }
+        },
+        setMiembro(miembro){
+            this.miembro = miembro
+            console.log(miembro);
+        },
+        eliminar(){
+            fetch(`/api/comunidad/${this.comunidad.id}`, {
+            method: "POST",
+            body: JSON.stringify(this.miembro),
+            headers: {
+                "Content-Type": "application/json"
+            }
+            }).then((response) => {
+                if (response.ok) {
+                    console.log("Miembro eliminado");
+                    let miembros = this.comunidad.miembros.filter(m => m.id !== this.miembro.id);
+                    console.log(miembros);
+                    Vue.set(this.comunidad, 'miembros', miembros);
+
+                    // Resto de tu lógica...
+                } else {
+                    console.log("Error al crear incidente");
+                }
+            }).catch((error) => {
+                console.error("Error en la petición:", error);
+            });
         }
-    }
+    },
 })

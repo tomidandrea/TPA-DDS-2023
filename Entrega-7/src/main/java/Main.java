@@ -29,7 +29,7 @@ public class Main {
             .get("/", ctx -> ctx.result("Hello World"))
             .start(4567);
 
-    //persistirInstancias();
+    persistirInstancias();
 
     //pesado
     app.get("/api/rankingCI", new GetRankingCIHandler());
@@ -41,7 +41,8 @@ public class Main {
     app.get("/api/{id_sesion}/incidentes", new GetIncidentesPorEstadoHandler());
     app.get("/api/{id_sesion}/miembros", new GetIncidentesPorEstadoHandler());
     app.get("/api/{id_sesion}/comunidadAdmin/", new GetComunidadesAdministradasHandler());
-    app.get("/api/{id_sesion}/comunidadAdmin/{id}", new GetComunidadesAdministradasHandler());
+    app.get("/api/{id_sesion}/comunidadAdmin/{id}", new GetMiembrosComunidadAdministradaHandler());
+    app.post("/api/comunidad/{id}", new PostComunidadMiembroHandler());
 
     //liviano
     app.get("/rankingCI", new RankingCIViewHandler());

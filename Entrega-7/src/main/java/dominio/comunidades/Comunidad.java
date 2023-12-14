@@ -11,6 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Entity
@@ -126,6 +127,22 @@ public class Comunidad {
     public void agregarIncidente(Incidente incidente){
         incidentesAbiertos.add(incidente);
     }
+
+    public void removerMiembro(int miembroId, TipoMiembro tipoMiembro){
+        if(tipoMiembro == TipoMiembro.AFECTADO){
+            afectados = afectados.stream()
+                .filter(afectado -> afectado.getId() != miembroId)
+                .collect(Collectors.toList());
+            System.out.println("Afectado removido de la comunidad");
+        } else if (tipoMiembro == TipoMiembro.OBSERVADOR) {
+            observadores = observadores.stream()
+                .filter(observador -> observador.getId() != miembroId)
+                .collect(Collectors.toList());
+            System.out.println("Observador removido de la comunidad");
+        }
+
+    }
+    
 
     @Override
     public String toString() {
