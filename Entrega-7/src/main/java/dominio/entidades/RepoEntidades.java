@@ -29,10 +29,10 @@ public class RepoEntidades {
 
         serviciosDeTransporte.add(servicioTransporte);
     }
-    public List<ServicioTransporte> obtenerPorNombre(String nombre){
+    public List<ServicioTransporte> obtenerPorID(Integer id){
         //return serviciosDeTransporte.stream().filter(servicio -> servicio.getTipoTransporte() == tipo).toList();
-         return  em.createQuery("from ServicioTransporte where nombre = :nombre", ServicioTransporte.class)
-                 .setParameter("nombre",nombre)
+         return  em.createQuery("from ServicioTransporte where id = :id", ServicioTransporte.class)
+                 .setParameter("id",id)
                  .getResultList();
     }
 
@@ -40,10 +40,10 @@ public class RepoEntidades {
         organizaciones.add(organizacion);
     }
 
-    public List<Organizacion> obtenerOrgPorNombre(String nombreOrg){
+    public List<Organizacion> obtenerOrgPorID(Integer id){
        // return organizaciones.stream().filter(organizacion -> organizacion.nombre == nombre).findFirst().get();
-        return em.createQuery("from Organizacion where nombre = :nombreOrg", Organizacion.class)
-                .setParameter("nombreOrg",nombreOrg)
+        return em.createQuery("from Organizacion where id = :id", Organizacion.class)
+                .setParameter("id",id)
                 .getResultList();
     }
 
